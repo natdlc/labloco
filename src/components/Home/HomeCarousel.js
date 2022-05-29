@@ -1,8 +1,8 @@
 import { Carousel } from "react-bootstrap";
 import "./HomeCarousel.css";
-import img1 from "../assets/imgs/img1.png";
-import img2 from "../assets/imgs/img2.png";
-import img3 from "../assets/imgs/img3.png";
+import img1 from "../../assets/imgs/img1.png";
+import img2 from "../../assets/imgs/img2.png";
+import img3 from "../../assets/imgs/img3.png";
 
 const HomeCarousel = () => {
   return (
@@ -15,7 +15,7 @@ const HomeCarousel = () => {
         />
         <Carousel.Caption>
           <h1 className="text-header">First slide label</h1>
-          <h5 className="text-content">Nulla vitae elit libero, a pharetra augue mollis interdum.</h5>
+          <p className="text-content">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -27,7 +27,7 @@ const HomeCarousel = () => {
 
         <Carousel.Caption>
           <h1 className="text-header">Second slide label</h1>
-          <h5 className="text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+          <p className="text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -39,9 +39,9 @@ const HomeCarousel = () => {
 
         <Carousel.Caption>
           <h1 className="text-header">Third slide label</h1>
-          <h5 className="text-content">
+          <p className="text-content">
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </h5>
+          </p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

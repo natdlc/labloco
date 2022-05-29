@@ -1,30 +1,31 @@
 .app-nav {
-  background-color: #17355e;
+  background-color: var(--darkBlue1);
+  margin: 0 !important;
 }
 
 .logo {
-  color: var(--offWhite) !important;
-  font-family: var(--font1) !important;
+	color: var(--offWhite) !important;
+	font-family: var(--font1) !important;
 }
 
 .off-white {
-  color: var(--offWhite) !important;
+	color: var(--offWhite) !important;
 }
 
 #offcanvasNavbar-expand-md {
-  background-color: #17355e;
+	background-color: #17355e;
 }
 
 .toggle {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
 
 .navbar-toggler-icon {
-  background-image: url(../assets/icon/menu.png) !important;
+	background-image: url(../assets/icon/menu.png) !important;
 }
 
 .btn-close {
-  background-image: url(../assets/icon/closebtn.png) !important;
+	background-image: url(../assets/icon/closebtn.png) !important;
 }

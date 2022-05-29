@@ -3,7 +3,7 @@ import "./AppNav.css";
 
 const AppNav = () => {
   return (
-    <Navbar expand="sm" className="app-nav">
+    <Navbar expand="xl" className="app-nav">
       <Container fluid>
         <Navbar.Brand className="logo text-header" href="#">
           LabLoco
@@ -62,7 +62,7 @@ const AppNav = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button className="custom-btn-1">Search</Button>
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
