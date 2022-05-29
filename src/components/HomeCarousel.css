@@ -1,0 +1,25 @@
+.carousel-item {
+    position: relative;
+    max-height: 700px !important;
+}
+
+.carousel-item::before {
+    position: absolute;
+    content: '';
+    background: rgb(0,0,0,0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.carousel-caption {
+    padding: 0 !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
