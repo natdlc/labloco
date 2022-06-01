@@ -31,6 +31,11 @@ html {
 	font-weight: 900;
 }
 
+.text-subheader {
+	font-family: var(--font2) !important;
+	font-weight: 600;
+}
+
 .text-content {
 	font-family: var(--font2) !important;
 	font-weight: 200;
@@ -65,7 +70,7 @@ html {
 	color: var(--darkBlue1) !important;
 }
 
-.custom-btn-2 {
+.custom-btn-2, .custom-btn-3, .custom-btn-4 {
 	background: var(--darkBlue1) !important;
 	outline: var(--darkBlue1) !important;
 	border-color: var(--darkBlue1) !important;
@@ -74,10 +79,21 @@ html {
 	font-weight: 900;
 	letter-spacing: 0.1rem;
 	font-family: var(--font1) !important;
+	text-decoration: underline;
 }
 
-.custom-btn-2:hover {
+.custom-btn-2:hover, .custom-btn-3:hover, .custom-btn-4:hover {
 	background: var(--darkBlue4) !important;
 	outline: var(--darkBlue2) !important;
 	border-color: var(--darkBlue2) !important;
+}
+
+
+.custom-shade-bg-1 {
+	background-color: var(--lightBlue4) !important;
+	border: 1px solid var(--lightBlue4) !important;
+}
+
+.card-img {
+	border-radius: 0 !important;
 }

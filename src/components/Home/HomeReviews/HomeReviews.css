@@ -6,12 +6,10 @@
 	position: relative;
 	right: 0;
 	animation: infinite-scroll 45s ease-in-out 1s infinite;
-	border: 1px solid var(--darkBlue) !important;
 }
 
 .home-review-card {
-	border: 1px solid var(--darkBlue4) !important;
-	border-radius: 0 !important;
+	border: 1px solid var(--lightBlue4) !important;
 }
 
 @media (max-width: 576px) {

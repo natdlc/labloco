@@ -11,7 +11,7 @@ const HomeReviews = () => {
 			<h1 className="text-header text-prime pt-5 text-center">
 				What our customers say
 			</h1>
-			<p className="text-center mx-auto">
+			<p className="text-center mx-auto subheader-custom">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
 				voluptate similique a magni hic ab adipisci sed incidunt voluptatum
 				suscipit!
