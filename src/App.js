@@ -1,4 +1,3 @@
-import { Row, Col } from "react-bootstrap";
 import "./App.css";
 import AppNav from "./components/AppNav";
 import Home from "./pages/Home";

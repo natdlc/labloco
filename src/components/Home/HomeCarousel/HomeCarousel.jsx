@@ -1,8 +1,8 @@
 import { Carousel } from "react-bootstrap";
 import "./HomeCarousel.css";
-import img1 from "../../assets/imgs/img1.png";
-import img2 from "../../assets/imgs/img2.png";
-import img3 from "../../assets/imgs/img3.png";
+import img1 from "../../../assets/imgs/img1.png";
+import img2 from "../../../assets/imgs/img2.png";
+import img3 from "../../../assets/imgs/img3.png";
 
 const HomeCarousel = () => {
   return (

@@ -55,6 +55,7 @@ html {
 	outline: var(--offWhite) !important;
 	border-color: var(--offWhite) !important;
 	color: var(--offWhite) !important;
+	font-family: var(--font1) !important;
 }
 
 .custom-btn-1:hover {
@@ -64,3 +65,19 @@ html {
 	color: var(--darkBlue1) !important;
 }
 
+.custom-btn-2 {
+	background: var(--darkBlue1) !important;
+	outline: var(--darkBlue1) !important;
+	border-color: var(--darkBlue1) !important;
+	color: var(--offWhite) !important;
+	text-transform: uppercase;
+	font-weight: 900;
+	letter-spacing: 0.1rem;
+	font-family: var(--font1) !important;
+}
+
+.custom-btn-2:hover {
+	background: var(--darkBlue4) !important;
+	outline: var(--darkBlue2) !important;
+	border-color: var(--darkBlue2) !important;
+}
