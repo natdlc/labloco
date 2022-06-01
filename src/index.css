@@ -26,6 +26,10 @@ html {
 	overflow-x: hidden;
 }
 
+p {
+	font-family: var(--font2);
+}
+
 .text-header {
 	font-family: var(--font1) !important;
 	font-weight: 900;
