@@ -1,3 +1,53 @@
-.home-reviews-row {
-  display: flex !important;
+.home-reviews-container {
+	overflow-x: hidden;
+}
+
+.home-reviews {
+	position: relative;
+	animation: infinite-scroll 30s ease-in-out 1s infinite alternate;
+  right: 0;
+}
+
+@media (max-width: 576px) {
+	@keyframes infinite-scroll {
+		from {
+			right:0;
+		}
+		to {
+			right: 970%;
+		}
+	}
+}
+
+@media (min-width: 577px) {
+	@keyframes infinite-scroll {
+		from {
+			right: 0%;
+		}
+		to {
+			right: 330%;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	@keyframes infinite-scroll {
+		from {
+			right: 0%;
+		}
+		to {
+			right: 243%;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	@keyframes infinite-scroll {
+		from {
+			right: 0%;
+		}
+		to {
+			right: 155%;
+		}
+	}
 }
