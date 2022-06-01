@@ -26,8 +26,16 @@ html {
 	overflow-x: hidden;
 }
 
-p {
-	font-family: var(--font2);
+h1 {
+	font-family: var(--font1) !important;
+}
+
+p,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font2) !important;
 }
 
 .text-header {
@@ -74,7 +82,9 @@ p {
 	color: var(--darkBlue1) !important;
 }
 
-.custom-btn-2, .custom-btn-3, .custom-btn-4 {
+.custom-btn-2,
+.custom-btn-3,
+.custom-btn-4 {
 	background: var(--darkBlue1) !important;
 	outline: var(--darkBlue1) !important;
 	border-color: var(--darkBlue1) !important;
@@ -86,12 +96,23 @@ p {
 	text-decoration: underline;
 }
 
-.custom-btn-2:hover, .custom-btn-3:hover, .custom-btn-4:hover {
+.custom-btn-2:hover,
+.custom-btn-3:hover,
+.custom-btn-4:hover {
 	background: var(--darkBlue4) !important;
 	outline: var(--darkBlue2) !important;
 	border-color: var(--darkBlue2) !important;
 }
 
+.custom-btn-3 {
+	background: var(--lightBlue3) !important;
+	color: var(--darkBlue1) !important;
+	border: none !important;
+}
+
+.custom-btn-3:hover {
+	background: var(--lightBlue4) !important;
+}
 
 .custom-shade-bg-1 {
 	background-color: var(--lightBlue4) !important;
