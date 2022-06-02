@@ -30,62 +30,62 @@ const Footer = () => {
 					</p>
 					<Nav>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Home
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Products
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Register
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Login
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Account
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Contact
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Shipping
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								FAQs
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Privacy
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Terms
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Cart
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 pe-3 py-2 text-reverse-prime">
+							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Logout
 							</Nav.Link>
 						</Nav.Item>
@@ -117,13 +117,13 @@ const Footer = () => {
 				>
 					<p className="text-header text-reverse-prime display-6">Follow Us</p>
 					<div className="d-flex gap-3 justify-content-md-center">
-						<div className="footer-social_wrapper" style={{maxWidth: "40px"}}>
+						<div className="footer-social_wrapper" style={{ maxWidth: "40px" }}>
 							<img className="img-fluid" src={social1} alt="facebook logo" />
 						</div>
-						<div className="footer-social_wrapper" style={{maxWidth: "40px"}}>
+						<div className="footer-social_wrapper" style={{ maxWidth: "40px" }}>
 							<img className="img-fluid" src={social2} alt="twitter logo" />
 						</div>
-						<div className="footer-social_wrapper" style={{maxWidth: "40px"}}>
+						<div className="footer-social_wrapper" style={{ maxWidth: "40px" }}>
 							<img className="img-fluid" src={social3} alt="instagram logo" />
 						</div>
 					</div>
