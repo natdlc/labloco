@@ -1,0 +1,13 @@
+.footer-contact_info {
+	color: var(--offWhite);
+}
+
+#footer-email-input {
+	background-color: var(--darkBlue1) !important;
+	color: var(--offWhite) !important;
+	border-bottom: 1px solid var(--lightBlue4) !important;
+}
+
+#footer-email-input::placeholder {
+	color: var(--offWhite);
+}

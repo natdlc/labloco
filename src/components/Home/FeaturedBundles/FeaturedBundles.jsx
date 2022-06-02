@@ -1,5 +1,4 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import "./FeaturedBundles.css";
 import imgPlaceholder from "../../../assets/imgs/featured-bundles-img.png";
 
 const FeaturedBundles = () => {
