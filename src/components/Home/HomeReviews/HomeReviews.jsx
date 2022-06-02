@@ -7,7 +7,7 @@ const HomeReviews = () => {
 			<h1 className="display-1 text-header text-prime pt-5 text-center">
 				What our customers say
 			</h1>
-			<h4 className="text-center mx-auto subheader-custom">
+			<h4 className="text-center mx-auto">
 				We go <span className="text-prime fw-bold">above and beyond</span> for you, before, during, and after sale.
 			</h4>
 			<Container className="p-0 m-0 home-reviews-container mx-auto">
