@@ -36,11 +36,7 @@ const AppNav = () => {
 					</Offcanvas.Header>
 					<Offcanvas.Body>
 						<Nav className="justify-content-end flex-grow-1 pe-3">
-							<Nav.Link
-								as={Link}
-								to="/"
-								className="off-white text-content"
-							>
+							<Nav.Link as={Link} to="/" className="off-white text-content">
 								Home
 							</Nav.Link>
 							<Nav.Link
@@ -50,7 +46,12 @@ const AppNav = () => {
 							>
 								Products
 							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
+							<Nav.Link
+								as={Link}
+								to="/register"
+								className="off-white text-content"
+								href="#action2"
+							>
 								Register
 							</Nav.Link>
 							<Nav.Link className="off-white text-content" href="#action2">

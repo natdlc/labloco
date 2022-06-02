@@ -62,6 +62,13 @@ h5 {
 	color: var(--offWhite) !important;
 }
 
+.text-muted-prime {
+	color: var(--darkBlue4) !important;
+	opacity: 0.9;
+	font-size: 0.9rem;
+	margin-top: -0.4rem;
+}
+
 .text-muted-reverse-prime {
 	color: var(--lightBlue1) !important;
 	font-size: 0.9rem;

@@ -11,7 +11,12 @@ const Categories = () => {
 					<ListGroup.Item className="p-0 border-0">
 						<a
 							href="#category-1"
-							className="d-block text-content list-group-item border-0 p-4 border-bottom"
+							className="d-block 
+							text-content 
+							list-group-item 
+							border-0 
+							p-4 
+							border-bottom"
 						>
 							Category 1
 						</a>

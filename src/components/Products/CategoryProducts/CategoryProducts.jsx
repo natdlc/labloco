@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import imgPlaceholder1 from "../../../assets/imgs/featured-product-placeholder-1.png";
 import imgPlaceholder2 from "../../../assets/imgs/featured-product-placeholder-2.png";
+import { Link } from "react-router-dom";
 
 const CategoryProducts = () => {
 	return (
@@ -18,7 +19,7 @@ const CategoryProducts = () => {
 						<Card.Subtitle className="mb-2 text-muted text-content p-2">
 							₱25
 						</Card.Subtitle>
-						<Button className="custom-btn-3 py-2 fs-5">View Product</Button>
+						<Button as={ Link} to="/product" className="custom-btn-3 py-2 fs-5">View Product</Button>
 					</Card>
 				</Col>
 				<Col className="d-flex justify-content-center" sm={5} xl={4}>
