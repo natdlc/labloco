@@ -45,6 +45,14 @@ th {
 
 td {
 	font-family: var(--font2) !important;
+	text-align: center;
+}
+
+.btn-danger {
+	border-radius: 0 !important;
+	border: none;
+	color: red;
+	background: none !important;
 }
 
 table {

@@ -81,7 +81,13 @@ const AppNav = () => {
 							>
 								Shipping
 							</Nav.Link>
-							<Nav.Link className="off-white text-content">Cart</Nav.Link>
+							<Nav.Link
+								as={Link}
+								to="/cart"
+								className="off-white text-content"
+							>
+								Cart
+							</Nav.Link>
 							<Nav.Link className="off-white text-content">Logout</Nav.Link>
 						</Nav>
 						<Form className="d-flex">

@@ -1,0 +1,9 @@
+.quantity-btn {
+  border-radius: 0 !important;
+  background-color: var(--darkBlue1) !important;
+  border: 1px solid var(--darkBlue1) !important;
+}
+
+.quantity-count {
+  width: 2rem;
+}
