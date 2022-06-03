@@ -1,9 +1,17 @@
 .quantity-btn {
-  border-radius: 0 !important;
-  background-color: var(--darkBlue1) !important;
-  border: 1px solid var(--darkBlue1) !important;
+	width: 25px;
+	height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	background: none;
+	font-family: var(--font1);
+	font-size: 20px;
+	border: 1px solid var(--lightBlue1);
+	font-weight: 100;
 }
 
-.quantity-count {
-  width: 2rem;
+.quantity-btn:active {
+	background: var(--lightBlue1);
 }
