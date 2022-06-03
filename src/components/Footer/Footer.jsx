@@ -28,7 +28,7 @@ const Footer = () => {
 					<p className="text-reverse-prime text-header display-6">
 						Quick Links
 					</p>
-					<Nav>
+					<Nav style={{maxWidth: "20rem"}}>
 						<Nav.Item>
 							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Home
@@ -66,22 +66,12 @@ const Footer = () => {
 						</Nav.Item>
 						<Nav.Item>
 							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
-								FAQs
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Privacy
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>
 							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Terms
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
-								Cart
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item>

@@ -50,31 +50,39 @@ const AppNav = () => {
 								as={Link}
 								to="/register"
 								className="off-white text-content"
-								href="#action2"
 							>
 								Register
 							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
+							<Nav.Link
+								as={Link}
+								to="/login"
+								className="off-white text-content"
+							>
 								Login
 							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
+							<Nav.Link
+								as={Link}
+								to="/profile"
+								className="off-white text-content"
+							>
 								Account
 							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
+							<Nav.Link
+								as={Link}
+								to="/contact"
+								className="off-white text-content"
+							>
 								Contact
 							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
+							<Nav.Link
+								as={Link}
+								to="/shipping"
+								className="off-white text-content"
+							>
 								Shipping
 							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
-								FAQs
-							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
-								Cart
-							</Nav.Link>
-							<Nav.Link className="off-white text-content" href="#action2">
-								Logout
-							</Nav.Link>
+							<Nav.Link className="off-white text-content">Cart</Nav.Link>
+							<Nav.Link className="off-white text-content">Logout</Nav.Link>
 						</Nav>
 						<Form className="d-flex">
 							<FormControl

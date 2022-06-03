@@ -3,6 +3,10 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import SingleProduct from "./pages/SingleProduct";
 import Registration from "./pages/Registration";
+import Login from "./pages/Login";
+import Account from "./pages/Account";
+import Contact from "./pages/Contact";
+import Shipping from "./pages/Shipping";
 import Footer from "./components/Footer/Footer";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -17,6 +21,10 @@ function App() {
 					<Route path="/collections" element={<Products />} />
 					<Route path="/product" element={<SingleProduct />} />
 					<Route path="/register" element={<Registration />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/profile" element={<Account />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="/shipping" element={<Shipping />} />
 				</Routes>
 			</Container>
 			<Footer />

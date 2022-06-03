@@ -39,6 +39,22 @@ h5 {
 	font-family: var(--font2) !important;
 }
 
+th {
+	font-family: var(--font1) !important;
+}
+
+td {
+	font-family: var(--font2) !important;
+}
+
+table {
+	border: none !important;
+}
+
+thead, tr, th, td {
+	border: none !important;
+}
+
 .text-header {
 	font-family: var(--font1) !important;
 	font-weight: 900;
@@ -81,6 +97,14 @@ h5 {
 
 .bg-reverse-prime {
 	background-color: var(--lightBlue1) !important;
+}
+
+.border-prime {
+	border: 1px solid var(--darkBlue1) !important;
+}
+
+.border-reverse-prime {
+	border: 1px solid var(--lightBlue1) !important;
 }
 
 .nav-link {
@@ -140,6 +164,18 @@ h5 {
 	background: var(--lightBlue4) !important;
 }
 
+.custom-btn-4 {
+	background: var(--offWhite) !important;
+	color: var(--darkBlue1) !important;
+	border: 1px solid var(--lightBlue1) !important;
+	font-weight: 900 !important;
+}
+
+.custom-btn-4:hover {
+	background: var(--lightBlue4) !important;
+	border: 1px solid var(--lightBlue4) !important;
+}
+
 .custom-shade-bg-1 {
 	background-color: var(--lightBlue4) !important;
 	border: 1px solid var(--lightBlue4) !important;
@@ -147,4 +183,8 @@ h5 {
 
 .card-img {
 	border-radius: 0 !important;
+}
+
+.account-accordion-header > button {
+	padding: 0 !important;
 }

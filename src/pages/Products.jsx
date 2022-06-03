@@ -1,12 +1,4 @@
-import {
-	Container,
-	Row,
-	Col,
-	Accordion,
-	ListGroup,
-	Card,
-	Button,
-} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import Categories from "../components/Products/Categories/Categories";
 import CategoryProducts from "../components/Products/CategoryProducts/CategoryProducts";
