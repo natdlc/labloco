@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+Welcome! This is the frontend code for Zuitt's E-commerce capstone. Listed below are all the features built (and in progress if any).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FRONT-END-SPECIFIC
 
-## Available Scripts
+- (c) Logout
+- (c) 404 page
+- (w) admin page
 
-In the project directory, you can run:
+ADMIN FEATURES
 
-### `npm start`
+Users
+- (w) Set user as admin (Admin only)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Products
+- () Create Product (Admin only)
+- () Update Product information (Admin only)
+- () Archive Product (Admin only)
+- () Retrieve all products (admin only)
+- () Add categories to product (admin only)
+- () Add only active categories to product (admin only)
+- () Create image for product (admin only)
+- () Delete image for product (admin only)
+- () Add custom order option with value (admin only)
+- () Delete custom order option (admin only)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Orders
+- () Retrieve all orders (Admin only)
 
-### `npm test`
+Categories
+- () Remove from category (admin only)
+- () Add a category (admin only)
+- () Add hot/featured products section (admin only)
+- () Retrieve all categories (admin only)
+- () Edit category name (admin only)
+- () Archive a category (admin only)
+- () Remove a category (admin only)
+- () Add product to category (admin only)
+- () Can't delete category linked to products (admin only)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Newsletters
+- () Retrieve newsletter emails (admin only)
 
-### `npm run build`
+Couriers
+- () Create courier (admin only)
+- () Retrieve couriers (admin only)
+- () Deactivate courier (admin only)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Discounts
+- () Create discounts (admin only)
+- () Retrieve discounts (admin only)
+- () Set discount to inactive (admin only)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+MINIMUM
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- (c) User registration
+- (c) User authentication
+- () Create Product (Admin only)
+- () Retrieve all active products
+- () Retrieve single product
+- () Update Product information (Admin only)
+- () Archive Product (Admin only)
+- () Non-admin User checkout (Create Order)
 
-### `npm run eject`
+STRETCH
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- (w) Set user as admin (Admin only)
+- () Retrieve authenticated user’s orders
+- () Retrieve all orders (Admin only)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+EXTRAS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Cart
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- () Add to cart active product only (auth)
+- () Remove product from cart (auth)
+- () Clear cart (auth)
+- () Admin can't add to cart
 
-## Learn More
+Users
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- () Schema update: registeredOn, firstName, lastName, address, mobileNum
+- () No duplicate users (via email)
+- () Retrieve authenticated user profile (authed)
+- () Change password (user only)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Newsletter
 
-### Code Splitting
+- () Subscribe to newsletter
+- () No duplicate emails
+- () Retrieve newsletter emails (admin only)
+- () Unsubscribe from newsletter
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Products
 
-### Analyzing the Bundle Size
+- () Schema update: stocks, categories, options
+- () No duplicate product (via name)
+- () Retrieve all products (admin only)
+- () Retrieve single product (active only)
+- () Create image for product (admin only)
+- () Retrieve image for product
+- () Delete image for product (admin only)
+- () Add custom order option with value (admin only)
+- () Delete custom order option (admin only)
+- () Add categories to product (admin only)
+- () Add only active categories to product (admin only)
+- () Remove from category (admin only)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Category
 
-### Making a Progressive Web App
+- () retrieve all active categories (all users)
+- () Add a category (admin only)
+- () Add hot/featured products section (admin only)
+- () Retrieve all categories (admin only)
+- () Edit category name (admin only)
+- () Archive a category (admin only)
+- () Remove a category (admin only)
+- () Add product to category (admin only)
+- () Can't delete category linked to products (admin only)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Courier
 
-### Advanced Configuration
+- () Create courier (admin only)
+- () Retrieve couriers (admin only)
+- () Deactivate courier (admin only)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Orders
 
-### Deployment
+- () Schema update: comments(optional), courier
+- () Can only order active products
+- () Orders catch cart products
+- () User's cart clears when order is processed
+- () Discounts apply to orders (users only)
+- () Calculate percentage-based discounts
+- () Calculate fixed-amount-based discounts
+- () Attach courier to order
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Discounts
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- () Create discounts (admin only)
+- () Retrieve discounts (admin only)
+- () Set discount to inactive (admin only)

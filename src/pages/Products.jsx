@@ -5,7 +5,7 @@ import CategoryProducts from "../components/Products/CategoryProducts/CategoryPr
 
 const Products = () => {
 	return (
-		<Container>
+		<Container className="pb-5">
 			<h1 className="display-1 text-header text-prime pt-5 pb-3 text-center">
 				All Products
 			</h1>

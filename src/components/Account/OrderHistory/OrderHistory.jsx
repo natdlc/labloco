@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 
 const OrderHistory = () => {
 	return (
-		<Table striped hover>
+		<Table striped hover className="text-start">
 			<thead>
 				<tr>
 					<th>Date & Time</th>

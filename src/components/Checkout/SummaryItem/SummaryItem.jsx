@@ -4,7 +4,7 @@ import "./SummaryItem.css";
 const SummaryItem = () => {
 	return (
 		<Container fluid={true} className="p-0 m-0">
-			<Row className="p-2 m-0 gap-4 border-bottom">
+			<Row className="p-0 m-0 border-bottom pb-4">
 				<Col xs={2} className="p-0 m-0 summary-item-img-col">
 					<img
 						style={{width: "6rem"}}
@@ -14,12 +14,12 @@ const SummaryItem = () => {
 					/>
 					<p className="summary-item-quantity">5</p>
 				</Col>
-				<Col className="p-0 m-0">
+				<Col xs={6} className="ps-3 m-0">
 					<p className="text-prime text-subheader p-0">
-						A pretty long product name for spacing's sake
+						Product name
 					</p>
 				</Col>
-				<Col className="p-0 m-0">
+				<Col xs={4} className="p-0 m-0 text-end">
 					<p className="text-prime text-subheader p-0">₱ 5000.00</p>
 				</Col>
 			</Row>
