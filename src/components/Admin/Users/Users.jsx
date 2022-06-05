@@ -84,6 +84,7 @@ const Users = () => {
                 <Form.Group>
                   <Form.Control
                     onChange={emailChangeHandler}
+                    type="email"
                     value={email}
                     placeholder="Enter user's email"
                   />
