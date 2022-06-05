@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const Users = () => {
   const [show, setShow] = useState(false);
@@ -11,12 +12,55 @@ const Users = () => {
 
   const emailChangeHandler = (e) => setEmail(e.target.value);
 
-  const proceedHandler = (e) => {
+  const proceedHandler = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:4000/users/all")
+    const authToken = `Bearer ${localStorage.getItem("accessToken")}`;
+    await fetch("http://localhost:4000/users/all", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authToken,
+      },
+    })
       .then((res) => res.json())
       .then((userList) => {
-        console.log(userList);
+        const userFound = userList.filter((user) => user.email === email);
+        const userId = userFound[0]._id;
+        fetch(`http://localhost:4000/users/${userId}/admin`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authToken,
+          },
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            Swal.fire({
+              text: result.message,
+              icon: "success",
+              iconColor: "#17355E",
+              color: "#17355E",
+              confirmButtonColor: "#17355E",
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              text: err.message,
+              icon: "error",
+              iconColor: "#17355E",
+              color: "#17355E",
+              confirmButtonColor: "#17355E",
+            });
+          });
+        handleClose();
+      })
+      .catch((err) => {
+        Swal.fire({
+          text: err.message,
+          icon: "error",
+          iconColor: "#17355E",
+          color: "#17355E",
+          confirmButtonColor: "#17355E",
+        });
         handleClose();
       });
   };
