@@ -9,7 +9,7 @@ FRONT-END-SPECIFIC
 ADMIN FEATURES
 
 Users
-- (w) Set user as admin (Admin only)
+- (c) Set user as admin (Admin only)
 
 Products
 - () Create Product (Admin only)
