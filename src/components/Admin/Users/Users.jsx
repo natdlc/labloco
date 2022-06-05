@@ -15,7 +15,7 @@ const Users = () => {
   const proceedHandler = async (e) => {
     e.preventDefault();
     const authToken = `Bearer ${localStorage.getItem("accessToken")}`;
-    await fetch("http://localhost:4000/users/all", {
+    await fetch("https://labloco-medical-supplies.herokuapp.com/users/all", {
       headers: {
         "Content-Type": "application/json",
         Authorization: authToken,
@@ -25,13 +25,16 @@ const Users = () => {
       .then((userList) => {
         const userFound = userList.filter((user) => user.email === email);
         const userId = userFound[0]._id;
-        fetch(`http://localhost:4000/users/${userId}/admin`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: authToken,
-          },
-        })
+        fetch(
+          `https://labloco-medical-supplies.herokuapp.com/users/${userId}/admin`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: authToken,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((result) => {
             Swal.fire({

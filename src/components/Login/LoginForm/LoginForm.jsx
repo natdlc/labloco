@@ -15,7 +15,7 @@ const LoginForm = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
-    fetch("http://localhost:4000/users/login", {
+    fetch("https://labloco-medical-supplies.herokuapp.com/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -38,11 +38,14 @@ const LoginForm = () => {
             confirmButtonColor: "#17355E",
             color: "#17355E",
           });
-          fetch("http://localhost:4000/users/profile/", {
-            headers: {
-              Authorization: `Bearer ${data.accessToken}`,
-            },
-          })
+          fetch(
+            "https://labloco-medical-supplies.herokuapp.com/users/profile/",
+            {
+              headers: {
+                Authorization: `Bearer ${data.accessToken}`,
+              },
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.isAdmin) {
