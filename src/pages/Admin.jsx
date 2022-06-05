@@ -1,5 +1,6 @@
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import Users from "../components/Admin/Users/Users";
+import Create from "../components/Admin/Products/Create";
 
 const Admin = () => {
   return (
@@ -16,7 +17,9 @@ const Admin = () => {
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>Products</Accordion.Header>
-              <Accordion.Body>Products options</Accordion.Body>
+              <Accordion.Body className="p-0 m-0">
+                <Create />
+              </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>Orders</Accordion.Header>

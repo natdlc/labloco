@@ -12,7 +12,7 @@ Users
 - (c) Set user as admin (Admin only)
 
 Products
-- () Create Product (Admin only)
+- (w) Create Product (Admin only)
 - () Update Product information (Admin only)
 - () Archive Product (Admin only)
 - () Retrieve all products (admin only)
