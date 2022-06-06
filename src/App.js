@@ -33,7 +33,7 @@ function App() {
 	const [allProducts, setAllProducts] = useState([]);
 
 	const fetchAllProducts = () => {
-		fetch("http://localhost:4000/products/", {
+		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -13,7 +13,7 @@ Users
 
 Products
 - (c) Create Product (Admin only)
-- () Create image for product (admin only)
+- (c) Create image for product (admin only)
 - () Delete image for product (admin only)
 - () Update Product information (Admin only)
 - () Archive Product (Admin only)

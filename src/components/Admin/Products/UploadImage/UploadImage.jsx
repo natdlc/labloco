@@ -9,7 +9,7 @@ const UploadImage = () => {
 	const [fetchedProductId, setFetchedProductId] = useState("");
 
 	const fetchForOptions = () => {
-		fetch("http://localhost:4000/products/", {
+		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -51,7 +51,7 @@ const UploadImage = () => {
 
 	const selectProductChangeHandler = (e) => {
 		setProduct(e.target.value);
-		fetch("http://localhost:4000/products/", {
+		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -85,13 +85,16 @@ const UploadImage = () => {
 		e.preventDefault();
 		const data = new FormData();
 		data.append("file", image);
-		fetch(`http://localhost:4000/products/image/${fetchedProductId}`, {
-			method: "POST",
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-			},
-			body: data,
-		})
+		fetch(
+			`https://labloco-medical-supplies.herokuapp.com/products/image/${fetchedProductId}`,
+			{
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+				body: data,
+			}
+		)
 			.then((response) => {
 				Swal.fire({
 					title: "SUCCESS",
