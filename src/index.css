@@ -280,3 +280,8 @@ td {
 	border-color: none;
 	box-shadow: none;
 }
+
+.btn-primary:focus,
+.btn:focus {
+	box-shadow: none;
+}

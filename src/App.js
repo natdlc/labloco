@@ -26,13 +26,46 @@ function App() {
 		isAdmin: localStorage.getItem("isAdmin") === "true",
 	});
 
+	const [allProducts, setAllProducts] = useState([]);
+	const [fetchedProductsForOptions, setFetchedProductsForOptions] = useState(
+		[]
+	);
+
 	const unsetUser = () => {
 		localStorage.clear();
 	};
 
-	const [allProducts, setAllProducts] = useState([]);
+	const fetchForOptions = () => {
+		console.log("rendering");
+		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+			},
+		})
+			.then((response) => response.json())
+			.then((result) => {
+				setFetchedProductsForOptions(
+					result.map((product) => {
+						return (
+							<option key={product._id} value={product.name}>
+								{product.name}
+							</option>
+						);
+					})
+				);
+			})
+			.catch((err) => {
+				return (
+					<>
+						<p className="text-subheader text-danger">{err.message}</p>
+					</>
+				);
+			});
+	};
 
 	const fetchAllProducts = () => {
+		console.log("rendering");
 		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
@@ -47,12 +80,19 @@ function App() {
 
 	useEffect(() => {
 		fetchAllProducts();
-	}, [allProducts]);
+		fetchForOptions();
+	}, []);
 
 	return (
 		<UserProvider value={{ user, setUser, unsetUser }}>
 			<ProductProvider
-				value={{ fetchAllProducts, setAllProducts, allProducts }}
+				value={{
+					fetchAllProducts,
+					setAllProducts,
+					allProducts,
+					fetchForOptions,
+					fetchedProductsForOptions,
+				}}
 			>
 				<Router>
 					<AppNav />

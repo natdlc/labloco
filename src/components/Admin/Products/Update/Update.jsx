@@ -1,22 +1,23 @@
 import { useState, useEffect, useContext } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
-import Swal from "sweetalert2";
 import ProductContext from "../../../../ProductContext";
+import Swal from "sweetalert2";
 
-const UploadImage = () => {
+const Update = () => {
 	const { fetchForOptions, fetchedProductsForOptions } =
 		useContext(ProductContext);
 
-	const [fetchedProductId, setFetchedProductId] = useState("");
-
-	const [image, setImage] = useState();
-
-	const [product, setProduct] = useState("");
-
 	const [show, setShow] = useState(false);
-
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	const [product, setProduct] = useState("");
+	const [fetchedProductId, setFetchedProductId] = useState("");
+
+	const [productName, setProductName] = useState("");
+	const [description, setDescription] = useState("");
+	const [price, setPrice] = useState(0);
+	const [stocks, setStocks] = useState(1);
 
 	useEffect(() => {
 		if (show) fetchForOptions();
@@ -49,68 +50,41 @@ const UploadImage = () => {
 			});
 	};
 
-	const imageUploadHandler = (e) => {
+	const proceedHandler = async (e) => {
 		e.preventDefault();
-		setImage(e.target.files[0]);
-	};
 
-	const proceedHandler = (e) => {
-		e.preventDefault();
-		const data = new FormData();
-		data.append("file", image);
-		fetch(
-			`https://labloco-medical-supplies.herokuapp.com/products/image/${fetchedProductId}`,
-			{
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-				},
-				body: data,
-			}
-		)
-			.then((response) => {
-				Swal.fire({
-					title: "SUCCESS",
-					text: "Product updated",
-					icon: "success",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
-				});
-			})
-			.catch((err) => {
-				Swal.fire({
-					title: "ERROR",
-					text: err.message,
-					icon: "error",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
-				});
-			});
-		setProduct("");
+    
+		setProductName("");
+		setDescription("");
+		setPrice("");
+		setStocks("");
 		handleClose();
 	};
+
+	const productNameChangeHandler = (e) => setProductName(e.target.value);
+	const descriptionChangeHandler = (e) => setDescription(e.target.value);
+	const priceChangeHandler = (e) => setPrice(e.target.value);
+	const stocksChangeHandler = (e) => setStocks(e.target.value);
 
 	return (
 		<Container className="p-0 m-0">
 			<Row className="p-0 m-0">
 				<Col className="p-0 m-0">
 					<Button className="custom-btn-6" onClick={handleShow}>
-						Upload product image
+						Update product information
 					</Button>
 
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton>
-							<Modal.Title>Upload image for product</Modal.Title>
+							<Modal.Title>Enter updated product details</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
 								<Form.Group>
 									<Form.Label>Select Product</Form.Label>
 									<Form.Select
-										onChange={selectProductChangeHandler}
 										value={product}
+										onChange={selectProductChangeHandler}
 										aria-label="Default select example"
 									>
 										<option>Click to select a product</option>
@@ -118,8 +92,46 @@ const UploadImage = () => {
 									</Form.Select>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>Upload image</Form.Label>
-									<Form.Control onChange={imageUploadHandler} type="file" />
+									<Form.Label>
+										<span className="text-danger">*</span> Product Name
+									</Form.Label>
+									<Form.Control
+										type="text"
+										placeholder="Enter product name"
+										value={productName}
+										onChange={productNameChangeHandler}
+									/>
+								</Form.Group>
+								<Form.Group>
+									<Form.Label>
+										<span className="text-danger">*</span> Description
+									</Form.Label>
+									<Form.Control
+										type="text"
+										placeholder="Enter product description"
+										value={description}
+										onChange={descriptionChangeHandler}
+									/>
+								</Form.Group>
+								<Form.Group>
+									<Form.Label>
+										<span className="text-danger">*</span> Price
+									</Form.Label>
+									<Form.Control
+										type="number"
+										placeholder="Price"
+										value={price}
+										onChange={priceChangeHandler}
+									/>
+								</Form.Group>
+								<Form.Group>
+									<Form.Label>Stocks</Form.Label>
+									<Form.Control
+										type="number"
+										placeholder="Stocks"
+										value={stocks}
+										onChange={stocksChangeHandler}
+									/>
 								</Form.Group>
 							</Form>
 						</Modal.Body>
@@ -138,4 +150,4 @@ const UploadImage = () => {
 	);
 };
 
-export default UploadImage;
+export default Update;

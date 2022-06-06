@@ -3,13 +3,11 @@ import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import ProductContext from "../../../../ProductContext";
 
-const UploadImage = () => {
+const DeleteImage = () => {
 	const { fetchForOptions, fetchedProductsForOptions } =
 		useContext(ProductContext);
 
 	const [fetchedProductId, setFetchedProductId] = useState("");
-
-	const [image, setImage] = useState();
 
 	const [product, setProduct] = useState("");
 
@@ -49,23 +47,15 @@ const UploadImage = () => {
 			});
 	};
 
-	const imageUploadHandler = (e) => {
-		e.preventDefault();
-		setImage(e.target.files[0]);
-	};
-
 	const proceedHandler = (e) => {
 		e.preventDefault();
-		const data = new FormData();
-		data.append("file", image);
 		fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/image/${fetchedProductId}`,
 			{
-				method: "POST",
+				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 				},
-				body: data,
 			}
 		)
 			.then((response) => {
@@ -88,7 +78,6 @@ const UploadImage = () => {
 					color: "#17355E",
 				});
 			});
-		setProduct("");
 		handleClose();
 	};
 
@@ -97,29 +86,25 @@ const UploadImage = () => {
 			<Row className="p-0 m-0">
 				<Col className="p-0 m-0">
 					<Button className="custom-btn-6" onClick={handleShow}>
-						Upload product image
+						Delete product image
 					</Button>
 
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton>
-							<Modal.Title>Upload image for product</Modal.Title>
+							<Modal.Title>Delete product image</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
 								<Form.Group>
 									<Form.Label>Select Product</Form.Label>
 									<Form.Select
-										onChange={selectProductChangeHandler}
 										value={product}
+										onChange={selectProductChangeHandler}
 										aria-label="Default select example"
 									>
 										<option>Click to select a product</option>
 										{fetchedProductsForOptions}
 									</Form.Select>
-								</Form.Group>
-								<Form.Group>
-									<Form.Label>Upload image</Form.Label>
-									<Form.Control onChange={imageUploadHandler} type="file" />
 								</Form.Group>
 							</Form>
 						</Modal.Body>
@@ -138,4 +123,4 @@ const UploadImage = () => {
 	);
 };
 
-export default UploadImage;
+export default DeleteImage;
