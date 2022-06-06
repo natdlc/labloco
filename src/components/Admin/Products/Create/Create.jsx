@@ -1,11 +1,8 @@
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-import ProductContext from "../../../../ProductContext";
 
 const Create = () => {
-	const { fetchAllProducts, allProducts } = useContext(ProductContext);
-
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
