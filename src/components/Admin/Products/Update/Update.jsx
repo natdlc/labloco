@@ -52,8 +52,55 @@ const Update = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		fetch(
+			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+				body: JSON.stringify({
+					name: productName,
+					description,
+					price,
+					stocks,
+				}),
+			}
+		)
+			.then((response) => response.json())
+			.then((result) => {
+				if (result.message.includes("success")) {
+					Swal.fire({
+						title: "SUCCESS",
+						text: "Product updated",
+						icon: "success",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
+				} else {
+					Swal.fire({
+						title: "ERROR",
+						text: result,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
+				}
+			})
+			.catch((err) => {
+				Swal.fire({
+					title: "ERROR",
+					text: err.message,
+					icon: "error",
+					iconColor: "#17355E",
+					confirmButtonColor: "#17355E",
+					color: "#17355E",
+				});
+			});
 
-    
 		setProductName("");
 		setDescription("");
 		setPrice("");
@@ -81,7 +128,7 @@ const Update = () => {
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
 								<Form.Group>
-									<Form.Label>Select Product</Form.Label>
+									<Form.Label>Select Product to update</Form.Label>
 									<Form.Select
 										value={product}
 										onChange={selectProductChangeHandler}
@@ -92,9 +139,7 @@ const Update = () => {
 									</Form.Select>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>
-										<span className="text-danger">*</span> Product Name
-									</Form.Label>
+									<Form.Label>New Product Name</Form.Label>
 									<Form.Control
 										type="text"
 										placeholder="Enter product name"
@@ -103,9 +148,7 @@ const Update = () => {
 									/>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>
-										<span className="text-danger">*</span> Description
-									</Form.Label>
+									<Form.Label>New Description</Form.Label>
 									<Form.Control
 										type="text"
 										placeholder="Enter product description"
@@ -114,9 +157,7 @@ const Update = () => {
 									/>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>
-										<span className="text-danger">*</span> Price
-									</Form.Label>
+									<Form.Label>New Price</Form.Label>
 									<Form.Control
 										type="number"
 										placeholder="Price"
@@ -125,7 +166,7 @@ const Update = () => {
 									/>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>Stocks</Form.Label>
+									<Form.Label>New Stocks</Form.Label>
 									<Form.Control
 										type="number"
 										placeholder="Stocks"

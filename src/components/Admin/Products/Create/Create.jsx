@@ -29,7 +29,7 @@ const Create = () => {
 			}),
 		})
 			.then((response) => response.json())
-			.then(async (data) => {
+			.then((data) => {
 				if (data.message === "success") {
 					Swal.fire({
 						title: "SUCCESS",
