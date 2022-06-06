@@ -1,51 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
+import ProductContext from "../../../../ProductContext";
 
 const UploadImage = () => {
-	const imageUploadHandler = (e) => {
-		e.preventDefault();
-		const data = new FormData();
-		data.append("photo", e.target.files[0]);
-		data.append("name", e.target.files[0].name);
-		console.log(e);
-	};
+	const { allProducts } = useContext(ProductContext);
+	const [fetchedProducts, setFetchedProducts] = useState([]);
+	const [fetchedProductId, setFetchedProductId] = useState("");
 
-	const [show, setShow] = useState(false);
-
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
-	const proceedHandler = async (e) => {
-		e.preventDefault();
-		await fetch("https://labloco-medical-supplies.herokuapp.com/products/new", {
-			method: "POST",
+	const fetchForOptions = () => {
+		fetch("http://localhost:4000/products/", {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 			},
 		})
 			.then((response) => response.json())
-			.then(async (data) => {
-				if (data.message === "success") {
-					Swal.fire({
-						title: "SUCCESS",
-						text: "Image uploaded for product!",
-						icon: "success",
-						iconColor: "#17355E",
-						confirmButtonColor: "#17355E",
-						color: "#17355E",
-					});
-				} else {
-					Swal.fire({
-						title: "ERROR",
-						text: data.message,
-						icon: "error",
-						iconColor: "#17355E",
-						confirmButtonColor: "#17355E",
-						color: "#17355E",
-					});
-				}
+			.then((result) => {
+				setFetchedProducts(
+					result.map((product) => {
+						return (
+							<option key={product._id} value={product.name}>
+								{product.name}
+							</option>
+						);
+					})
+				);
+			})
+			.catch((err) => {
+				return (
+					<>
+						<p className="text-subheader text-danger">err.message</p>
+					</>
+				);
+			});
+	};
+
+	useEffect(() => {
+		fetchForOptions();
+	}, [allProducts]);
+
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	const [image, setImage] = useState();
+
+	const [product, setProduct] = useState("");
+
+	const selectProductChangeHandler = (e) => {
+		setProduct(e.target.value);
+		fetch("http://localhost:4000/products/", {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+			},
+		})
+			.then((response) => response.json())
+			.then((result) => {
+				const fetchedProduct = result.filter(
+					(item) => item.name === e.target.value
+				);
+				setFetchedProductId(fetchedProduct[0]._id);
 			})
 			.catch((err) => {
 				Swal.fire({
@@ -57,6 +74,45 @@ const UploadImage = () => {
 					color: "#17355E",
 				});
 			});
+	};
+
+	const imageUploadHandler = (e) => {
+		e.preventDefault();
+		setImage(e.target.files[0]);
+	};
+
+	const proceedHandler = (e) => {
+		e.preventDefault();
+		const data = new FormData();
+		data.append("file", image);
+		fetch(`http://localhost:4000/products/image/${fetchedProductId}`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+			},
+			body: data,
+		})
+			.then((response) => {
+				Swal.fire({
+					title: "SUCCESS",
+					text: "Product updated",
+					icon: "success",
+					iconColor: "#17355E",
+					confirmButtonColor: "#17355E",
+					color: "#17355E",
+				});
+			})
+			.catch((err) => {
+				Swal.fire({
+					title: "ERROR",
+					text: err.message,
+					icon: "error",
+					iconColor: "#17355E",
+					confirmButtonColor: "#17355E",
+					color: "#17355E",
+				});
+			});
+		setProduct("");
 		handleClose();
 	};
 
@@ -74,12 +130,21 @@ const UploadImage = () => {
 						</Modal.Header>
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
-								<Form.Select aria-label="Default select example">
-									<option>Open this select menu</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</Form.Select>
+								<Form.Group>
+									<Form.Label>Select Product</Form.Label>
+									<Form.Select
+										onChange={selectProductChangeHandler}
+										value={product}
+										aria-label="Default select example"
+									>
+										<option>Click to select a product</option>
+										{fetchedProducts}
+									</Form.Select>
+								</Form.Group>
+								<Form.Group>
+									<Form.Label>Upload image</Form.Label>
+									<Form.Control onChange={imageUploadHandler} type="file" />
+								</Form.Group>
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>
