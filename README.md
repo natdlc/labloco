@@ -12,14 +12,14 @@ Users
 - (c) Set user as admin (Admin only)
 
 Products
-- (w) Create Product (Admin only)
+- (c) Create Product (Admin only)
+- () Create image for product (admin only)
+- () Delete image for product (admin only)
 - () Update Product information (Admin only)
 - () Archive Product (Admin only)
 - () Retrieve all products (admin only)
 - () Add categories to product (admin only)
 - () Add only active categories to product (admin only)
-- () Create image for product (admin only)
-- () Delete image for product (admin only)
 - () Add custom order option with value (admin only)
 - () Delete custom order option (admin only)
 
