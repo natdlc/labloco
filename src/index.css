@@ -262,3 +262,8 @@ td {
 	font-weight: 900;
 	font-size: 1.2rem;
 }
+
+.accordion-button:not(.collapsed) {
+	color: var(--offWhite) !important;
+	background-color: var(--darkBlue1) !important;
+}
