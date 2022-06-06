@@ -267,3 +267,16 @@ td {
 	color: var(--offWhite) !important;
 	background-color: var(--darkBlue1) !important;
 }
+
+.accordion-button::after {
+	background-image: url("./assets/icon/arrow-down.png");
+}
+
+.accordion-button:not(.collapsed)::after {
+	background-image: url("./assets/icon/arrow-up.png");
+}
+
+.accordion-button:focus {
+	border-color: none;
+	box-shadow: none;
+}
