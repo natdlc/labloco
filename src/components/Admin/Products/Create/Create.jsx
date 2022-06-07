@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
+import ProductContext from "../../../../ProductContext";
 
 const Create = () => {
+	const { fetchAllProducts } = useContext(ProductContext);
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -66,6 +68,10 @@ const Create = () => {
 		setStocks("");
 		handleClose();
 	};
+
+	useEffect(() => {
+		fetchAllProducts();
+	}, [show]);
 
 	const productNameChangeHandler = (e) => setProductName(e.target.value);
 	const descriptionChangeHandler = (e) => setDescription(e.target.value);

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import ProductContext from "../../../../ProductContext";
 
 const UploadImage = () => {
-	const { fetchForOptions, fetchedProductsForOptions } =
+	const { fetchAllProducts, fetchForOptions, fetchedProductsForOptions } =
 		useContext(ProductContext);
 
 	const [fetchedProductId, setFetchedProductId] = useState("");
@@ -19,6 +19,7 @@ const UploadImage = () => {
 	const handleShow = () => setShow(true);
 
 	useEffect(() => {
+		fetchAllProducts();
 		if (show) fetchForOptions();
 	}, [show]);
 
@@ -88,6 +89,7 @@ const UploadImage = () => {
 					color: "#17355E",
 				});
 			});
+		fetchAllProducts();
 		setProduct("");
 		handleClose();
 	};

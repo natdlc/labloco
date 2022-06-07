@@ -4,7 +4,7 @@ import ProductContext from "../../../../ProductContext";
 import Swal from "sweetalert2";
 
 const Update = () => {
-	const { fetchForOptions, fetchedProductsForOptions } =
+	const { fetchAllProducts, fetchForOptions, fetchedProductsForOptions } =
 		useContext(ProductContext);
 
 	const [show, setShow] = useState(false);
@@ -20,6 +20,7 @@ const Update = () => {
 	const [stocks, setStocks] = useState(1);
 
 	useEffect(() => {
+		fetchAllProducts();
 		if (show) fetchForOptions();
 	}, [show]);
 
@@ -100,7 +101,7 @@ const Update = () => {
 					color: "#17355E",
 				});
 			});
-
+		fetchAllProducts();
 		setProductName("");
 		setDescription("");
 		setPrice("");

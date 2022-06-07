@@ -4,7 +4,7 @@ import ProductContext from "../../../../ProductContext";
 import Swal from "sweetalert2";
 
 const Archive = () => {
-	const { fetchForOptions, fetchedProductsForOptions } =
+	const { fetchAllProducts, fetchForOptions, fetchedProductsForOptions } =
 		useContext(ProductContext);
 
 	const [show, setShow] = useState(false);
@@ -15,6 +15,7 @@ const Archive = () => {
 	const [fetchedProductId, setFetchedProductId] = useState("");
 
 	useEffect(() => {
+		fetchAllProducts();
 		if (show) fetchForOptions();
 	}, [show]);
 
@@ -89,6 +90,7 @@ const Archive = () => {
 					color: "#17355E",
 				});
 			});
+		fetchAllProducts();
 		handleClose();
 	};
 

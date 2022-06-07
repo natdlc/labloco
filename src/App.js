@@ -36,7 +36,7 @@ function App() {
 	};
 
 	const fetchForOptions = () => {
-		console.log("rendering");
+		console.log("fetch for options rendering");
 		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
@@ -65,7 +65,7 @@ function App() {
 	};
 
 	const fetchAllProducts = () => {
-		console.log("rendering");
+		console.log("fetch all products rendering");
 		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
@@ -75,7 +75,8 @@ function App() {
 			.then((response) => response.json())
 			.then((result) => {
 				setAllProducts(result);
-			});
+			})
+			.catch((err) => err);
 	};
 
 	useEffect(() => {
