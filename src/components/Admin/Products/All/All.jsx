@@ -16,7 +16,6 @@ const All = () => {
 
 	const asyncFetchHandler = async () => {
 		await fetchAllProducts();
-		console.log("ALL SHOW use effect");
 		const productsArr = allProducts.map((product) => {
 			return (
 				<tr key={product._id}>

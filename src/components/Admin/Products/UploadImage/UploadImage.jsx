@@ -50,7 +50,6 @@ const UploadImage = () => {
 					(item) => item.name === e.target.value
 				);
 				setFetchedProductId(fetchedProduct[0]._id);
-				console.log(image);
 				if (image) {
 					setIsBtnActive(true);
 				} else {

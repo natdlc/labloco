@@ -36,7 +36,6 @@ function App() {
 	};
 
 	const fetchForOptions = async () => {
-		console.log("fetch for options rendering");
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
@@ -65,7 +64,6 @@ function App() {
 	};
 
 	const fetchAllProducts = async () => {
-		console.log("fetch all products rendering");
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

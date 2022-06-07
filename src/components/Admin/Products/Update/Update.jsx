@@ -27,7 +27,6 @@ const Update = () => {
 	};
 
 	useEffect(() => {
-		console.log(fetchedProductId);
 		if (productName && description && +price && fetchedProductId)
 			setBtnActive(true);
 		else setBtnActive(false);

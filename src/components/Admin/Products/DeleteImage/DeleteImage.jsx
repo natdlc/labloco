@@ -37,7 +37,6 @@ const DeleteImage = () => {
 		})
 			.then((response) => response.json())
 			.then((result) => {
-				console.log("fetched");
 				setIsBtnActive(true);
 				const fetchedProduct = result.filter(
 					(item) => item.name === e.target.value
