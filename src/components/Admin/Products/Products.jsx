@@ -7,6 +7,7 @@ import Archive from "./Archive/Archive";
 import All from "./All/All";
 import AddCategory from "./AddCategory/AddCategory";
 import RemoveCategory from "./RemoveCategory/RemoveCategory";
+import AddOption from "./AddOption/AddOption";
 
 const Products = () => {
 	return (
@@ -35,6 +36,9 @@ const Products = () => {
 				</Col>
 				<Col xs={12} className="p-0 m-0">
 					<RemoveCategory />
+				</Col>
+				<Col xs={12} className="p-0 m-0">
+					<AddOption />
 				</Col>
 			</Row>
 		</Container>
