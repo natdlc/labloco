@@ -99,9 +99,9 @@ const AddCategory = () => {
 	const proceedHandler = async (e) => {
 		e.preventDefault();
 		await fetch(
-			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}/category/${fetchedCategoryId}/add`,
+			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}/category/${fetchedCategoryId}/delete`,
 			{
-				method: "POST",
+				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -110,7 +110,7 @@ const AddCategory = () => {
 		)
 			.then((response) => response.json())
 			.then((result) => {
-				if (result.message.includes("added")) {
+				if (result.message.includes("successfully")) {
 					Swal.fire({
 						title: "SUCCESS",
 						text: "Product updated",
@@ -150,17 +150,17 @@ const AddCategory = () => {
 			<Row className="p-0 m-0">
 				<Col className="p-0 m-0">
 					<Button className="custom-btn-6" onClick={handleShow}>
-						Add a category to product
+						Remove category from product
 					</Button>
 
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton>
-							<Modal.Title>Add a category to product</Modal.Title>
+							<Modal.Title>Remove category from product</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
 								<Form.Group>
-									<Form.Label>Select product to update</Form.Label>
+									<Form.Label>Select Product to update</Form.Label>
 									<Form.Select
 										value={product}
 										onChange={selectProductChangeHandler}
@@ -171,7 +171,7 @@ const AddCategory = () => {
 									</Form.Select>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>Choose category to add</Form.Label>
+									<Form.Label>Choose Category to delete</Form.Label>
 									<Form.Select
 										value={category}
 										onChange={selectCategoryChangeHandler}

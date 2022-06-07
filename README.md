@@ -24,8 +24,9 @@ Products
 - (c) Update Product information (Admin only)
 - (c) Archive Product (Admin only)
 - (c) Retrieve all products (admin only)
-- (w) Add categories to product (admin only)
-- () Add only active categories to product (admin only)
+- (c) Add categories to product (admin only)
+- (c) Add only active categories to product (admin only)
+- (w) Remove product from category (admin only)
 - () Add custom order option with value (admin only)
 - () Delete custom order option (admin only)
 
@@ -37,12 +38,11 @@ Categories
 
 - () Add a category (admin only)
 - () Add hot/featured products section (admin only)
-- () Remove from category (admin only)
 - () Retrieve all categories (admin only)
 - () Edit category name (admin only)
 - () Archive a category (admin only)
 - () Remove a category (admin only)
-- () Add product to category (admin only)
+- (c) Add product to category (admin only)
 - () Can't delete category linked to products (admin only)
 
 Newsletters
@@ -114,7 +114,7 @@ Products
 - () Delete custom order option (admin only)
 - () Add categories to product (admin only)
 - () Add only active categories to product (admin only)
-- () Remove from category (admin only)
+- () Remove product from category (admin only)
 
 Category
 
