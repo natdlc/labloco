@@ -19,26 +19,34 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 import { ProductProvider } from "./ProductContext";
+import { CategoryProvider } from "./CategoryContext";
 
 function App() {
+	//user context
 	const [user, setUser] = useState({
 		accessToken: localStorage.getItem("accessToken"),
 		isAdmin: localStorage.getItem("isAdmin") === "true",
 	});
 
-	const [allProducts, setAllProducts] = useState([]);
-	const [fetchedProductsForOptions, setFetchedProductsForOptions] = useState(
-		[]
-	);
-
 	const unsetUser = () => {
 		localStorage.clear();
 	};
 
+	//product context
+	const [fetchedProductsForOptions, setFetchedProductsForOptions] = useState(
+		[]
+	);
+	const [allProducts, setAllProducts] = useState([]);
+
+	//category context
+	const [allCategories, setAllCategories] = useState([]);
+	const [fetchedCategoriesForOptions, setFetchedCategoriesForOptions] =
+		useState([]);
+
+	//for product context
 	const fetchForOptions = async () => {
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
-				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 			},
 		})
@@ -63,6 +71,7 @@ function App() {
 			});
 	};
 
+	// for product context
 	const fetchAllProducts = async () => {
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
@@ -76,44 +85,104 @@ function App() {
 			.catch((err) => err);
 	};
 
+	// for category context
+	const fetchAllCategories = async () => {
+		await fetch(
+			"https://labloco-medical-supplies.herokuapp.com/categories/all/",
+			{
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+			}
+		)
+			.then((response) => response.json())
+			.then((result) => {
+				setAllCategories(result);
+			})
+			.catch((err) => err);
+	};
+
+	// for category context
+	const fetchCategoriesForOptions = async () => {
+		await fetch(
+			"https://labloco-medical-supplies.herokuapp.com/categories/all/",
+			{
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+			}
+		)
+			.then((response) => response.json())
+			.then((result) => {
+				setFetchedCategoriesForOptions(
+					result.map((category) => {
+						return (
+							<option key={category._id} value={category.name}>
+								{category.name}
+							</option>
+						);
+					})
+				);
+			})
+			.catch((err) => {
+				return (
+					<>
+						<p className="text-subheader text-danger">{err.message}</p>
+					</>
+				);
+			});
+	};
+
 	useEffect(() => {
 		fetchAllProducts();
 		fetchForOptions();
+		fetchAllCategories();
+		fetchCategoriesForOptions();
 	}, []);
 
 	return (
 		<UserProvider value={{ user, setUser, unsetUser }}>
-			<ProductProvider
+			<CategoryProvider
 				value={{
-					fetchAllProducts,
-					setAllProducts,
-					allProducts,
-					fetchForOptions,
-					fetchedProductsForOptions,
+					fetchAllCategories,
+					setAllCategories,
+					allCategories,
+					fetchCategoriesForOptions,
+					fetchedCategoriesForOptions,
 				}}
 			>
-				<Router>
-					<AppNav />
-					<Container fluid={true} className="p-0">
-						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="/collections" element={<Products />} />
-							<Route path="/product" element={<SingleProduct />} />
-							<Route path="/register" element={<Registration />} />
-							<Route path="/login" element={<Login />} />
-							<Route path="/profile" element={<Account />} />
-							<Route path="/contact" element={<Contact />} />
-							<Route path="/shipping" element={<Shipping />} />
-							<Route path="/cart" element={<Cart />} />
-							<Route path="/checkout" element={<Checkout />} />
-							<Route path="/admin" element={<Admin />} />
-							<Route path="/logout" element={<Logout />} />
-							<Route path="*" element={<NotFound />} />
-						</Routes>
-					</Container>
-					<Footer />
-				</Router>
-			</ProductProvider>
+				<ProductProvider
+					value={{
+						fetchAllProducts,
+						setAllProducts,
+						allProducts,
+						fetchForOptions,
+						fetchedProductsForOptions,
+					}}
+				>
+					<Router>
+						<AppNav />
+						<Container fluid={true} className="p-0">
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/collections" element={<Products />} />
+								<Route path="/product" element={<SingleProduct />} />
+								<Route path="/register" element={<Registration />} />
+								<Route path="/login" element={<Login />} />
+								<Route path="/profile" element={<Account />} />
+								<Route path="/contact" element={<Contact />} />
+								<Route path="/shipping" element={<Shipping />} />
+								<Route path="/cart" element={<Cart />} />
+								<Route path="/checkout" element={<Checkout />} />
+								<Route path="/admin" element={<Admin />} />
+								<Route path="/logout" element={<Logout />} />
+								<Route path="*" element={<NotFound />} />
+							</Routes>
+						</Container>
+						<Footer />
+					</Router>
+				</ProductProvider>
+			</CategoryProvider>
 		</UserProvider>
 	);
 }

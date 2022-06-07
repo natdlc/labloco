@@ -4,6 +4,9 @@ FRONT-END-SPECIFIC
 
 - (c) Logout
 - (c) 404 page
+- (c) user context
+- (c) product context
+- (c) category context
 - (w) Form validations
 - (w) admin page
 
@@ -32,9 +35,9 @@ Orders
 
 Categories
 
-- () Remove from category (admin only)
 - () Add a category (admin only)
 - () Add hot/featured products section (admin only)
+- () Remove from category (admin only)
 - () Retrieve all categories (admin only)
 - () Edit category name (admin only)
 - () Archive a category (admin only)

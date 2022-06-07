@@ -5,6 +5,7 @@ import DeleteImage from "./DeleteImage/DeleteImage";
 import Update from "./Update/Update";
 import Archive from "./Archive/Archive";
 import All from "./All/All";
+import AddCategory from "./AddCategory/AddCategory";
 
 const Products = () => {
 	return (
@@ -27,6 +28,9 @@ const Products = () => {
 				</Col>
 				<Col xs={12} className="p-0 m-0">
 					<All />
+				</Col>
+				<Col xs={12} className="p-0 m-0">
+					<AddCategory />
 				</Col>
 			</Row>
 		</Container>
