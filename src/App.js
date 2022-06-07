@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AppNav from "./components/AppNav/AppNav";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import About from "./pages/About";
 import SingleProduct from "./pages/SingleProduct";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
@@ -167,6 +168,7 @@ function App() {
 								<Route path="/" element={<Home />} />
 								<Route path="/collections" element={<Products />} />
 								<Route path="/product" element={<SingleProduct />} />
+								<Route path="/about" element={<About />} />
 								<Route path="/register" element={<Registration />} />
 								<Route path="/login" element={<Login />} />
 								<Route path="/profile" element={<Account />} />

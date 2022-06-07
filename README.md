@@ -4,6 +4,7 @@ FRONT-END-SPECIFIC
 
 - (c) Logout
 - (c) 404 page
+- (c) About page
 - (c) user context
 - (c) product context
 - (c) category context

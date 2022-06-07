@@ -51,6 +51,13 @@ const AppNav = () => {
               </Nav.Link>
               <Nav.Link
                 as={Link}
+                to="/about"
+                className="off-white text-content"
+              >
+                About
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
                 to="/contact"
                 className="off-white text-content"
               >
