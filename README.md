@@ -4,29 +4,34 @@ FRONT-END-SPECIFIC
 
 - (c) Logout
 - (c) 404 page
+- (w) Form validations
 - (w) admin page
 
 ADMIN FEATURES
 
 Users
+
 - (c) Set user as admin (Admin only)
 
 Products
+
 - (c) Create Product (Admin only)
 - (c) Create image for product (admin only)
 - (c) Delete image for product (admin only)
 - (c) Update Product information (Admin only)
 - (c) Archive Product (Admin only)
-- (w) Retrieve all products (admin only)
-- () Add categories to product (admin only)
+- (c) Retrieve all products (admin only)
+- (w) Add categories to product (admin only)
 - () Add only active categories to product (admin only)
 - () Add custom order option with value (admin only)
 - () Delete custom order option (admin only)
 
 Orders
+
 - () Retrieve all orders (Admin only)
 
 Categories
+
 - () Remove from category (admin only)
 - () Add a category (admin only)
 - () Add hot/featured products section (admin only)
@@ -38,14 +43,17 @@ Categories
 - () Can't delete category linked to products (admin only)
 
 Newsletters
+
 - () Retrieve newsletter emails (admin only)
 
 Couriers
+
 - () Create courier (admin only)
 - () Retrieve couriers (admin only)
 - () Deactivate courier (admin only)
 
 Discounts
+
 - () Create discounts (admin only)
 - () Retrieve discounts (admin only)
 - () Set discount to inactive (admin only)

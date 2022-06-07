@@ -27,14 +27,17 @@ const Update = () => {
 	};
 
 	useEffect(() => {
-		if (productName && description && +price) setBtnActive(true);
+		console.log(fetchedProductId);
+		if (productName && description && +price && fetchedProductId)
+			setBtnActive(true);
 		else setBtnActive(false);
 		asyncFetchHandler(show);
-	}, [show, product, description, price]);
+	}, [show, product, description, price, fetchedProductId]);
 
-	const selectProductChangeHandler = (e) => {
+	const selectProductChangeHandler = async (e) => {
+		setFetchedProductId("");
 		setProduct(e.target.value);
-		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
+		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
