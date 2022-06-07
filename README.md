@@ -26,8 +26,8 @@ Products
 - (c) Retrieve all products (admin only)
 - (c) Add categories to product (admin only)
 - (c) Add only active categories to product (admin only)
-- (w) Remove product from category (admin only)
-- () Add custom order option with value (admin only)
+- (c) Remove product from category (admin only)
+- (w) Add custom order option with value (admin only)
 - () Delete custom order option (admin only)
 
 Orders
