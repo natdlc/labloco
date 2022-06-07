@@ -6,53 +6,62 @@ const All = () => {
 	const { fetchAllProducts, allProducts } = useContext(ProductContext);
 
 	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
+	const handleClose = () => {
+		setProducts([]);
+		setShow(false);
+	};
 	const handleShow = () => setShow(true);
 
 	const [products, setProducts] = useState([]);
 
-	useEffect(() => {
-		if (show) {
-			fetchAllProducts();
-			console.log("ALL SHOW use effect");
-			const productsArr = allProducts.map((product) => {
-				let img = "";
-				if (product.image.length) {
-					img = `https://labloco-medical-supplies.herokuapp.com/products/image/${product._id}`;
-				} else {
-					img = "https://via.placeholder.com/404x404";
-				}
-				return (
-					<tr key={product._id}>
-						<td>
+	const asyncFetchHandler = async () => {
+		await fetchAllProducts();
+		console.log("ALL SHOW use effect");
+		const productsArr = allProducts.map((product) => {
+			return (
+				<tr key={product._id}>
+					<td>
+						{product.image.length ? (
 							<img
-								src={img}
+								src={`https://labloco-medical-supplies.herokuapp.com/products/image/${product._id}`}
 								alt="product photo"
 								className="img-fluid"
 								style={{ maxWidth: "40px" }}
 							/>
-						</td>
-						<td>
-							<p>{product.name}</p>
-						</td>
-						<td>
-							<p>{product.isActive ? "active" : "inactive"}</p>
-						</td>
-						<td>
-							<p>{product.stocks}</p>
-						</td>
-						<td>
-							<p>₱{product.price}</p>
-						</td>
-					</tr>
-				);
-			});
-			setProducts(productsArr);
-		}
+						) : (
+							<img
+								src={"https://via.placeholder.com/404x404"}
+								alt="product photo"
+								className="img-fluid"
+								style={{ maxWidth: "40px" }}
+							/>
+						)}
+					</td>
+					<td>
+						<p>{product.name}</p>
+					</td>
+					<td>
+						<p>{product.isActive ? "active" : "inactive"}</p>
+					</td>
+					<td>
+						<p>{product.stocks}</p>
+					</td>
+					<td>
+						<p>₱{product.price}</p>
+					</td>
+				</tr>
+			);
+		});
+		setProducts(productsArr);
+	};
+
+	useEffect(() => {
+		if (show) asyncFetchHandler(show);
 	}, [show]);
 
 	const closeHandler = (e) => {
 		e.preventDefault();
+		setProducts([]);
 		handleClose();
 	};
 

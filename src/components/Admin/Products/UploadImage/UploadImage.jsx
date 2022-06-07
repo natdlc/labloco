@@ -18,14 +18,18 @@ const UploadImage = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
+	const asyncFetchHandler = async (show) => {
+		await fetchAllProducts();
+		if (show) await fetchForOptions();
+	};
+
 	useEffect(() => {
-		fetchAllProducts();
-		if (show) fetchForOptions();
+		asyncFetchHandler(show);
 	}, [show]);
 
-	const selectProductChangeHandler = (e) => {
+	const selectProductChangeHandler = async (e) => {
 		setProduct(e.target.value);
-		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
+		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -55,11 +59,11 @@ const UploadImage = () => {
 		setImage(e.target.files[0]);
 	};
 
-	const proceedHandler = (e) => {
+	const proceedHandler = async (e) => {
 		e.preventDefault();
 		const data = new FormData();
 		data.append("file", image);
-		fetch(
+		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/image/${fetchedProductId}`,
 			{
 				method: "POST",
@@ -69,7 +73,7 @@ const UploadImage = () => {
 				body: data,
 			}
 		)
-			.then((response) => {
+			.then((result) => {
 				Swal.fire({
 					title: "SUCCESS",
 					text: "Product updated",
@@ -89,7 +93,7 @@ const UploadImage = () => {
 					color: "#17355E",
 				});
 			});
-		fetchAllProducts();
+		await fetchAllProducts();
 		setProduct("");
 		handleClose();
 	};

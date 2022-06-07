@@ -15,6 +15,8 @@ const Create = () => {
 	const [price, setPrice] = useState(0);
 	const [stocks, setStocks] = useState(1);
 
+	const [btnActive, setBtnActive] = useState(false);
+
 	const proceedHandler = async (e) => {
 		e.preventDefault();
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/new", {
@@ -69,9 +71,13 @@ const Create = () => {
 		handleClose();
 	};
 
+	const asyncFetchHandler = async (show) => await fetchAllProducts(show);
+
 	useEffect(() => {
-		fetchAllProducts();
-	}, [show]);
+		if (productName && description && +price) setBtnActive(true);
+		else setBtnActive(false);
+		asyncFetchHandler(show);
+	}, [show, productName, description, price]);
 
 	const productNameChangeHandler = (e) => setProductName(e.target.value);
 	const descriptionChangeHandler = (e) => setDescription(e.target.value);
@@ -140,9 +146,19 @@ const Create = () => {
 							<Button className="custom-btn-5" onClick={handleClose}>
 								Cancel
 							</Button>
-							<Button className="custom-btn-2" onClick={proceedHandler}>
-								Proceed
-							</Button>
+							{btnActive ? (
+								<Button className="custom-btn-2" onClick={proceedHandler}>
+									Proceed
+								</Button>
+							) : (
+								<Button
+									disabled
+									className="custom-btn-2"
+									onClick={proceedHandler}
+								>
+									Proceed
+								</Button>
+							)}
 						</Modal.Footer>
 					</Modal>
 				</Col>

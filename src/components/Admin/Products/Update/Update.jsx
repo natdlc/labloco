@@ -19,10 +19,18 @@ const Update = () => {
 	const [price, setPrice] = useState(0);
 	const [stocks, setStocks] = useState(1);
 
+	const [btnActive, setBtnActive] = useState(false);
+
+	const asyncFetchHandler = async (show) => {
+		await fetchAllProducts();
+		if (show) await fetchForOptions();
+	};
+
 	useEffect(() => {
-		fetchAllProducts();
-		if (show) fetchForOptions();
-	}, [show]);
+		if (productName && description && +price) setBtnActive(true);
+		else setBtnActive(false);
+		asyncFetchHandler(show);
+	}, [show, product, description, price]);
 
 	const selectProductChangeHandler = (e) => {
 		setProduct(e.target.value);
@@ -181,9 +189,19 @@ const Update = () => {
 							<Button className="custom-btn-5" onClick={handleClose}>
 								Cancel
 							</Button>
-							<Button className="custom-btn-2" onClick={proceedHandler}>
-								Proceed
-							</Button>
+							{btnActive ? (
+								<Button className="custom-btn-2" onClick={proceedHandler}>
+									Proceed
+								</Button>
+							) : (
+								<Button
+									disabled
+									className="custom-btn-2"
+									onClick={proceedHandler}
+								>
+									Proceed
+								</Button>
+							)}
 						</Modal.Footer>
 					</Modal>
 				</Col>

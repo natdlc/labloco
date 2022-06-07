@@ -16,41 +16,42 @@ const DeleteImage = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
+	const [isBtnActive, setIsBtnActive] = useState(false);
+
+	const asyncFetchHandler = async (show) => {
+		await fetchAllProducts();
+		if (show) await fetchForOptions();
+	};
+
 	useEffect(() => {
-		fetchAllProducts();
-		if (show) fetchForOptions();
+		asyncFetchHandler(show);
 	}, [show]);
 
-	const selectProductChangeHandler = (e) => {
+	const selectProductChangeHandler = async (e) => {
+		setIsBtnActive(false);
 		setProduct(e.target.value);
-		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
+		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
-				"Content-Type": "application/json",
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 			},
 		})
 			.then((response) => response.json())
 			.then((result) => {
+				console.log("fetched");
+				setIsBtnActive(true);
 				const fetchedProduct = result.filter(
 					(item) => item.name === e.target.value
 				);
 				setFetchedProductId(fetchedProduct[0]._id);
 			})
-			.catch((err) => {
-				Swal.fire({
-					title: "ERROR",
-					text: err.message,
-					icon: "error",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
-				});
+			.catch(() => {
+				setIsBtnActive(false);
 			});
 	};
 
-	const proceedHandler = (e) => {
+	const proceedHandler = async (e) => {
 		e.preventDefault();
-		fetch(
+		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/image/${fetchedProductId}`,
 			{
 				method: "DELETE",
@@ -79,7 +80,7 @@ const DeleteImage = () => {
 					color: "#17355E",
 				});
 			});
-		fetchAllProducts();
+		await fetchAllProducts();
 		handleClose();
 	};
 
@@ -114,9 +115,19 @@ const DeleteImage = () => {
 							<Button className="custom-btn-5" onClick={handleClose}>
 								Cancel
 							</Button>
-							<Button className="custom-btn-2" onClick={proceedHandler}>
-								Proceed
-							</Button>
+							{isBtnActive ? (
+								<Button className="custom-btn-2" onClick={proceedHandler}>
+									Proceed
+								</Button>
+							) : (
+								<Button
+									disabled
+									className="custom-btn-2"
+									onClick={proceedHandler}
+								>
+									Proceed
+								</Button>
+							)}
 						</Modal.Footer>
 					</Modal>
 				</Col>
