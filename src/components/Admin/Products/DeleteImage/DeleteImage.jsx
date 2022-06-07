@@ -37,11 +37,11 @@ const DeleteImage = () => {
 		})
 			.then((response) => response.json())
 			.then((result) => {
-				setIsBtnActive(true);
 				const fetchedProduct = result.filter(
 					(item) => item.name === e.target.value
 				);
 				setFetchedProductId(fetchedProduct[0]._id);
+				setIsBtnActive(true);
 			})
 			.catch(() => {
 				setIsBtnActive(false);

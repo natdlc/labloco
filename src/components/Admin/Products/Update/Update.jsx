@@ -62,7 +62,7 @@ const Update = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
-		fetch(
+		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}`,
 			{
 				method: "PUT",
@@ -110,7 +110,7 @@ const Update = () => {
 					color: "#17355E",
 				});
 			});
-		fetchAllProducts();
+		await fetchAllProducts();
 		setProductName("");
 		setDescription("");
 		setPrice("");

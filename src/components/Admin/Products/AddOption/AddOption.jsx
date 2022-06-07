@@ -7,19 +7,19 @@ const AddOption = () => {
 	const { fetchAllProducts, fetchForOptions, fetchedProductsForOptions } =
 		useContext(ProductContext);
 
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
 	const [product, setProduct] = useState("");
 	const [fetchedProductId, setFetchedProductId] = useState("");
 
-	const [productName, setProductName] = useState("");
-	const [description, setDescription] = useState("");
-	const [price, setPrice] = useState(0);
-	const [stocks, setStocks] = useState(1);
+	const [optionLabel, setOptionLabel] = useState("");
+	const [optionValue, setOptionValue] = useState("");
 
 	const [btnActive, setBtnActive] = useState(false);
+
+	const [show, setShow] = useState(false);
+	const handleClose = () => {
+		setShow(false);
+	};
+	const handleShow = () => setShow(true);
 
 	const asyncFetchHandler = async (show) => {
 		await fetchAllProducts();
@@ -27,13 +27,13 @@ const AddOption = () => {
 	};
 
 	useEffect(() => {
-		if (productName && description && +price && fetchedProductId)
-			setBtnActive(true);
+		if (optionLabel && optionValue && fetchedProductId) setBtnActive(true);
 		else setBtnActive(false);
 		asyncFetchHandler(show);
-	}, [show, product, description, price, fetchedProductId]);
+	}, [show, optionLabel, optionValue, fetchedProductId]);
 
 	const selectProductChangeHandler = async (e) => {
+		setBtnActive(false);
 		setFetchedProductId("");
 		setProduct(e.target.value);
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
@@ -47,34 +47,29 @@ const AddOption = () => {
 					(item) => item.name === e.target.value
 				);
 				setFetchedProductId(fetchedProduct[0]._id);
+				setBtnActive(true);
 			})
 			.catch((err) => {
-				Swal.fire({
-					title: "ERROR",
-					text: err.message,
-					icon: "error",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
-				});
+				setBtnActive(false);
 			});
 	};
 
+	const optionLabelChangeHandler = (e) => setOptionLabel(e.target.value);
+	const optionValueChangeHandler = (e) => setOptionValue(e.target.value);
+
 	const proceedHandler = async (e) => {
 		e.preventDefault();
-		fetch(
-			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}`,
+		await fetch(
+			`https://labloco-medical-supplies.herokuapp.com/products/option/${fetchedProductId}`,
 			{
-				method: "PUT",
+				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 				},
 				body: JSON.stringify({
-					name: productName,
-					description,
-					price,
-					stocks,
+					label: optionLabel,
+					value: optionValue,
 				}),
 			}
 		)
@@ -83,7 +78,7 @@ const AddOption = () => {
 				if (result.message.includes("success")) {
 					Swal.fire({
 						title: "SUCCESS",
-						text: "Product updated",
+						text: "Option added",
 						icon: "success",
 						iconColor: "#17355E",
 						confirmButtonColor: "#17355E",
@@ -110,18 +105,12 @@ const AddOption = () => {
 					color: "#17355E",
 				});
 			});
-		fetchAllProducts();
-		setProductName("");
-		setDescription("");
-		setPrice("");
-		setStocks("");
+		await fetchAllProducts();
+		setProduct("");
+		setOptionLabel("");
+		setOptionValue("");
 		handleClose();
 	};
-
-	const productNameChangeHandler = (e) => setProductName(e.target.value);
-	const descriptionChangeHandler = (e) => setDescription(e.target.value);
-	const priceChangeHandler = (e) => setPrice(e.target.value);
-	const stocksChangeHandler = (e) => setStocks(e.target.value);
 
 	return (
 		<Container className="p-0 m-0">
@@ -133,7 +122,9 @@ const AddOption = () => {
 
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton>
-							<Modal.Title>Add custom option for product (ie: Size: large)</Modal.Title>
+							<Modal.Title>
+								Add custom option for product (ie: Size: large)
+							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
@@ -153,8 +144,8 @@ const AddOption = () => {
 									<Form.Control
 										type="text"
 										placeholder="Enter product name"
-										value={productName}
-										onChange={productNameChangeHandler}
+										value={optionLabel}
+										onChange={optionLabelChangeHandler}
 									/>
 								</Form.Group>
 								<Form.Group>
@@ -162,8 +153,8 @@ const AddOption = () => {
 									<Form.Control
 										type="text"
 										placeholder="Enter product description"
-										value={description}
-										onChange={descriptionChangeHandler}
+										value={optionValue}
+										onChange={optionValueChangeHandler}
 									/>
 								</Form.Group>
 							</Form>
