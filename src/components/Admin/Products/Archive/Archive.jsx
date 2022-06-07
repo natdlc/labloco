@@ -14,9 +14,13 @@ const Archive = () => {
 	const [product, setProduct] = useState("");
 	const [fetchedProductId, setFetchedProductId] = useState("");
 
+	const asyncFetchHandler = async (show) => {
+		await fetchAllProducts();
+		if (show) await fetchForOptions();
+	};
+
 	useEffect(() => {
-		fetchAllProducts();
-		if (show) fetchForOptions();
+		asyncFetchHandler();
 	}, [show]);
 
 	const selectProductChangeHandler = (e) => {
