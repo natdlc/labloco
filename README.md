@@ -2,7 +2,7 @@ Welcome! This is the frontend code for Zuitt's E-commerce capstone. Listed below
 
 FRONT-END-SPECIFIC
 
-- () Hot/Featured products
+- () Hot/Featured products page
 - (c) Logout
 - (c) 404 page
 - (c) About page
@@ -41,9 +41,9 @@ Categories
 - (c) Add a category (admin only)
 - (c) Add hot/featured products section (admin only)
 - (c) Retrieve all categories (admin only)
-- (w) Retrieve all products in specific category (admin only)
-- () Edit category name (admin only)
-- () Archive a category (admin only)
+- (c) Retrieve all products in specific category (admin only)
+- (c) Edit category name (admin only)
+- (w) Archive a category (admin only)
 - () Remove a category (admin only)
 - (c) Add product to category (admin only)
 - () Can't delete category linked to products (admin only)
@@ -132,7 +132,7 @@ Category
 - () Remove a category (admin only)
 - () Add product to category (admin only)
 - () Can't delete category linked to products (admin only)
-Courier
+  Courier
 
 - () Create courier (admin only)
 - () Retrieve couriers (admin only)
