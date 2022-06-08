@@ -9,6 +9,7 @@ import {
 	Table,
 } from "react-bootstrap";
 import ProductContext from "../../../../ProductContext";
+import Swal from "sweetalert2";
 
 const Products = () => {
 	const { fetchAllProducts, allProducts } = useContext(ProductContext);
@@ -91,45 +92,63 @@ const Products = () => {
 					);
 					setCategoryId(fetchedCategory[0]._id);
 					await fetchAllProducts();
-					const productsArr = allProducts.map((product) => {
-						return (
-							<tr key={product._id}>
-								<td>
-									{product.image.length ? (
-										<img
-											src={`https://labloco-medical-supplies.herokuapp.com/products/image/${product._id}`}
-											alt="product photo"
-											className="img-fluid"
-											style={{ maxWidth: "40px" }}
-										/>
-									) : (
-										<img
-											src={"https://via.placeholder.com/404x404"}
-											alt="product photo"
-											className="img-fluid"
-											style={{ maxWidth: "40px" }}
-										/>
-									)}
-								</td>
-								<td>
-									<p>{product.name}</p>
-								</td>
-								<td>
-									<p>{product.isActive ? "active" : "inactive"}</p>
-								</td>
-								<td>
-									<p>{product.stocks}</p>
-								</td>
-								<td>
-									<p className="text-small">₱{product.price}</p>
-								</td>
-							</tr>
+					const productsWithCategory = allProducts.filter(
+						(product) => product.categories.length
+					);
+
+					const productsArr = productsWithCategory.map((product) => {
+						const categoryMatched = product.categories.find(
+							(category) => category.categoryId === fetchedCategory[0]._id
 						);
+						if (categoryMatched) {
+							return (
+								<tr key={product._id}>
+									<td>
+										{product.image.length ? (
+											<img
+												src={`https://labloco-medical-supplies.herokuapp.com/products/image/${product._id}`}
+												alt="product photo"
+												className="img-fluid"
+												style={{ maxWidth: "40px" }}
+											/>
+										) : (
+											<img
+												src={"https://via.placeholder.com/404x404"}
+												alt="product photo"
+												className="img-fluid"
+												style={{ maxWidth: "40px" }}
+											/>
+										)}
+									</td>
+									<td>
+										<p>{product.name}</p>
+									</td>
+									<td>
+										<p>{product.isActive ? "active" : "inactive"}</p>
+									</td>
+									<td>
+										<p>{product.stocks}</p>
+									</td>
+									<td>
+										<p className="text-small">₱{product.price}</p>
+									</td>
+								</tr>
+							);
+						} else {
+							return null;
+						}
 					});
 					setProducts(productsArr);
 					setIsCategorySelected(true);
 				})
 				.catch((err) => {
+					Swal.fire({
+						text: `Something went wrong: ${err.message}`,
+						icon: "error",
+						iconColor: "#17355E",
+						color: "#17355E",
+						confirmButtonColor: "#17355E",
+					});
 					setIsCategorySelected(false);
 				});
 		}
