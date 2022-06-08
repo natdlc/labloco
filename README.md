@@ -28,8 +28,8 @@ Products
 - (c) Add categories to product (admin only)
 - (c) Add only active categories to product (admin only)
 - (c) Remove product from category (admin only)
-- (w) Add custom order option with value (admin only)
-- () Delete custom order option (admin only)
+- (c) Add custom order option with value (admin only)
+- (w) Delete custom order option (admin only)
 
 Orders
 
