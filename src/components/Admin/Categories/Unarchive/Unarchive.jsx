@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-const Archive = () => {
+const Unarchive = () => {
 	const [show, setShow] = useState(false);
 
 	const [btnActive, setBtnActive] = useState(false);
@@ -75,7 +75,7 @@ const Archive = () => {
 	const proceedHandler = async (e) => {
 		e.preventDefault();
 		await fetch(
-			`https://labloco-medical-supplies.herokuapp.com/categories/archive/${categoryId}`,
+			`https://labloco-medical-supplies.herokuapp.com/categories/unarchive/${categoryId}`,
 			{
 				method: "PUT",
 				headers: {
@@ -86,10 +86,10 @@ const Archive = () => {
 		)
 			.then((response) => response.json())
 			.then((result) => {
-				if (result.message.includes("archived")) {
+				if (result.message.includes("unarchived")) {
 					Swal.fire({
 						title: "SUCCESS",
-						text: "Category archived",
+						text: "Category unarchived",
 						icon: "success",
 						iconColor: "#17355E",
 						confirmButtonColor: "#17355E",
@@ -131,17 +131,17 @@ const Archive = () => {
 			<Row className="p-0 m-0">
 				<Col className="p-0 m-0">
 					<Button className="custom-btn-6" onClick={handleShow}>
-						Archive a category
+						Unarchive a category
 					</Button>
 
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton>
-							<Modal.Title>Archive a category</Modal.Title>
+							<Modal.Title>Unarchive a category</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
 							<Form className="gap-3 d-flex flex-column">
 								<Form.Group>
-									<Form.Label>Select category to archive</Form.Label>
+									<Form.Label>Select category to unarchive</Form.Label>
 									<Form.Select
 										value={category}
 										onChange={selectCategoryChangeHandler}
@@ -178,4 +178,4 @@ const Archive = () => {
 	);
 };
 
-export default Archive;
+export default Unarchive;

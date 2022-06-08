@@ -44,7 +44,7 @@ Categories
 - (c) Retrieve all products in specific category (admin only)
 - (c) Edit category name (admin only)
 - (c) Archive a category (admin only)
-- (w) Unarchive a category (admin only)
+- (c) Unarchive a category (admin only)
 - () Remove a category (admin only)
 - (c) Add product to category (admin only)
 - () Can't delete category linked to products (admin only)
