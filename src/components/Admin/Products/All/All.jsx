@@ -15,12 +15,12 @@ const All = () => {
 	const [products, setProducts] = useState([]);
 
 	const asyncFetchHandler = async () => {
-		// await fetchAllProducts();
+		await fetchAllProducts();
 		const productsArr = allProducts.map((product) => {
 			return (
 				<tr key={product._id}>
 					<td>
-						{/* {product.image.length ? (
+						{product.image.length ? (
 							<img
 								src={`https://labloco-medical-supplies.herokuapp.com/products/image/${product._id}`}
 								alt="product photo"
@@ -34,7 +34,7 @@ const All = () => {
 								className="img-fluid"
 								style={{ maxWidth: "40px" }}
 							/>
-						)} */}
+						)}
 					</td>
 					<td>
 						<p>{product.name}</p>

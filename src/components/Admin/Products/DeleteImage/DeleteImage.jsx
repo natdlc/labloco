@@ -60,6 +60,7 @@ const DeleteImage = () => {
 			}
 		)
 			.then((response) => {
+				console.log(response);
 				Swal.fire({
 					title: "SUCCESS",
 					text: "Product updated",

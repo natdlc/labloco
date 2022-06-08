@@ -48,12 +48,11 @@ const All = () => {
 								purchasedOnDate,
 								"YYYY/MM/DD HH:mm:ss"
 							);
-							console.log(order);
 							return (
 								<Col
 									xs={12}
 									key={order.id}
-									className="m-0 p-3 d-flex flex-column gap-4 border-prime"
+									className="m-0 p-3 d-flex flex-wrap gap-4 border-prime"
 								>
 									<div className="d-flex flex-column m-0 p-0 gap-1">
 										<p className="m-0 p-0 text-prime text-header">
