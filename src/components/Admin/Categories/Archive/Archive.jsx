@@ -14,15 +14,10 @@ const Archive = () => {
 	const [fetchedCategoriesForOptions, setFetchedCategoriesForOptions] =
 		useState([]);
 
-	const [newCategoryName, setNewCategoryName] = useState("");
-
-	const [isCategorySelected, setIsCategorySelected] = useState(false);
-
 	const handleShow = () => setShow(true);
 	const handleClose = () => {
 		setCategory("");
 		setFetchedCategoriesForOptions([]);
-		setIsCategorySelected(false);
 		setCategoryId("");
 		setBtnActive(false);
 		setShow(false);
@@ -52,7 +47,6 @@ const Archive = () => {
 	};
 
 	const selectCategoryChangeHandler = async (e) => {
-		setIsCategorySelected(false);
 		setCategoryId("");
 		if (e.target.value === "Click to select a category") {
 			setCategory("");
@@ -74,35 +68,28 @@ const Archive = () => {
 					(category) => category.name === e.target.value
 				);
 				setCategoryId(fetchedCategory[0]._id);
-				setIsCategorySelected(true);
 			})
-			.catch(() => setIsCategorySelected(false));
+			.catch(() => setBtnActive(false));
 	};
-
-	const newCategoryNameChangeHandler = (e) =>
-		setNewCategoryName(e.target.value);
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
 		await fetch(
-			`https://labloco-medical-supplies.herokuapp.com/categories/edit/${categoryId}`,
+			`https://labloco-medical-supplies.herokuapp.com/categories/archive/${categoryId}`,
 			{
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 				},
-				body: JSON.stringify({
-					newName: newCategoryName,
-				}),
 			}
 		)
 			.then((response) => response.json())
 			.then((result) => {
-				if (result.message.includes("updated")) {
+				if (result.message.includes("archived")) {
 					Swal.fire({
 						title: "SUCCESS",
-						text: "Category updated",
+						text: "Category archived",
 						icon: "success",
 						iconColor: "#17355E",
 						confirmButtonColor: "#17355E",
@@ -111,7 +98,7 @@ const Archive = () => {
 				} else {
 					Swal.fire({
 						title: "ERROR",
-						text: "Category exists",
+						text: `Something went wrong: ${result.message}`,
 						icon: "error",
 						iconColor: "#17355E",
 						confirmButtonColor: "#17355E",
@@ -122,23 +109,22 @@ const Archive = () => {
 			.catch((err) => {
 				Swal.fire({
 					title: "ERROR",
-					text: "Something went wrong. Invalid category or category exists",
+					text: `Something went wrong: ${err.message}`,
 					icon: "error",
 					iconColor: "#17355E",
 					confirmButtonColor: "#17355E",
 					color: "#17355E",
 				});
 			});
-		setNewCategoryName("");
 		handleClose();
 	};
 
 	useEffect(() => {
 		if (show) fetchCategoriesForOptions();
-		else setIsCategorySelected(false);
-		if (newCategoryName) setBtnActive(true);
+		else setFetchedCategoriesForOptions([]);
+		if (categoryId) setBtnActive(true);
 		else setBtnActive(false);
-	}, [show, newCategoryName]);
+	}, [show, categoryId]);
 
 	return (
 		<Container className="p-0 m-0">
@@ -165,21 +151,6 @@ const Archive = () => {
 										{fetchedCategoriesForOptions}
 									</Form.Select>
 								</Form.Group>
-								{isCategorySelected ? (
-									<Form.Group>
-										<Form.Label>
-											<span className="text-danger">*</span> New category name
-										</Form.Label>
-										<Form.Control
-											type="text"
-											placeholder="Enter category name"
-											value={newCategoryName}
-											onChange={newCategoryNameChangeHandler}
-										/>
-									</Form.Group>
-								) : (
-									false
-								)}
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>
