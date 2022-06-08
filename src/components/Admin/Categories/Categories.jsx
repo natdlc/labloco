@@ -3,6 +3,7 @@ import Add from "./Add/Add";
 import All from "./All/All";
 import Products from "./Products/Products";
 import Edit from "./Edit/Edit";
+import Archive from "./Archive/Archive";
 
 const Categories = () => {
 	return (
@@ -19,6 +20,9 @@ const Categories = () => {
 				</Col>
 				<Col className="p-0 m-0" xs={12}>
 					<Edit />
+				</Col>
+				<Col className="p-0 m-0" xs={12}>
+					<Archive />
 				</Col>
 			</Row>
 		</Container>
