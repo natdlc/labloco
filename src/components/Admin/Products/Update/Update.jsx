@@ -31,7 +31,7 @@ const Update = () => {
 			setBtnActive(true);
 		else setBtnActive(false);
 		asyncFetchHandler(show);
-	}, [show, product, description, price, fetchedProductId]);
+	}, [show, product, productName, description, price, fetchedProductId]);
 
 	const selectProductChangeHandler = async (e) => {
 		setFetchedProductId("");

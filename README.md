@@ -29,11 +29,11 @@ Products
 - (c) Add only active categories to product (admin only)
 - (c) Remove product from category (admin only)
 - (c) Add custom order option with value (admin only)
-- (w) Delete custom order option (admin only)
+- (c) Delete custom order option (admin only)
 
 Orders
 
-- () Retrieve all orders (Admin only)
+- (w) Retrieve all orders (Admin only)
 
 Categories
 
