@@ -40,7 +40,7 @@ Categories
 
 - (c) Add a category (admin only)
 - (c) Add hot/featured products section (admin only)
-- (w) Retrieve all categories (admin only)
+- (c) Retrieve all categories (admin only)
 - () Retrieve all products in specific category (admin only)
 - () Edit category name (admin only)
 - () Archive a category (admin only)
