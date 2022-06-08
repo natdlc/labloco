@@ -33,11 +33,11 @@ Products
 
 Orders
 
-- (w) Retrieve all orders (Admin only)
+- (c) Retrieve all orders (Admin only)
 
 Categories
 
-- () Add a category (admin only)
+- (w) Add a category (admin only)
 - () Add hot/featured products section (admin only)
 - () Retrieve all categories (admin only)
 - () Edit category name (admin only)
