@@ -285,3 +285,7 @@ td {
 .btn:focus {
 	box-shadow: none;
 }
+
+.text-small {
+	font-size: 0.8rem !important;
+}

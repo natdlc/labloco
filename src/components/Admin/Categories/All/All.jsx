@@ -26,6 +26,9 @@ const All = () => {
 							<td className="p-2">
 								<p>{category.name}</p>
 							</td>
+							<td className="p-2">
+								<p>{String(category.isActive)}</p>
+							</td>
 						</tr>
 					);
 				});
@@ -60,6 +63,7 @@ const All = () => {
 								<thead>
 									<tr>
 										<th className="p-2">Name</th>
+										<th className="p-2">Active</th>
 									</tr>
 								</thead>
 								<tbody>{categories}</tbody>
