@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import HomeCarousel from "../components/Home/HomeCarousel/HomeCarousel";
 import HomeReviews from "../components/Home/HomeReviews/HomeReviews";
@@ -11,18 +11,21 @@ import HomeNewsletter from "../components/Home/HomeNewsletter/HomeNewsletter";
 import ProductContext from "../ProductContext";
 const Home = () => {
 	const { fetchAllProducts } = useContext(ProductContext);
+	const [allProducts, setAllProducts] = useState([]);
 
 	useEffect(() => {
-		fetchAllProducts();
-	}, []);
+		// console.log('render');
+		fetchAllProducts(setAllProducts);
+	}, [allProducts]);
+
 	return (
 		<div className="d-flex flex-column gap-5 mb-5 pb-5">
 			<HomeCarousel />
 			<HomeReviews />
-			<FeaturedBundles />
+			<FeaturedBundles allProducts={allProducts} />
 			<HomeBenefits />
 			<HomeAbout />
-			<FeaturedProducts />
+			<FeaturedProducts allProducts={allProducts} />
 			<PaymentMethods />
 			<HomeNewsletter />
 		</div>

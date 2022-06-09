@@ -73,7 +73,7 @@ function App() {
 	};
 
 	// for product context
-	const fetchAllProducts = async () => {
+	const fetchAllProducts = async (setProducts) => {
 		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -82,13 +82,13 @@ function App() {
 			.then((response) => response.json())
 			.then((result) => {
 				setAllProducts(result);
+				setProducts(result);
 			})
 			.catch((err) => err);
 	};
 
 	// for category context
 	const fetchAllCategories = async () => {
-		console.log("rendering");
 		await fetch(
 			"https://labloco-medical-supplies.herokuapp.com/categories/all/",
 			{
