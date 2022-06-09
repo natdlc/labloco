@@ -21,14 +21,17 @@ const ProductHeaders = ({ props }) => {
 				const productCategoryIds = allProducts
 					.filter((product) => product._id === productId)[0]
 					.categories.map((category) => category.categoryId);
-				const categoryNames = productCategoryIds.map((id) => {
-					return categories.filter((category) => category._id === id)[0].name;
+				const mappedCategories = productCategoryIds.map((id) => {
+					return categories.filter((category) => category._id === id)[0];
 				});
-				const categoriesArr = categoryNames.map((categoryName) => {
+				const categoriesArr = mappedCategories.map((category) => {
 					return (
 						<>
-							<p className="text-muted-prime m-0 p-0 text-capitalize">
-								{categoryName},
+							<p
+								key={category._id}
+								className="text-muted-prime m-0 p-0 text-capitalize"
+							>
+								{category.name},
 							</p>
 						</>
 					);

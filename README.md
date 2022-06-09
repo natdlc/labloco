@@ -2,7 +2,12 @@ Welcome! This is the frontend code for Zuitt's E-commerce capstone. Listed below
 
 FRONT-END-SPECIFIC
 
-- () Hot/Featured products page
+- () Single product
+- () Registration (with log in confirmation)
+- () Collections
+- () Cart
+- () Checkout
+- () Hot/Featured
 - (c) Logout
 - (c) 404 page
 - (c) About page

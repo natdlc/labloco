@@ -1,6 +1,13 @@
+import { useState, useEffect } from "react";
+
 import { Accordion } from "react-bootstrap";
 
 const ShippingAccordion = () => {
+	const [couriers, setCouriers] = useState([]);
+
+	useEffect(() => {
+		// fetch("")
+	}, []);
 	return (
 		<Accordion.Item eventKey="1" className="border-0 border-bottom">
 			<Accordion.Header className="text-header text-prime">
