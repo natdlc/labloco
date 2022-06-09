@@ -62,9 +62,10 @@ Couriers
 
 Discounts
 
-- (w) Create discounts (admin only)
-- () Retrieve discounts (admin only)
-- () Set discount to inactive (admin only)
+- (c) Create discounts (admin only)
+- (c) Retrieve discounts (admin only)
+- (c) Set discount to inactive (admin only)
+- (c) Set discount to active (admin only)
 
 MINIMUM
 
@@ -157,3 +158,4 @@ Discounts
 - () Create discounts (admin only)
 - () Retrieve discounts (admin only)
 - () Set discount to inactive (admin only)
+- () Set discount to active (admin only)
