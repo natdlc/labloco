@@ -45,13 +45,13 @@ Categories
 - (c) Edit category name (admin only)
 - (c) Archive a category (admin only)
 - (c) Unarchive a category (admin only)
-- (w) Remove a category (admin only)
+- (c) Remove a category (admin only)
 - (c) Add product to category (admin only)
-- () Can't delete category linked to products (admin only)
+- (c) Can't delete category linked to products (admin only)
 
 Newsletters
 
-- () Retrieve newsletter emails (admin only)
+- (w) Retrieve newsletter emails (admin only)
 
 Couriers
 
