@@ -5,6 +5,7 @@ import Products from "./Products/Products";
 import Edit from "./Edit/Edit";
 import Archive from "./Archive/Archive";
 import Unarchive from "./Unarchive/Unarchive";
+import Delete from "./Delete/Delete";
 
 const Categories = () => {
 	return (
@@ -27,6 +28,9 @@ const Categories = () => {
 				</Col>
 				<Col className="p-0 m-0" xs={12}>
 					<Unarchive />
+				</Col>
+				<Col className="p-0 m-0" xs={12}>
+					<Delete />
 				</Col>
 			</Row>
 		</Container>
