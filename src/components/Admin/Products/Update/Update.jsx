@@ -62,6 +62,7 @@ const Update = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		setBtnActive(false);
 		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}`,
 			{

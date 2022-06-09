@@ -59,6 +59,7 @@ const AddOption = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		setBtnActive(false);
 		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/option/${fetchedProductId}`,
 			{
@@ -74,8 +75,9 @@ const AddOption = () => {
 			}
 		)
 			.then((response) => response.json())
-			.then((result) => {
+			.then(async (result) => {
 				if (result.message.includes("success")) {
+					await fetchAllProducts();
 					Swal.fire({
 						title: "SUCCESS",
 						text: "Option added",
@@ -105,7 +107,6 @@ const AddOption = () => {
 					color: "#17355E",
 				});
 			});
-		await fetchAllProducts();
 		setProduct("");
 		setOptionLabel("");
 		setOptionValue("");

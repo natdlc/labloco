@@ -14,6 +14,8 @@ const Archive = () => {
 	const [product, setProduct] = useState("");
 	const [fetchedProductId, setFetchedProductId] = useState("");
 
+	const [isBtnActive, setIsBtnActive] = useState(false);
+
 	const asyncFetchHandler = async (show) => {
 		await fetchAllProducts();
 		if (show) await fetchForOptions();
@@ -21,38 +23,45 @@ const Archive = () => {
 
 	useEffect(() => {
 		asyncFetchHandler();
-	}, [show]);
+		if (fetchedProductId) setIsBtnActive(true);
+		else setIsBtnActive(false);
+	}, [show, fetchedProductId]);
 
-	const selectProductChangeHandler = (e) => {
+	const selectProductChangeHandler = async (e) => {
+		setIsBtnActive(false);
 		setProduct(e.target.value);
-		fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-			},
-		})
-			.then((response) => response.json())
-			.then((result) => {
-				const fetchedProduct = result.filter(
-					(item) => item.name === e.target.value
-				);
-				setFetchedProductId(fetchedProduct[0]._id);
+		if (e.target.value === "Click to select a product") setFetchedProductId("");
+		else {
+			await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
 			})
-			.catch((err) => {
-				Swal.fire({
-					title: "ERROR",
-					text: err.message,
-					icon: "error",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
+				.then((response) => response.json())
+				.then((result) => {
+					const fetchedProduct = result.filter(
+						(item) => item.name === e.target.value
+					);
+					setFetchedProductId(fetchedProduct[0]._id);
+				})
+				.catch((err) => {
+					Swal.fire({
+						title: "ERROR",
+						text: err.message,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
 				});
-			});
+		}
 	};
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
-		fetch(
+		setIsBtnActive(false);
+		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/archive/${fetchedProductId}`,
 			{
 				method: "PUT",
@@ -94,7 +103,7 @@ const Archive = () => {
 					color: "#17355E",
 				});
 			});
-		fetchAllProducts();
+		await fetchAllProducts();
 		handleClose();
 	};
 
@@ -129,9 +138,19 @@ const Archive = () => {
 							<Button className="custom-btn-5" onClick={handleClose}>
 								Cancel
 							</Button>
-							<Button className="custom-btn-2" onClick={proceedHandler}>
-								Proceed
-							</Button>
+							{isBtnActive ? (
+								<Button className="custom-btn-2" onClick={proceedHandler}>
+									Proceed
+								</Button>
+							) : (
+								<Button
+									disabled
+									className="custom-btn-2"
+									onClick={proceedHandler}
+								>
+									Proceed
+								</Button>
+							)}
 						</Modal.Footer>
 					</Modal>
 				</Col>

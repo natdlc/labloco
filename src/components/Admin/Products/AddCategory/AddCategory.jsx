@@ -42,62 +42,70 @@ const AddCategory = () => {
 	const selectProductChangeHandler = async (e) => {
 		setFetchedProductId("");
 		setProduct(e.target.value);
-		await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-			},
-		})
-			.then((response) => response.json())
-			.then((result) => {
-				const fetchedProduct = result.filter(
-					(item) => item.name === e.target.value
-				);
-				setFetchedProductId(fetchedProduct[0]._id);
+		if (e.target.value === "Click to select a product") setFetchedProductId("");
+		else {
+			await fetch("https://labloco-medical-supplies.herokuapp.com/products/", {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
 			})
-			.catch((err) => {
-				Swal.fire({
-					title: "ERROR",
-					text: err.message,
-					icon: "error",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
+				.then((response) => response.json())
+				.then((result) => {
+					const fetchedProduct = result.filter(
+						(item) => item.name === e.target.value
+					);
+					setFetchedProductId(fetchedProduct[0]._id);
+				})
+				.catch((err) => {
+					Swal.fire({
+						title: "ERROR",
+						text: err.message,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
 				});
-			});
+		}
 	};
 
 	const selectCategoryChangeHandler = async (e) => {
 		setFetchedCategoryId("");
 		setCategory(e.target.value);
-		await fetch(
-			"https://labloco-medical-supplies.herokuapp.com/categories/all",
-			{
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-				},
-			}
-		)
-			.then((response) => response.json())
-			.then((result) => {
-				const fetchedCategory = result.filter(
-					(item) => item.name === e.target.value
-				);
-				setFetchedCategoryId(fetchedCategory[0]._id);
-			})
-			.catch((err) => {
-				Swal.fire({
-					title: "ERROR",
-					text: err.message,
-					icon: "error",
-					iconColor: "#17355E",
-					confirmButtonColor: "#17355E",
-					color: "#17355E",
+		if (e.target.value === "Click to select a category")
+			setFetchedCategoryId("");
+		else {
+			await fetch(
+				"https://labloco-medical-supplies.herokuapp.com/categories/all",
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((result) => {
+					const fetchedCategory = result.filter(
+						(item) => item.name === e.target.value
+					);
+					setFetchedCategoryId(fetchedCategory[0]._id);
+				})
+				.catch((err) => {
+					Swal.fire({
+						title: "ERROR",
+						text: err.message,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
 				});
-			});
+		}
 	};
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		setBtnActive(false);
 		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/${fetchedProductId}/category/${fetchedCategoryId}/add`,
 			{
@@ -177,7 +185,7 @@ const AddCategory = () => {
 										onChange={selectCategoryChangeHandler}
 										aria-label="Default select example"
 									>
-										<option>Click to select a product</option>
+										<option>Click to select a category</option>
 										{fetchedCategoriesForOptions}
 									</Form.Select>
 								</Form.Group>

@@ -1,9 +1,15 @@
+import { useEffect } from "react";
+
 import { Container, Col, Row, Button } from "react-bootstrap";
 import icon1 from "../../../assets/icon/shipping.png";
 import icon2 from "../../../assets/icon/quality-products.png";
 import icon3 from "../../../assets/icon/customer-service.png";
+import { Link } from "react-router-dom";
 
 const HomeBenefits = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<div className="mt-5 pt-5">
 			<h1 className="text-prime display-1 text-header text-center mt-5 pt-5">
@@ -33,7 +39,9 @@ const HomeBenefits = () => {
 								sit temporibus rem sint cupiditate suscipit non, fugit
 								accusantium veniam dolore.
 							</p>
-							<Button className="custom-btn-3">Shipping Policy</Button>
+							<Button as={Link} to="/shipping" className="custom-btn-3">
+								Shipping Policy
+							</Button>
 						</div>
 					</Col>
 					<Col

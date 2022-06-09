@@ -50,6 +50,7 @@ const DeleteImage = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		setIsBtnActive(false);
 		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/image/${fetchedProductId}`,
 			{

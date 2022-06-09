@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Shipping = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<Container style={{ maxWidth: "50rem" }} className="pb-5 mb-5">
 			<h1 className="display-1 text-header text-prime pt-5 text-center ">

@@ -20,6 +20,7 @@ const Users = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		setIsBtnActive(false);
 		const authToken = `Bearer ${localStorage.getItem("accessToken")}`;
 		await fetch("https://labloco-medical-supplies.herokuapp.com/users/all", {
 			headers: {
@@ -28,10 +29,10 @@ const Users = () => {
 			},
 		})
 			.then((res) => res.json())
-			.then((userList) => {
+			.then(async (userList) => {
 				const userFound = userList.filter((user) => user.email === email);
 				const userId = userFound[0]._id;
-				fetch(
+				await fetch(
 					`https://labloco-medical-supplies.herokuapp.com/users/${userId}/admin`,
 					{
 						method: "PUT",
@@ -60,7 +61,6 @@ const Users = () => {
 							confirmButtonColor: "#17355E",
 						});
 					});
-				handleClose();
 			})
 			.catch(() => {
 				Swal.fire({
@@ -70,8 +70,9 @@ const Users = () => {
 					color: "#17355E",
 					confirmButtonColor: "#17355E",
 				});
-				handleClose();
 			});
+		setEmail("");
+		handleClose();
 	};
 	return (
 		<Container className="p-0 m-0">

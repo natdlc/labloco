@@ -19,6 +19,7 @@ const Add = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
+		setBtnActive(false);
 		await fetch("https://labloco-medical-supplies.herokuapp.com/couriers/", {
 			method: "POST",
 			headers: {

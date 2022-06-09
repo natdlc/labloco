@@ -117,11 +117,7 @@ const DeleteOption = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
-		console.log(`
-      product: ${product}
-      option label: ${optionLabel}
-      option value: ${optionValue}
-    `);
+		setBtnActive(false);
 		await fetch(
 			`https://labloco-medical-supplies.herokuapp.com/products/option/${fetchedProductId}`,
 			{
