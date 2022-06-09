@@ -58,11 +58,11 @@ Couriers
 - (c) Create courier (admin only)
 - (c) Retrieve couriers (admin only)
 - (c) Deactivate courier (admin only)
-- (w) Activate courier (admin only)
+- (c) Activate courier (admin only)
 
 Discounts
 
-- () Create discounts (admin only)
+- (w) Create discounts (admin only)
 - () Retrieve discounts (admin only)
 - () Set discount to inactive (admin only)
 
