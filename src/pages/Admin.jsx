@@ -4,6 +4,7 @@ import Products from "../components/Admin/Products/Products";
 import Orders from "../components/Admin/Orders/Orders";
 import Categories from "../components/Admin/Categories/Categories";
 import Newsletters from "../components/Admin/Newsletters/Newsletters";
+import Couriers from "../components/Admin/Couriers/Couriers";
 
 const Admin = () => {
 	return (
@@ -45,7 +46,7 @@ const Admin = () => {
 						<Accordion.Item eventKey="6">
 							<Accordion.Header>Couriers</Accordion.Header>
 							<Accordion.Body className="p-0 m-0">
-								Couriers options
+								<Couriers />
 							</Accordion.Body>
 						</Accordion.Item>
 						<Accordion.Item eventKey="7">

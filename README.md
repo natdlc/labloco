@@ -51,11 +51,11 @@ Categories
 
 Newsletters
 
-- (w) Retrieve newsletter emails (admin only)
+- (c) Retrieve newsletter emails (admin only)
 
 Couriers
 
-- () Create courier (admin only)
+- (w) Create courier (admin only)
 - () Retrieve couriers (admin only)
 - () Deactivate courier (admin only)
 
