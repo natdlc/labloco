@@ -63,7 +63,9 @@ const HomeBenefits = () => {
 								sit temporibus rem sint cupiditate suscipit non, fugit
 								accusantium veniam dolore.
 							</p>
-							<Button className="custom-btn-3">All Products</Button>
+							<Button as={Link} to="/collections" className="custom-btn-3">
+								All Products
+							</Button>
 						</div>
 					</Col>
 					<Col
@@ -85,7 +87,9 @@ const HomeBenefits = () => {
 								sit temporibus rem sint cupiditate suscipit non, fugit
 								accusantium veniam dolore.
 							</p>
-							<Button className="custom-btn-3">Contact Us</Button>
+							<Button as={Link} to="/contact" className="custom-btn-3">
+								Contact Us
+							</Button>
 						</div>
 					</Col>
 				</Row>

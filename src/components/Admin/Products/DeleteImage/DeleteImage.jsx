@@ -60,8 +60,11 @@ const DeleteImage = () => {
 				},
 			}
 		)
-			.then((response) => {
-				console.log(response);
+			.then(async (response) => {
+				await fetchAllProducts();
+				setFetchedProductId("");
+				setProduct("");
+				handleClose();
 				Swal.fire({
 					title: "SUCCESS",
 					text: "Product updated",
@@ -71,7 +74,11 @@ const DeleteImage = () => {
 					color: "#17355E",
 				});
 			})
-			.catch((err) => {
+			.catch(async (err) => {
+				await fetchAllProducts();
+				setFetchedProductId("");
+				setProduct("");
+				handleClose();
 				Swal.fire({
 					title: "ERROR",
 					text: err.message,
@@ -81,8 +88,6 @@ const DeleteImage = () => {
 					color: "#17355E",
 				});
 			});
-		await fetchAllProducts();
-		handleClose();
 	};
 
 	return (

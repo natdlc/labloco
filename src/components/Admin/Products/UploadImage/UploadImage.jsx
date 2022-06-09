@@ -64,6 +64,7 @@ const UploadImage = () => {
 		e.preventDefault();
 		if (e.target.value) {
 			setImage(e.target.files[0]);
+			console.log(fetchedProductId);
 			if (fetchedProductId) {
 				setIsBtnActive(true);
 			} else {
@@ -78,7 +79,7 @@ const UploadImage = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
-		setIsBtnActive(false);
+		// setIsBtnActive(false);
 		const data = new FormData();
 		data.append("file", image);
 		await fetch(
@@ -91,7 +92,12 @@ const UploadImage = () => {
 				body: data,
 			}
 		)
-			.then((result) => {
+			.then(async (result) => {
+				await fetchAllProducts();
+				setProduct("");
+				setFetchedProductId("");
+				setImage();
+				handleClose();
 				Swal.fire({
 					title: "SUCCESS",
 					text: "Product updated",
@@ -101,7 +107,12 @@ const UploadImage = () => {
 					color: "#17355E",
 				});
 			})
-			.catch((err) => {
+			.catch(async (err) => {
+				await fetchAllProducts();
+				setProduct("");
+				setFetchedProductId("");
+				setImage();
+				handleClose();
 				Swal.fire({
 					title: "ERROR",
 					text: err.message,
@@ -111,11 +122,6 @@ const UploadImage = () => {
 					color: "#17355E",
 				});
 			});
-		await fetchAllProducts();
-		setProduct("");
-		setFetchedProductId("");
-		setImage();
-		handleClose();
 	};
 
 	return (

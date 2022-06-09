@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const HomeAbout = () => {
 	return (
@@ -13,7 +14,13 @@ const HomeAbout = () => {
 						providing students and professionals the supplies they need that
 						comes with affordability and peace of mind in every purchase.
 					</h4>
-					<Button className="custom-btn-2 mx-auto fs-2 px-4">Learn more</Button>
+					<Button
+						as={Link}
+						to="/about"
+						className="custom-btn-2 mx-auto fs-2 px-4"
+					>
+						Learn more
+					</Button>
 				</Col>
 			</Row>
 		</Container>

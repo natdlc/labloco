@@ -82,6 +82,11 @@ const Update = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.message.includes("success")) {
+					setProductName("");
+					setDescription("");
+					setPrice("");
+					setStocks("");
+					handleClose();
 					Swal.fire({
 						title: "SUCCESS",
 						text: "Product updated",
@@ -91,6 +96,11 @@ const Update = () => {
 						color: "#17355E",
 					});
 				} else {
+					setProductName("");
+					setDescription("");
+					setPrice("");
+					setStocks("");
+					handleClose();
 					Swal.fire({
 						title: "ERROR",
 						text: result,
@@ -102,6 +112,11 @@ const Update = () => {
 				}
 			})
 			.catch((err) => {
+				setProductName("");
+				setDescription("");
+				setPrice("");
+				setStocks("");
+				handleClose();
 				Swal.fire({
 					title: "ERROR",
 					text: err.message,
@@ -112,11 +127,6 @@ const Update = () => {
 				});
 			});
 		await fetchAllProducts();
-		setProductName("");
-		setDescription("");
-		setPrice("");
-		setStocks("");
-		handleClose();
 	};
 
 	const productNameChangeHandler = (e) => setProductName(e.target.value);
