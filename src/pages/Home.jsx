@@ -14,7 +14,6 @@ const Home = () => {
 	const [allProducts, setAllProducts] = useState([]);
 
 	useEffect(() => {
-		// console.log('render');
 		fetchAllProducts(setAllProducts);
 	}, [allProducts]);
 
