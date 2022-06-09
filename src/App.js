@@ -88,6 +88,7 @@ function App() {
 
 	// for category context
 	const fetchAllCategories = async () => {
+		console.log("rendering");
 		await fetch(
 			"https://labloco-medical-supplies.herokuapp.com/categories/all/",
 			{
@@ -167,7 +168,7 @@ function App() {
 							<Routes>
 								<Route path="/" element={<Home />} />
 								<Route path="/collections" element={<Products />} />
-								<Route path="/product" element={<SingleProduct />} />
+								<Route path="/product/:productId" element={<SingleProduct />} />
 								<Route path="/about" element={<About />} />
 								<Route path="/register" element={<Registration />} />
 								<Route path="/login" element={<Login />} />

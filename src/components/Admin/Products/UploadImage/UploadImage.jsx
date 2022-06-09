@@ -79,7 +79,7 @@ const UploadImage = () => {
 
 	const proceedHandler = async (e) => {
 		e.preventDefault();
-		// setIsBtnActive(false);
+		setIsBtnActive(false);
 		const data = new FormData();
 		data.append("file", image);
 		await fetch(

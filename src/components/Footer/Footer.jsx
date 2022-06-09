@@ -28,7 +28,7 @@ const Footer = () => {
 					<p className="text-reverse-prime text-header display-6">
 						Quick Links
 					</p>
-					<Nav style={{maxWidth: "20rem"}}>
+					<Nav style={{ maxWidth: "20rem" }}>
 						<Nav.Item>
 							<Nav.Link className="footer-quick-links text-content p-0 me-3 py-2 text-reverse-prime">
 								Home
@@ -121,7 +121,9 @@ const Footer = () => {
 				<Col xs={12} sm={6} xl={6} xxl={4} className="my-5 mx-sm-auto mx-xl-0">
 					<Form>
 						<Form.Label className="footer-form_label display-6 text-reverse-prime text-header">
-							Join our Newsletter
+							<p className="text-header text-reverse-prime display-6">
+								Join our Newsletter
+							</p>
 						</Form.Label>
 						<p className="text-reverse-prime text-content">
 							Get the latest discounts through your email

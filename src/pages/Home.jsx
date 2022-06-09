@@ -10,11 +10,11 @@ import PaymentMethods from "../components/Home/PaymentMethods/PaymentMethods";
 import HomeNewsletter from "../components/Home/HomeNewsletter/HomeNewsletter";
 import ProductContext from "../ProductContext";
 const Home = () => {
-	const { allProducts, fetchAllProducts } = useContext(ProductContext);
+	const { fetchAllProducts } = useContext(ProductContext);
 
 	useEffect(() => {
 		fetchAllProducts();
-	}, [allProducts]);
+	}, []);
 	return (
 		<div className="d-flex flex-column gap-5 mb-5 pb-5">
 			<HomeCarousel />

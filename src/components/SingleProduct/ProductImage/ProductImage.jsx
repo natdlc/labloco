@@ -1,30 +1,17 @@
-import { Carousel } from "react-bootstrap";
-
-const ProductImage = () => {
+const ProductImage = (props) => {
+	const { productId, allProducts } = props;
+	const imageFound = allProducts.find((product) => product._id === productId)
+		.image.length;
+	let img = "";
+	if (imageFound) {
+		img = `https://labloco-medical-supplies.herokuapp.com/products/image/${productId}`;
+	} else {
+		img = `https://via.placeholder.com/1000x1000`;
+	}
 	return (
-		<Carousel>
-			<Carousel.Item>
-				<img
-					className="d-block w-100"
-					src="https://via.placeholder.com/1000x1000"
-					alt="First slide"
-				/>
-			</Carousel.Item>
-			<Carousel.Item>
-				<img
-					className="d-block w-100"
-					src="https://via.placeholder.com/1000x1000"
-					alt="Second slide"
-				/>
-			</Carousel.Item>
-			<Carousel.Item>
-				<img
-					className="d-block w-100"
-					src="https://via.placeholder.com/1000x1000"
-					alt="Third slide"
-				/>
-			</Carousel.Item>
-		</Carousel>
+		<>
+			<img className="img-fluid" src={img} alt="" />
+		</>
 	);
 };
 

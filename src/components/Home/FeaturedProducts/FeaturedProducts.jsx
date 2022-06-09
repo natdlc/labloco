@@ -1,27 +1,22 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-import ProductContext from "../../../ProductContext";
 const FeaturedBundles = () => {
-	const { fetchAllProducts, allProducts } = useContext(ProductContext);
-
 	const [products, setProducts] = useState([]);
 
-	const fetchData = async () => {
-		await fetch(
-			"https://labloco-medical-supplies.herokuapp.com/categories/active"
-		)
+	const fetchData = () => {
+		fetch("https://labloco-medical-supplies.herokuapp.com/categories/active")
 			.then((response) => response.json())
-			.then(async (categories) => {
+			.then((categories) => {
 				const featuredProduct = categories.filter(
 					(category) => category.name === "featured products"
 				);
-				await fetch(
+				fetch(
 					`https://labloco-medical-supplies.herokuapp.com/categories/active/${featuredProduct[0]._id}`
 				)
 					.then((response) => response.json())
-					.then(async (products) => {
+					.then((products) => {
 						const productsArr = products.map((product) => {
 							let img = "";
 							if (product.image.length) {
@@ -52,9 +47,8 @@ const FeaturedBundles = () => {
 	};
 
 	useEffect(() => {
-		fetchAllProducts();
 		fetchData();
-	}, [allProducts]);
+	}, []);
 
 	return (
 		<div className="d-flex flex-column my-5 py-5">

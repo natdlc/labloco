@@ -1,29 +1,25 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import imgPlaceholder from "../../../assets/imgs/featured-bundles-img.png";
 
-import ProductContext from "../../../ProductContext";
+import { Link } from "react-router-dom";
 
 const FeaturedBundles = () => {
-	const { fetchAllProducts, allProducts } = useContext(ProductContext);
-
 	const [bundles, setBundles] = useState([]);
 
-	const fetchData = async () => {
-		await fetch(
-			"https://labloco-medical-supplies.herokuapp.com/categories/active"
-		)
+	const fetchData = () => {
+		fetch("https://labloco-medical-supplies.herokuapp.com/categories/active")
 			.then((response) => response.json())
-			.then(async (categories) => {
+			.then((categories) => {
 				const featuredBundle = categories.filter(
 					(category) => category.name === "featured bundles"
 				);
-				await fetch(
+				fetch(
 					`https://labloco-medical-supplies.herokuapp.com/categories/active/${featuredBundle[0]._id}`
 				)
 					.then((response) => response.json())
-					.then(async (bundles) => {
+					.then((bundles) => {
 						const bundlesArr = bundles.map((bundle) => {
 							let img = "";
 							if (bundle.image.length) {
@@ -35,7 +31,7 @@ const FeaturedBundles = () => {
 								<Col key={bundle._id} sm={5} xl={4}>
 									<Card className="custom-shade-bg-1">
 										<Card.Img className="bg-white p-3" src={img} />
-										<Button className="custom-btn-3 py-2 fs-5">
+										<Button as={Link} to={`/product/${bundle._id}`} className="custom-btn-3 py-2 fs-5">
 											{bundle.name}
 										</Button>
 									</Card>
@@ -47,11 +43,9 @@ const FeaturedBundles = () => {
 			});
 	};
 
-	fetchData();
 	useEffect(() => {
-		fetchAllProducts();
 		fetchData();
-	}, [allProducts]);
+	}, []);
 
 	return (
 		<div className="d-flex flex-column mt-5">

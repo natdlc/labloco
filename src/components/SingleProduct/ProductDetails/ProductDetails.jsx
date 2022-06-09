@@ -5,15 +5,15 @@ import DetailsAccordion from "./DetailsAccordion/DetailsAccordion";
 import ShippingAccordion from "./ShippingAccordion/ShippingAccordion";
 import PayMethodsAccordion from "./PayMethodsAccordion/PayMethodsAccordion";
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
 	return (
 		<>
-			<ProductHeaders />
-			<QtyCartForm />
+			<ProductHeaders props={props} />
+			<QtyCartForm props={props} />
 			<Accordion>
-				<DetailsAccordion />
-				<ShippingAccordion />
-				<PayMethodsAccordion />
+				<DetailsAccordion props={props} />
+				<ShippingAccordion props={props} />
+				<PayMethodsAccordion props={props} />
 			</Accordion>
 		</>
 	);

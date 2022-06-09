@@ -100,6 +100,17 @@ const AppNav = () => {
 									</Nav.Link>
 								</>
 							)}
+							{user.isAdmin ? (
+								<Nav.Link
+									as={Link}
+									to="/admin"
+									className="off-white text-content"
+								>
+									Admin
+								</Nav.Link>
+							) : (
+								false
+							)}
 						</Nav>
 					</Offcanvas.Body>
 				</Navbar.Offcanvas>
