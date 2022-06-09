@@ -47,6 +47,7 @@ const FeaturedBundles = () => {
 			});
 	};
 
+	fetchData();
 	useEffect(() => {
 		fetchAllProducts();
 		fetchData();
