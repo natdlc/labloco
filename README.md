@@ -55,9 +55,10 @@ Newsletters
 
 Couriers
 
-- (w) Create courier (admin only)
-- () Retrieve couriers (admin only)
-- () Deactivate courier (admin only)
+- (c) Create courier (admin only)
+- (c) Retrieve couriers (admin only)
+- (c) Deactivate courier (admin only)
+- (w) Activate courier (admin only)
 
 Discounts
 
