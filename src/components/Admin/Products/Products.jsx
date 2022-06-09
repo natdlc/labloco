@@ -4,6 +4,7 @@ import UploadImage from "./UploadImage/UploadImage";
 import DeleteImage from "./DeleteImage/DeleteImage";
 import Update from "./Update/Update";
 import Archive from "./Archive/Archive";
+import Unarchive from "./Unarchive/Unarchive";
 import All from "./All/All";
 import AddCategory from "./AddCategory/AddCategory";
 import RemoveCategory from "./RemoveCategory/RemoveCategory";
@@ -28,6 +29,9 @@ const Products = () => {
 				</Col>
 				<Col xs={12} className="p-0 m-0">
 					<Archive />
+				</Col>
+				<Col xs={12} className="p-0 m-0">
+					<Unarchive />
 				</Col>
 				<Col xs={12} className="p-0 m-0">
 					<All />
