@@ -71,18 +71,18 @@ MINIMUM
 
 - (c) User registration
 - (c) User authentication
-- () Create Product (Admin only)
+- (c) Create Product (Admin only)
 - () Retrieve all active products
 - () Retrieve single product
 - () Update Product information (Admin only)
-- () Archive Product (Admin only)
+- (c) Archive Product (Admin only)
 - () Non-admin User checkout (Create Order)
 
 STRETCH
 
-- (w) Set user as admin (Admin only)
+- (c) Set user as admin (Admin only)
 - () Retrieve authenticated user’s orders
-- () Retrieve all orders (Admin only)
+- (c) Retrieve all orders (Admin only)
 
 EXTRAS
 
@@ -104,43 +104,45 @@ Newsletter
 
 - () Subscribe to newsletter
 - () No duplicate emails
-- () Retrieve newsletter emails (admin only)
+- (c) Retrieve newsletter emails (admin only)
 - () Unsubscribe from newsletter
 
 Products
 
 - () Schema update: stocks, categories, options
 - () No duplicate product (via name)
-- () Retrieve all products (admin only)
+- (c) Retrieve all products (admin only)
 - () Retrieve single product (active only)
-- () Create image for product (admin only)
+- (c) Create image for product (admin only)
 - () Retrieve image for product
-- () Delete image for product (admin only)
-- () Add custom order option with value (admin only)
-- () Delete custom order option (admin only)
-- () Add categories to product (admin only)
-- () Add only active categories to product (admin only)
-- () Remove product from category (admin only)
+- (c) Delete image for product (admin only)
+- (c) Add custom order option with value (admin only)
+- (c) Delete custom order option (admin only)
+- (c) Add categories to product (admin only)
+- (c) Add only active categories to product (admin only)
+- (c) Remove product from category (admin only)
 
 Category
 
-- () Add a category (admin only)
-- () Add hot/featured products section (admin only)
+- (c) Add a category (admin only)
+- (c) Add hot/featured products section (admin only)
 - () retrieve all active categories (all users)
-- () Retrieve all categories (admin only)
+- (c) Retrieve all categories (admin only)
 - () Retrieve active products in specific category
-- () Retrieve all products in specific category (admin only)
-- () Edit category name (admin only)
-- () Archive a category (admin only)
-- () Unarchive a category (admin only)
-- () Remove a category (admin only)
-- () Add product to category (admin only)
-- () Can't delete category linked to products (admin only)
-  Courier
+- (c) Retrieve all products in specific category (admin only)
+- (c) Edit category name (admin only)
+- (c) Archive a category (admin only)
+- (c) Unarchive a category (admin only)
+- (c) Remove a category (admin only)
+- (c) Add product to category (admin only)
+- (c) Can't delete category linked to products (admin only)
 
-- () Create courier (admin only)
-- () Retrieve couriers (admin only)
-- () Deactivate courier (admin only)
+Courier
+
+- (c) Create courier (admin only)
+- (c) Retrieve couriers (admin only)
+- (c) Deactivate courier (admin only)
+- (c) Activate courier (admin only)
 
 Orders
 
@@ -155,7 +157,7 @@ Orders
 
 Discounts
 
-- () Create discounts (admin only)
-- () Retrieve discounts (admin only)
-- () Set discount to inactive (admin only)
-- () Set discount to active (admin only)
+- (c) Create discounts (admin only)
+- (c) Retrieve discounts (admin only)
+- (c) Set discount to inactive (admin only)
+- (c) Set discount to active (admin only)

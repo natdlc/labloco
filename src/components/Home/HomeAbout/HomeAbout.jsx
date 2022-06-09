@@ -2,7 +2,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 
 const HomeAbout = () => {
 	return (
-		<Container classname="">
+		<Container>
 			<Row>
 				<Col sm={10} md={8} lg={6} className="d-flex flex-column gap-2 mx-auto">
 					<h1 className="display-1 text-header text-prime pt-5 text-center">
