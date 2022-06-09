@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Add from "./Add/Add";
 import All from "./All/All";
 import Deactivate from "./Deactivate/Deactivate";
+import Activate from "./Activate/Activate";
 
 const Couriers = () => {
 	return (
@@ -15,6 +16,9 @@ const Couriers = () => {
 				</Col>
 				<Col className="p-0 m-0" xs={12}>
 					<Deactivate />
+				</Col>
+				<Col className="p-0 m-0" xs={12}>
+					<Activate />
 				</Col>
 			</Row>
 		</Container>
