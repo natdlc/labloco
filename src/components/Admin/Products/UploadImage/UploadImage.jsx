@@ -64,7 +64,6 @@ const UploadImage = () => {
 		e.preventDefault();
 		if (e.target.value) {
 			setImage(e.target.files[0]);
-			console.log(fetchedProductId);
 			if (fetchedProductId) {
 				setIsBtnActive(true);
 			} else {

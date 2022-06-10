@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import Users from "../components/Admin/Users/Users";
 import Products from "../components/Admin/Products/Products";
@@ -6,9 +7,12 @@ import Categories from "../components/Admin/Categories/Categories";
 import Newsletters from "../components/Admin/Newsletters/Newsletters";
 import Couriers from "../components/Admin/Couriers/Couriers";
 import Discounts from "../components/Admin/Discounts/Discounts";
+import UserContext from "../UserContext";
+import { Navigate } from "react-router-dom";
 
 const Admin = () => {
-	return (
+	const { user } = useContext(UserContext);
+	return user.isAdmin ? (
 		<Container style={{ maxWidth: "30rem" }} className="py-5 my-5">
 			<h1 className="display-5 text-prime text-header">Admin Dashboard</h1>
 			<Row>
@@ -60,6 +64,8 @@ const Admin = () => {
 				</Col>
 			</Row>
 		</Container>
+	) : (
+		<Navigate to="/404" />
 	);
 };
 

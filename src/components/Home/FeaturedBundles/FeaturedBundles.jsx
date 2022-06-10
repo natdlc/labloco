@@ -6,16 +6,16 @@ import imgPlaceholder from "../../../assets/imgs/featured-bundles-img.png";
 import { Link } from "react-router-dom";
 import CategoryContext from "../../../CategoryContext";
 
-const FeaturedBundles = ({ allProducts }) => {
+const FeaturedBundles = ({ allActiveProducts }) => {
 	const [displayedBundles, setDisplayedBundles] = useState([]);
-	const { allCategories } = useContext(CategoryContext);
+	const { allActiveCategories } = useContext(CategoryContext);
 
 	const fetchData = () => {
-		const featuredBundle = allCategories.filter(
+		const featuredBundle = allActiveCategories.filter(
 			(category) => category.name === "featured bundles"
 		);
 
-		const productsArr = allProducts.filter((product) => {
+		const productsArr = allActiveProducts.filter((product) => {
 			return product.categories.find((category) => {
 				return category.categoryId === featuredBundle[0]._id;
 			});
@@ -49,8 +49,11 @@ const FeaturedBundles = ({ allProducts }) => {
 	};
 
 	useEffect(() => {
-		fetchData();
-	}, [allProducts]);
+		if (allActiveProducts.length && allActiveCategories.length) fetchData();
+		else {
+			return;
+		}
+	}, [allActiveProducts, allActiveCategories]);
 
 	return (
 		<div className="d-flex flex-column mt-5">
@@ -61,7 +64,9 @@ const FeaturedBundles = ({ allProducts }) => {
 				<span className="text-prime fw-bold">Save more</span> by buying in bulk.
 			</h4>
 			<Container className="my-5">
-				<Row className="gap-5 justify-content-center">{displayedBundles}</Row>
+				<Row className="gap-5 justify-content-center">
+					{allActiveProducts ? displayedBundles : null}
+				</Row>
 			</Container>
 			<Button className="custom-btn-2 mx-auto mt-5 fs-2 px-4">
 				See all bundles

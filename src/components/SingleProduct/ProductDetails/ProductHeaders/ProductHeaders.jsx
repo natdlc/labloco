@@ -1,44 +1,46 @@
 import { useState, useEffect } from "react";
 
 const ProductHeaders = ({ props }) => {
-	const { allProducts, productId } = props;
+	const { allActiveProducts, productId } = props;
 	const [categories, setCategories] = useState([]);
 	const [productName, setProductName] = useState("");
 	const [price, setPrice] = useState(0);
 
 	useEffect(() => {
-		fetch("https://labloco-medical-supplies.herokuapp.com/categories/active")
-			.then((response) => response.json())
-			.then((categories) => {
-				setProductName(
-					allProducts.filter((product) => product._id === productId)[0].name
-				);
+		if (allActiveProducts.length) {
+			fetch("https://labloco-medical-supplies.herokuapp.com/categories/active")
+				.then((response) => response.json())
+				.then((categories) => {
+					setProductName(
+						allActiveProducts.filter((product) => product._id === productId)[0].name
+					);
 
-				setPrice(
-					allProducts.filter((product) => product._id === productId)[0].price
-				);
+					setPrice(
+						allActiveProducts.filter((product) => product._id === productId)[0].price
+					);
 
-				const productCategoryIds = allProducts
-					.filter((product) => product._id === productId)[0]
-					.categories.map((category) => category.categoryId);
-				const mappedCategories = productCategoryIds.map((id) => {
-					return categories.filter((category) => category._id === id)[0];
-				});
-				const categoriesArr = mappedCategories.map((category) => {
-					return (
-						<>
+					const productCategoryIds = allActiveProducts
+						.filter((product) => product._id === productId)[0]
+						.categories.map((category) => category.categoryId);
+					const mappedCategories = productCategoryIds.map((id) => {
+						return categories.filter((category) => category._id === id)[0];
+					});
+					const categoriesArr = mappedCategories.map((category) => {
+						return (
 							<p
 								key={category._id}
 								className="text-muted-prime m-0 p-0 text-capitalize"
 							>
 								{category.name},
 							</p>
-						</>
-					);
+						);
+					});
+					setCategories(categoriesArr);
 				});
-				setCategories(categoriesArr);
-			});
-	}, []);
+		} else {
+			return;
+		}
+	}, [allActiveProducts]);
 
 	return (
 		<>

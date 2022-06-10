@@ -7,12 +7,16 @@ import ProductContext from "../ProductContext";
 
 const SingleProduct = () => {
 	const { productId } = useParams();
-	const { fetchAllProducts, allProducts } = useContext(ProductContext);
+	const { fetchAllActiveProducts, allActiveProducts } = useContext(ProductContext);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		fetchAllProducts();
 	}, []);
+
+	useEffect(() => {
+		fetchAllActiveProducts();
+	}, [allActiveProducts]);
+
 	return (
 		<Container fluid={true}>
 			<Row className="d-flex justify-content-center my-sm-5 py-sm-5 gap-4">
@@ -23,10 +27,10 @@ const SingleProduct = () => {
 					lg={4}
 					className="single-product-img p-0 mb-4"
 				>
-					<ProductImage allProducts={allProducts} productId={productId} />
+					<ProductImage allActiveProducts={allActiveProducts} productId={productId} />
 				</Col>
 				<Col sm={6} md={5} lg={4} xxl={3} className="single-product-details">
-					<ProductDetails allProducts={allProducts} productId={productId} />
+					<ProductDetails allActiveProducts={allActiveProducts} productId={productId} />
 				</Col>
 			</Row>
 		</Container>

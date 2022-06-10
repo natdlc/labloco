@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const RegistrationForm = () => {
@@ -127,6 +127,9 @@ const RegistrationForm = () => {
 								Submit
 							</Button>
 						)}
+						<div className="py-3">
+								<p className="text-content">Already have an account? Log in <Button as={ Link} to="/login" className="custom-btn-link">here</Button></p>
+						</div>
 					</Form>
 				</Col>
 			</Row>

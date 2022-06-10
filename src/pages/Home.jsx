@@ -10,21 +10,20 @@ import PaymentMethods from "../components/Home/PaymentMethods/PaymentMethods";
 import HomeNewsletter from "../components/Home/HomeNewsletter/HomeNewsletter";
 import ProductContext from "../ProductContext";
 const Home = () => {
-	const { fetchAllProducts } = useContext(ProductContext);
-	const [allProducts, setAllProducts] = useState([]);
+	const { fetchAllActiveProducts, allActiveProducts } = useContext(ProductContext);
 
 	useEffect(() => {
-		fetchAllProducts(setAllProducts);
-	}, [allProducts]);
+		fetchAllActiveProducts();
+	}, [allActiveProducts]);
 
 	return (
 		<div className="d-flex flex-column gap-5 mb-5 pb-5">
 			<HomeCarousel />
 			<HomeReviews />
-			<FeaturedBundles allProducts={allProducts} />
+			<FeaturedBundles allActiveProducts={allActiveProducts} />
 			<HomeBenefits />
 			<HomeAbout />
-			<FeaturedProducts allProducts={allProducts} />
+			<FeaturedProducts allActiveProducts={allActiveProducts} />
 			<PaymentMethods />
 			<HomeNewsletter />
 		</div>

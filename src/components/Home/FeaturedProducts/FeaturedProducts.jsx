@@ -4,16 +4,16 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import CategoryContext from "../../../CategoryContext";
 import { Link } from "react-router-dom";
 
-const FeaturedBundles = ({ allProducts }) => {
+const FeaturedBundles = ({ allActiveProducts }) => {
 	const [displayedProducts, setDisplayedProducts] = useState([]);
-	const { allCategories } = useContext(CategoryContext);
+	const { allActiveCategories } = useContext(CategoryContext);
 
 	const fetchData = () => {
-		const featuredProductsId = allCategories.filter(
+		const featuredProductsId = allActiveCategories.filter(
 			(category) => category.name === "featured products"
 		)[0]._id;
 
-		const productsArr = allProducts.filter((product) => {
+		const productsArr = allActiveProducts.filter((product) => {
 			return product.categories.find((category) => {
 				return category.categoryId === featuredProductsId;
 			});
@@ -52,8 +52,9 @@ const FeaturedBundles = ({ allProducts }) => {
 	};
 
 	useEffect(() => {
-		fetchData();
-	}, [allProducts]);
+		if (allActiveProducts.length && allActiveCategories.length) fetchData();
+		else {return}
+	}, [allActiveProducts, allActiveCategories]);
 
 	return (
 		<div className="d-flex flex-column my-5 py-5">

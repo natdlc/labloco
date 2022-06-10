@@ -2,38 +2,42 @@ import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const QtyCartForm = ({ props }) => {
-	const { allProducts, productId } = props;
+	const { allActiveProducts, productId } = props;
 	const [optionForms, setOptionForms] = useState([]);
 
 	useEffect(() => {
-		const product = allProducts.filter(
-			(product) => product._id === productId
-		)[0];
-		const productOptions = product.options;
-		const optionLabelsArr = [
-			...new Set(
-				productOptions.map((option) => {
-					return option.label;
-				})
-			),
-		];
+		if (allActiveProducts.length) {
+			const product = allActiveProducts.filter(
+				(product) => product._id === productId
+			)[0];
+			const productOptions = product.options;
+			const optionLabelsArr = [
+				...new Set(
+					productOptions.map((option) => {
+						return option.label;
+					})
+				),
+			];
 
-		const optionFormsArr = optionLabelsArr.map((option, i) => {
-			const optionValuesArr = productOptions
-				.filter((productOption) => productOption.label === option)
-				.map((specOption, index) => {
-					return <option key={index}>{specOption.value}</option>;
-				});
-			return (
-				<Form.Select key={i} aria-label="Default select example">
-					<option>{option}</option>
-					{optionValuesArr}
-				</Form.Select>
-			);
-		});
+			const optionFormsArr = optionLabelsArr.map((option, i) => {
+				const optionValuesArr = productOptions
+					.filter((productOption) => productOption.label === option)
+					.map((specOption, index) => {
+						return <option key={index}>{specOption.value}</option>;
+					});
+				return (
+					<Form.Select key={i} aria-label="Default select example">
+						<option>{option}</option>
+						{optionValuesArr}
+					</Form.Select>
+				);
+			});
 
-		setOptionForms(optionFormsArr);
-	}, []);
+			setOptionForms(optionFormsArr);
+		} else {
+			return;
+		}
+	}, [allActiveProducts]);
 	return (
 		<Form>
 			<Form.Group>{optionForms}</Form.Group>

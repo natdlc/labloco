@@ -2,11 +2,30 @@ Welcome! This is the frontend code for Zuitt's E-commerce capstone. Listed below
 
 FRONT-END-SPECIFIC
 
-- () Single product
-- () Registration (with log in confirmation)
+Main
+- (c) Single product
+- (c) Registration (with log in confirmation)
 - () Collections
 - () Cart
 - () Checkout
+- () Order history
+
+Admin
+- (c) Retrieve all products (admin only)
+- (c) Create Product (Admin only)
+- (c) Update Product information (Admin only)
+- (c) Unarchive Product (Admin only)
+- (c) Archive Product (Admin only)
+- (c) Admin DASHBOARD
+
+Others
+- (c) Responsive and functional navbar
+- (c) Single page app (SPA)
+- (c) Inaccessible reg/login for logged in users
+- () Admin cant add to cart
+- () Ecommerce app
+- () Self made features
+
 - () Hot/Featured
 - (c) Logout
 - (c) 404 page
@@ -30,6 +49,7 @@ Products
 - (c) Delete image for product (admin only)
 - (c) Update Product information (Admin only)
 - (c) Archive Product (Admin only)
+- (c) Unarchive Product (Admin only)
 - (c) Retrieve all products (admin only)
 - (c) Add categories to product (admin only)
 - (c) Add only active categories to product (admin only)
@@ -118,6 +138,7 @@ Products
 - () No duplicate product (via name)
 - (c) Retrieve all products (admin only)
 - () Retrieve single product (active only)
+- (c) Unarchive Product (Admin only)
 - (c) Create image for product (admin only)
 - () Retrieve image for product
 - (c) Delete image for product (admin only)

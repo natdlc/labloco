@@ -1,4 +1,4 @@
-import { Form, Button, Col, Accordion } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import ProductHeaders from "./ProductHeaders/ProductHeaders";
 import QtyCartForm from "./QtyCartForm/QtyCartForm";
 import DetailsAccordion from "./DetailsAccordion/DetailsAccordion";
@@ -10,7 +10,7 @@ const ProductDetails = (props) => {
 		<>
 			<ProductHeaders props={props} />
 			<QtyCartForm props={props} />
-			<Accordion>
+			<Accordion alwaysOpen={true}>
 				<DetailsAccordion props={props} />
 				<ShippingAccordion />
 				<PayMethodsAccordion />

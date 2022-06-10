@@ -1,6 +1,6 @@
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import UserContext from "../../../UserContext";
 import Swal from "sweetalert2";
 
@@ -84,51 +84,60 @@ const LoginForm = () => {
   const emailChangeHandler = (e) => setEmail(e.target.value);
   const passwordChangeHandler = (e) => setPassword(e.target.value);
   return user.accessToken && user.isAdmin ? (
-    <Navigate to="/admin" />
-  ) : user.accessToken ? (
-    <Navigate to="/" />
-  ) : (
-    <Container className="pt-3 pb-5 mb-5">
-      <Row>
-        <Col>
-          <Form
-            onSubmit={loginHandler}
-            style={{ maxWidth: "18rem" }}
-            className="mx-auto"
-          >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Control
-                className="border-prime text-content"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={emailChangeHandler}
-              />
-            </Form.Group>
+		<Navigate to="/admin" />
+	) : user.accessToken ? (
+		<Navigate to="/" />
+	) : (
+		<Container className="pt-3 pb-5 mb-5">
+			<Row>
+				<Col>
+					<Form
+						onSubmit={loginHandler}
+						style={{ maxWidth: "18rem" }}
+						className="mx-auto"
+					>
+						<Form.Group className="mb-3" controlId="formBasicEmail">
+							<Form.Control
+								className="border-prime text-content"
+								type="email"
+								placeholder="Email"
+								value={email}
+								onChange={emailChangeHandler}
+							/>
+						</Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Control
-                className="border-prime text-content"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={passwordChangeHandler}
-              />
-            </Form.Group>
-            {isActive ? (
-              <Button className="custom-btn-2" type="submit">
-                Login
-              </Button>
-            ) : (
-              <Button disabled className="custom-btn-2" type="submit">
-                Login
-              </Button>
-            )}
-          </Form>
-        </Col>
-      </Row>
-    </Container>
-  );
+						<Form.Group className="mb-3" controlId="formBasicPassword">
+							<Form.Control
+								className="border-prime text-content"
+								type="password"
+								placeholder="Password"
+								value={password}
+								onChange={passwordChangeHandler}
+							/>
+						</Form.Group>
+						{isActive ? (
+							<Button className="custom-btn-2" type="submit">
+								Login
+							</Button>
+						) : (
+							<Button disabled className="custom-btn-2" type="submit">
+								Login
+							</Button>
+						)}
+
+						<div className="py-3">
+							<p className="text-content">
+								Don't have an account yet? Sign up{" "}
+								<Button as={Link} to="/register" className="custom-btn-link">
+									here
+								</Button>
+							</p>
+						</div>
+					</Form>
+				</Col>
+			</Row>
+		</Container>
+	);
 };
 
 export default LoginForm;
