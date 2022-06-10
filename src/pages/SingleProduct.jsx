@@ -8,7 +8,7 @@ import { SingleProductProvider } from "../components/SingleProduct/SingleProduct
 
 const SingleProduct = () => {
 	const [productInfo, setProductInfo] = useState([]);
-	const [productOptions, setProductOptions] = useState({});
+	const [productQuantity, setProductQuantity] = useState(1);
 	const [productComments, setProductComments] = useState("");
 
 	const { productId } = useParams();
@@ -38,12 +38,19 @@ const SingleProduct = () => {
 
 	useEffect(() => {
 		fetchAllActiveProducts();
-		console.log(productInfo);
-	}, [allActiveProducts, productInfo]);
+	}, [allActiveProducts, productInfo, productQuantity]);
 
 	return (
-		<SingleProductProvider value={{ productInfo, addProductInfo }}>
-			<Container fluid={true}>
+		<SingleProductProvider
+			value={{
+				productInfo,
+				productId,
+				addProductInfo,
+				productQuantity,
+				setProductQuantity,
+			}}
+		>
+			<Container fluid={true} className="mb-5 pb-5">
 				<Row className="d-flex justify-content-center my-sm-5 py-sm-5 gap-4">
 					<Col
 						xs={12}

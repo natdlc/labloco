@@ -12,8 +12,8 @@ const ProductDetails = (props) => {
 			<QtyCartForm props={props} />
 			<Accordion alwaysOpen={true}>
 				<DetailsAccordion props={props} />
-				<ShippingAccordion />
-				<PayMethodsAccordion />
+				{/* <ShippingAccordion />
+				<PayMethodsAccordion /> */}
 			</Accordion>
 		</>
 	);

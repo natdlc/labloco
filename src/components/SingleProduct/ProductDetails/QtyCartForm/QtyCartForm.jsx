@@ -1,10 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import SingleProductContext from "../../SingleProductContext";
+import UserContext from "../../../../UserContext";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const QtyCartForm = ({ props }) => {
-	const { productInfo, addProductInfo } = useContext(SingleProductContext);
+	const navigate = useNavigate();
+	const { user } = useContext(UserContext);
+	const { productQuantity, addProductInfo, setProductQuantity } =
+		useContext(SingleProductContext);
 	const { allActiveProducts, productId } = props;
 	const [optionForms, setOptionForms] = useState([]);
 
@@ -55,6 +60,24 @@ const QtyCartForm = ({ props }) => {
 			return;
 		}
 	}, [allActiveProducts]);
+
+	const addToCartHandler = (e) => {
+		e.preventDefault();
+		if (user.isAdmin) {
+			Swal.fire({
+				title: "ERROR",
+				text: "Action forbidden",
+				icon: "error",
+				iconColor: "#17355E",
+				confirmButtonColor: "#17355E",
+				color: "#17355E",
+			});
+			return;
+		}
+	};
+
+	const quantityChangeHandler = (e) => setProductQuantity(e.target.value);
+
 	return (
 		<Form>
 			<Form.Group>{optionForms}</Form.Group>
@@ -63,12 +86,12 @@ const QtyCartForm = ({ props }) => {
 				<Form.Control
 					type="number"
 					placeholder="1"
-					defaultValue={1}
+					value={productQuantity}
+					onChange={quantityChangeHandler}
 					style={{ maxWidth: "5rem" }}
 				/>
 				<Button
-					as={Link}
-					to="/cart"
+					onClick={addToCartHandler}
 					className="custom-btn-2 ms-auto flex-shrink-0"
 				>
 					Add to Cart
