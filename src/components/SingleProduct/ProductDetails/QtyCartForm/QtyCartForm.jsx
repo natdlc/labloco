@@ -8,10 +8,11 @@ import { useNavigate } from "react-router-dom";
 const QtyCartForm = ({ props }) => {
 	const navigate = useNavigate();
 	const { user } = useContext(UserContext);
-	const { productQuantity, addProductInfo, setProductQuantity } =
+	const { productInfo, productQuantity, addProductInfo, setProductQuantity } =
 		useContext(SingleProductContext);
 	const { allActiveProducts, productId } = props;
 	const [optionForms, setOptionForms] = useState([]);
+	const [isAddBtnActive, setIsAddBtnActive] = useState(true);
 
 	useEffect(() => {
 		if (allActiveProducts.length) {
@@ -63,6 +64,7 @@ const QtyCartForm = ({ props }) => {
 
 	const addToCartHandler = (e) => {
 		e.preventDefault();
+		setIsAddBtnActive(false);
 		if (user.isAdmin) {
 			Swal.fire({
 				title: "ERROR",
@@ -74,6 +76,60 @@ const QtyCartForm = ({ props }) => {
 			});
 			return;
 		}
+		console.log(productInfo);
+		fetch("https://labloco-medical-supplies.herokuapp.com/users/cart/add", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+			},
+			body: JSON.stringify({
+				productId,
+				quantity: productQuantity,
+				options: productInfo
+					.map((productInfo) => {
+						const key = Object.keys(productInfo)[0];
+						const value = Object.values(productInfo)[0];
+						return ` ${key}: ${value}`;
+					})
+					.toString(),
+			}),
+		})
+			.then((response) => response.json())
+			.then((result) => {
+				if (result.message.includes("added")) {
+					setIsAddBtnActive(true);
+					Swal.fire({
+						title: "SUCCESS",
+						text: "Product added to cart!",
+						icon: "success",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
+				} else {
+					setIsAddBtnActive(true);
+					Swal.fire({
+						title: "ERROR",
+						text: `Something went wrong. ${result.message}`,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
+				}
+			})
+			.catch((err) => {
+				setIsAddBtnActive(true);
+				Swal.fire({
+					title: "ERROR",
+					text: `Something went wrong. ${err.message}`,
+					icon: "error",
+					iconColor: "#17355E",
+					confirmButtonColor: "#17355E",
+					color: "#17355E",
+				});
+			});
 	};
 
 	const quantityChangeHandler = (e) => setProductQuantity(e.target.value);
@@ -90,12 +146,22 @@ const QtyCartForm = ({ props }) => {
 					onChange={quantityChangeHandler}
 					style={{ maxWidth: "5rem" }}
 				/>
-				<Button
-					onClick={addToCartHandler}
-					className="custom-btn-2 ms-auto flex-shrink-0"
-				>
-					Add to Cart
-				</Button>
+				{isAddBtnActive ? (
+					<Button
+						onClick={addToCartHandler}
+						className="custom-btn-2 ms-auto flex-shrink-0"
+					>
+						Add to Cart
+					</Button>
+				) : (
+					<Button
+						disabled
+						onClick={addToCartHandler}
+						className="custom-btn-2 ms-auto flex-shrink-0"
+					>
+						Add to Cart
+					</Button>
+				)}
 			</Form.Group>
 		</Form>
 	);
