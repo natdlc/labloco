@@ -6,7 +6,7 @@ Main
 - (c) Single product
 - (c) Registration (with log in confirmation)
 - (c) Collections
-- () Cart
+- (w) Cart
 - () Checkout
 - () Order history
 

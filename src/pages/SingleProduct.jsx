@@ -7,10 +7,9 @@ import ProductContext from "../ProductContext";
 import { SingleProductProvider } from "../components/SingleProduct/SingleProductContext";
 
 const SingleProduct = () => {
-	// create single product context
-	// store all data to be sent to server in single product context
-
-	const [productInfo, setProductInfo] = useState({productId, quantity});
+	const [productInfo, setProductInfo] = useState([]);
+	const [productOptions, setProductOptions] = useState({});
+	const [productComments, setProductComments] = useState("");
 
 	const { productId } = useParams();
 	const { fetchAllActiveProducts, allActiveProducts } =
@@ -20,12 +19,30 @@ const SingleProduct = () => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	const addProductInfo = (keyValue) => {
+		const key = Object.keys(keyValue)[0];
+		const productInfoArr = [...productInfo];
+		if (productInfo.length === 0) productInfoArr.push(keyValue);
+		else {
+			const keysArr = productInfoArr.map(
+				(productInfo) => Object.keys(productInfo)[0]
+			);
+			if (keysArr.includes(key)) {
+				productInfoArr[keysArr.indexOf(key)][key] = Object.values(keyValue)[0];
+				return;
+			}
+			productInfoArr.push(keyValue);
+		}
+		setProductInfo(productInfoArr);
+	};
+
 	useEffect(() => {
 		fetchAllActiveProducts();
-	}, [allActiveProducts]);
+		console.log(productInfo);
+	}, [allActiveProducts, productInfo]);
 
 	return (
-		<SingleProductProvider value={{}}>
+		<SingleProductProvider value={{ productInfo, addProductInfo }}>
 			<Container fluid={true}>
 				<Row className="d-flex justify-content-center my-sm-5 py-sm-5 gap-4">
 					<Col

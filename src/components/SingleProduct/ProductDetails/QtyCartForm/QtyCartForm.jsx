@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import SingleProductContext from "../../SingleProductContext";
 
 const QtyCartForm = ({ props }) => {
+	const { productInfo, addProductInfo } = useContext(SingleProductContext);
 	const { allActiveProducts, productId } = props;
 	const [optionForms, setOptionForms] = useState([]);
 
@@ -26,11 +28,25 @@ const QtyCartForm = ({ props }) => {
 					.map((specOption, index) => {
 						return <option key={index}>{specOption.value}</option>;
 					});
+
+				const optionChangeHandler = (e) => {
+					if (e.target.value === "Click to view options") {
+						return addProductInfo({ [`${option}`]: "" });
+					}
+					addProductInfo({ [`${option}`]: e.target.value });
+				};
+
 				return (
-					<Form.Select key={i} aria-label="Default select example">
-						<option>{option}</option>
-						{optionValuesArr}
-					</Form.Select>
+					<div className="p-0 m-0" key={i}>
+						<Form.Label className="p-0 m-0 mt-2">{option}</Form.Label>
+						<Form.Select
+							onChange={optionChangeHandler}
+							aria-label="Default select example"
+						>
+							<option>Click to view options</option>
+							{optionValuesArr}
+						</Form.Select>
+					</div>
 				);
 			});
 
