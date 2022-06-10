@@ -273,7 +273,7 @@ function App() {
 
 		//couriers
 		fetchAllCouriers();
-		
+
 		//categories
 		fetchAllCategories();
 		fetchActiveCategories();

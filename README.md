@@ -5,7 +5,7 @@ FRONT-END-SPECIFIC
 Main
 - (c) Single product
 - (c) Registration (with log in confirmation)
-- () Collections
+- (c) Collections
 - () Cart
 - () Checkout
 - () Order history

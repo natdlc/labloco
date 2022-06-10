@@ -3,6 +3,7 @@ import { Navbar, Container, Offcanvas, Nav } from "react-bootstrap";
 import "./AppNav.css";
 import { Link } from "react-router-dom";
 import UserContext from "../../UserContext";
+import cart from "../../assets/icon/cart.png";
 
 const AppNav = () => {
 	const { user } = useContext(UserContext);
@@ -16,6 +17,7 @@ const AppNav = () => {
 					className="toggle"
 					aria-controls={`offcanvasNavbar-expand-md`}
 				/>
+
 				<Navbar.Offcanvas
 					id={`offcanvasNavbar-expand-md`}
 					aria-labelledby={`offcanvasNavbarLabel-expand-md`}
@@ -30,7 +32,7 @@ const AppNav = () => {
 						</Offcanvas.Title>
 					</Offcanvas.Header>
 					<Offcanvas.Body>
-						<Nav className="justify-content-end flex-grow-1 pe-3">
+						<Nav className="flex-grow-1 pe-3 d-flex justify-content-end">
 							<Nav.Link as={Link} to="/" className="off-white text-content">
 								Home
 							</Nav.Link>
@@ -62,9 +64,6 @@ const AppNav = () => {
 							>
 								Shipping
 							</Nav.Link>
-							<Nav.Link as={Link} to="/cart" className="off-white text-content">
-								Cart
-							</Nav.Link>
 							{user.accessToken !== null ? (
 								<>
 									<Nav.Link
@@ -81,6 +80,23 @@ const AppNav = () => {
 									>
 										Logout
 									</Nav.Link>
+									{user.isAdmin ? (
+										true
+									) : (
+										<Nav.Link
+											as={Link}
+											to="/cart"
+											className="off-white text-content p-0 m-0"
+										>
+											<div style={{ maxWidth: "40px" }}>
+												<img
+													className="img-fluid d-block p-1"
+													src={cart}
+													alt="cart icon"
+												/>
+											</div>
+										</Nav.Link>
+									)}
 								</>
 							) : (
 								<>

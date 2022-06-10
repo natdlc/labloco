@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const QtyCartForm = ({ props }) => {
 	const { allActiveProducts, productId } = props;
@@ -49,7 +50,11 @@ const QtyCartForm = ({ props }) => {
 					defaultValue={1}
 					style={{ maxWidth: "5rem" }}
 				/>
-				<Button className="custom-btn-2 ms-auto flex-shrink-0">
+				<Button
+					as={Link}
+					to="/cart"
+					className="custom-btn-2 ms-auto flex-shrink-0"
+				>
 					Add to Cart
 				</Button>
 			</Form.Group>
