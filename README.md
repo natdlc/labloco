@@ -121,6 +121,8 @@ Cart
 - () Remove product from cart (auth)
 - () Clear cart (auth)
 - () Admin can't add to cart
+- (w) Increase product quantity
+- (w) Decrease product quantity
 
 Users
 
