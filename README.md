@@ -3,14 +3,17 @@ Welcome! This is the frontend code for Zuitt's E-commerce capstone. Listed below
 FRONT-END-SPECIFIC
 
 Main
+
 - (c) Single product
 - (c) Registration (with log in confirmation)
 - (c) Collections
-- (w) Cart
+- (c) Add to cart
+- (w) Retrieve user cart
 - () Checkout
 - () Order history
 
 Admin
+
 - (c) Retrieve all products (admin only)
 - (c) Create Product (Admin only)
 - (c) Update Product information (Admin only)
@@ -19,6 +22,7 @@ Admin
 - (c) Admin DASHBOARD
 
 Others
+
 - (c) Responsive and functional navbar
 - (c) Single page app (SPA)
 - (c) Inaccessible reg/login for logged in users

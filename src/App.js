@@ -22,6 +22,7 @@ import { UserProvider } from "./UserContext";
 import { ProductProvider } from "./ProductContext";
 import { CategoryProvider } from "./CategoryContext";
 import { CourierProvider } from "./CourierContext";
+import { CartProvider } from "./CartContext";
 
 function App() {
 	//user context
@@ -33,6 +34,25 @@ function App() {
 	//user
 	const unsetUser = () => {
 		localStorage.clear();
+	};
+
+	//cart context
+	const [fetchedCart, setFetchedCart] = useState([]);
+
+	//cart
+	const fetchCart = async () => {
+		await fetch(
+			"https://labloco-medical-supplies.herokuapp.com/users/profile",
+			{
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+			}
+		)
+			.then((response) => response.json())
+			.then((result) => {
+				setFetchedCart(result.cart);
+			});
 	};
 
 	//courier context
@@ -279,79 +299,87 @@ function App() {
 		fetchActiveCategories();
 		fetchCategoriesForOptions();
 		fetchActiveCategoriesForOptions();
+
+		//cart
+		fetchCart();
 	}, []);
 
 	return (
 		<UserProvider value={{ user, setUser, unsetUser }}>
-			<CourierProvider
+			<CartProvider
 				value={{
-					//user
-					allCouriers,
-					fetchedCouriersForOptions,
-					fetchAllCouriers,
-					fetchForCourierOptions,
+					fetchCart,
+					fetchedCart,
 				}}
 			>
-				<CategoryProvider
+				<CourierProvider
 					value={{
-						//admin
-						allCategories,
-						fetchedCategoriesForOptions,
-						fetchAllCategories,
-						setAllCategories,
-						fetchCategoriesForOptions,
-
 						//user
-						allActiveCategories,
-						fetchedActiveCategoriesForOptions,
-						fetchActiveCategories,
-						fetchActiveCategoriesForOptions,
+						allCouriers,
+						fetchedCouriersForOptions,
+						fetchAllCouriers,
+						fetchForCourierOptions,
 					}}
 				>
-					<ProductProvider
+					<CategoryProvider
 						value={{
 							//admin
-							fetchAllProducts,
-							setAllProducts,
-							allProducts,
-							fetchForOptions,
-							fetchedProductsForOptions,
-
+							allCategories,
+							fetchedCategoriesForOptions,
+							fetchAllCategories,
+							setAllCategories,
+							fetchCategoriesForOptions,
 							//user
-							allActiveProducts,
-							fetchAllActiveProducts,
-							fetchForActiveOptions,
-							fetchedActiveProductsForOptions,
+							allActiveCategories,
+							fetchedActiveCategoriesForOptions,
+							fetchActiveCategories,
+							fetchActiveCategoriesForOptions,
 						}}
 					>
-						<Router>
-							<AppNav />
-							<Container fluid={true} className="p-0">
-								<Routes>
-									<Route path="/" element={<Home />} />
-									<Route path="/collections" element={<Products />} />
-									<Route
-										path="/product/:productId"
-										element={<SingleProduct />}
-									/>
-									<Route path="/about" element={<About />} />
-									<Route path="/register" element={<Registration />} />
-									<Route path="/login" element={<Login />} />
-									<Route path="/profile" element={<Account />} />
-									<Route path="/contact" element={<Contact />} />
-									<Route path="/shipping" element={<Shipping />} />
-									<Route path="/cart" element={<Cart />} />
-									<Route path="/checkout" element={<Checkout />} />
-									<Route path="/admin" element={<Admin />} />
-									<Route path="/logout" element={<Logout />} />
-									<Route path="*" element={<NotFound />} />
-								</Routes>
-							</Container>
-							<Footer />
-						</Router>
-					</ProductProvider>
-				</CategoryProvider>
-			</CourierProvider>
+						<ProductProvider
+							value={{
+								//admin
+								fetchAllProducts,
+								setAllProducts,
+								allProducts,
+								fetchForOptions,
+								fetchedProductsForOptions,
+								//user
+								allActiveProducts,
+								fetchAllActiveProducts,
+								fetchForActiveOptions,
+								fetchedActiveProductsForOptions,
+							}}
+						>
+							<Router>
+								<AppNav />
+								<Container fluid={true} className="p-0">
+									<Routes>
+										<Route path="/" element={<Home />} />
+										<Route path="/collections" element={<Products />} />
+										<Route
+											path="/product/:productId"
+											element={<SingleProduct />}
+										/>
+										<Route path="/about" element={<About />} />
+										<Route path="/register" element={<Registration />} />
+										<Route path="/login" element={<Login />} />
+										<Route path="/profile" element={<Account />} />
+										<Route path="/contact" element={<Contact />} />
+										<Route path="/shipping" element={<Shipping />} />
+										<Route path="/cart" element={<Cart />} />
+										<Route path="/checkout" element={<Checkout />} />
+										<Route path="/admin" element={<Admin />} />
+										<Route path="/logout" element={<Logout />} />
+										<Route path="*" element={<NotFound />} />
+									</Routes>
+								</Container>
+								<Footer />
+							</Router>
+						</ProductProvider>
+					</CategoryProvider>
+				</CourierProvider>
+			</CartProvider>
 		</UserProvider>
 	);
 }
