@@ -233,7 +233,6 @@ function App() {
 		)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log('fetch act cat');
 				setAllActiveCategories(result);
 			})
 			.catch((err) => err);

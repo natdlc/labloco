@@ -1,66 +1,65 @@
+import { useState, useEffect } from "react";
 import { Accordion, ListGroup } from "react-bootstrap";
 
-const Categories = () => {
+const Categories = ({ allActiveCategories }) => {
+	const [catGroup1, setCatGroup1] = useState([]);
+	const [catGroup2, setCatGroup2] = useState([]);
+
+	const catGroup1Arr = allActiveCategories
+		.filter((category) => {
+			return category.name.includes("featured");
+		})
+		.map((filteredCategory) => {
+			return (
+				<ListGroup.Item key={filteredCategory._id} className="p-0 border-0">
+					<a
+						href={`#${filteredCategory.name}`}
+						className="d-block text-content list-group-item border-0 ps-3 border-bottom text-capitalize"
+					>
+						{filteredCategory.name}
+					</a>
+				</ListGroup.Item>
+			);
+		});
+
+	const catGroup2Arr = allActiveCategories
+		.filter((category) => {
+			return !category.name.includes("featured");
+		})
+		.map((filteredCategory) => {
+			return (
+				<ListGroup.Item key={filteredCategory._id} className="p-0 border-0">
+					<a
+						href={`#${filteredCategory.name}`}
+						className="d-block text-content list-group-item border-0 ps-3 border-bottom text-capitalize"
+					>
+						{filteredCategory.name}
+					</a>
+				</ListGroup.Item>
+			);
+		});
+
+	useEffect(() => {
+		if (allActiveCategories.length) {
+			setCatGroup1(catGroup1Arr);
+			setCatGroup2(catGroup2Arr);
+		} else {
+			return;
+		}
+	}, [allActiveCategories]);
 	return (
 		<Accordion>
 			<Accordion.Item eventKey="0" className="border-0 border-bottom">
 				<Accordion.Header className="text-header text-prime">
-					Group 1
+					Featured
 				</Accordion.Header>
-				<Accordion.Body className="p-0">
-					<ListGroup.Item className="p-0 border-0">
-						<a
-							href="#category-1"
-							className="d-block 
-							text-content 
-							list-group-item 
-							border-0 
-							p-4 
-							border-bottom"
-						>
-							Category 1
-						</a>
-					</ListGroup.Item>
-					<ListGroup.Item className="p-0 border-0">
-						<a
-							href="#category-2"
-							className="d-block text-content list-group-item border-0 p-4 border-bottom"
-						>
-							Category 2
-						</a>
-					</ListGroup.Item>
-				</Accordion.Body>
+				<Accordion.Body className="p-0">{catGroup1}</Accordion.Body>
 			</Accordion.Item>
 			<Accordion.Item eventKey="1" className="border-0 border-bottom">
 				<Accordion.Header className="text-header text-prime">
-					Group 2
+					All
 				</Accordion.Header>
-				<Accordion.Body className="p-0">
-					<ListGroup.Item className="p-0 border-0">
-						<a
-							href="#"
-							className="d-block text-content list-group-item border-0 p-4 border-bottom"
-						>
-							Category 3
-						</a>
-					</ListGroup.Item>
-					<ListGroup.Item className="p-0 border-0">
-						<a
-							href="#"
-							className="d-block text-content list-group-item border-0 p-4 border-bottom"
-						>
-							Category 4
-						</a>
-					</ListGroup.Item>
-					<ListGroup.Item className="p-0 border-0">
-						<a
-							href="#"
-							className="d-block text-content list-group-item border-0 p-4 border-bottom"
-						>
-							Category 5
-						</a>
-					</ListGroup.Item>
-				</Accordion.Body>
+				<Accordion.Body className="p-0">{catGroup2}</Accordion.Body>
 			</Accordion.Item>
 		</Accordion>
 	);
