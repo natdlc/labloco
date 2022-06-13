@@ -1,10 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Form } from "react-bootstrap";
 import CheckoutContext from "../CheckoutContext";
 
 const PayMethod = () => {
 	const { paymentMethod, setPaymentMethod } = useContext(CheckoutContext);
-	const paymentMethodChangeHandler = (e) => setPaymentMethod(e.target.value);
+	const paymentMethodChangeHandler = (e) => {
+		if (e.target.value === "-- Payment Method --") return setPaymentMethod("");
+		setPaymentMethod(e.target.value);
+	};
 
 	return (
 		<Form.Select
@@ -14,7 +17,6 @@ const PayMethod = () => {
 		>
 			<option>-- Payment Method --</option>
 			<option value="gcash">Gcash</option>
-			<option value="card">Credit / Debit Card</option>
 			<option value="cod">Cash on Delivery</option>
 		</Form.Select>
 	);

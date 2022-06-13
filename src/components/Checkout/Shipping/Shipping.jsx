@@ -1,14 +1,51 @@
 import { useState, useEffect, useContext } from "react";
 import { Form } from "react-bootstrap";
 import CourierContext from "../../../CourierContext";
+import CheckoutContext from "../CheckoutContext";
 
 const Shipping = () => {
+	const { setCourierId, setCourierPrice } = useContext(CheckoutContext);
+	const {
+		fetchForCourierOptions,
+		fetchedCouriersForOptions,
+		allCouriers,
+		fetchAllCouriers,
+	} = useContext(CourierContext);
+	const [courier, setCourier] = useState("");
+
+	useEffect(() => {
+		fetchAllCouriers();
+		fetchForCourierOptions();
+	}, [allCouriers]);
+
+	const courierChangeHandler = (e) => {
+		if (e.target.value == "-- Choose Shipping Method --") {
+			setCourierId("");
+			setCourierPrice(0);
+			setCourier("");
+			return;
+		}
+		setCourier(e.target.value);
+	};
+
+	useEffect(() => {
+		if (courier) {
+			const filteredCourier = allCouriers.filter(
+				(fCourier) => fCourier.courierName === courier
+			)[0];
+			setCourierId(filteredCourier._id);
+			setCourierPrice(filteredCourier.price);
+		}
+	}, [courier]);
+
 	return (
-		<Form.Select className="p-3">
+		<Form.Select
+			value={courier}
+			onChange={courierChangeHandler}
+			className="p-3"
+		>
 			<option>-- Choose Shipping Method --</option>
-			<option value="courier1">Courier 1</option>
-			<option value="courier2">Courier 2</option>
-			<option value="courier3">Courier 3</option>
+			{fetchedCouriersForOptions}
 		</Form.Select>
 	);
 };

@@ -8,32 +8,213 @@ import { CheckoutProvider } from "../components/Checkout/CheckoutContext";
 
 import DiscountContext from "../DiscountContext";
 import CartContext from "../CartContext";
-import CourierContext from "../CourierContext";
+
+import { useNavigate } from "react-router-dom";
+
+import Swal from "sweetalert2";
 
 const Checkout = () => {
+	const navigate = useNavigate();
+	const { fetchCart, fetchedCart } = useContext(CartContext);
+	const { discountSelected, setDiscountSelected } = useContext(DiscountContext);
+
 	const [discountId, setDiscountId] = useState("");
 	const [paymentMethod, setPaymentMethod] = useState("");
 	const [courierId, setCourierId] = useState("");
+	const [courierPrice, setCourierPrice] = useState(0);
 	const [shippingInfo, setShippingInfo] = useState("");
 	const [comments, setComments] = useState("");
+	const [totalBeforeShipping, setTotalBeforeShipping] = useState(0);
+
+	const [formValid, setFormValid] = useState(false);
+
+	const [total, setTotal] = useState(0);
+
+	const [isBtnActive, setIsBtnActive] = useState(true);
 
 	useEffect(() => {
-		console.log(paymentMethod);
-	}, [paymentMethod]);
+		if (discountSelected.length) setDiscountId(discountSelected[0]._id);
+		else setDiscountId("");
+	}, [paymentMethod, courierId, shippingInfo, discountSelected]);
+
+	useEffect(() => {
+		fetchCart();
+		if (courierPrice) setTotal(totalBeforeShipping + courierPrice);
+		else setTotal(0);
+	}, [fetchedCart]);
+
+	const checkoutHandler = (e) => {
+		e.preventDefault();
+		setIsBtnActive(false);
+		if (discountId) {
+			fetch(
+				`https://labloco-medical-supplies.herokuapp.com/orders/new/${discountId}`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+					},
+					body: JSON.stringify({
+						courierId,
+						paymentMethod,
+						comments,
+						shippingInfo: JSON.stringify(shippingInfo),
+					}),
+				}
+			)
+				.then((response) => response.json())
+				.then((result) => {
+					if (result.message.includes("success")) {
+						Swal.fire({
+							title: "SUCCESS",
+							text: "Order complete!",
+							icon: "success",
+							iconColor: "#17355E",
+							confirmButtonColor: "#17355E",
+							color: "#17355E",
+						});
+					} else {
+						Swal.fire({
+							title: "ERROR",
+							text: "Something went wrong. Please reach out to support.",
+							icon: "error",
+							iconColor: "#17355E",
+							confirmButtonColor: "#17355E",
+							color: "#17355E",
+						});
+					}
+					setDiscountId("");
+					setPaymentMethod("");
+					setCourierId("");
+					setCourierPrice(0);
+					setShippingInfo("");
+					setComments("");
+					setTotalBeforeShipping(0);
+					setDiscountSelected([]);
+					setIsBtnActive(true);
+					navigate("/");
+				})
+				.catch((err) => {
+					Swal.fire({
+						title: "ERROR",
+						text: `Something went wrong. Please reach out to support with the error message: ${err.message}`,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
+					setDiscountId("");
+					setPaymentMethod("");
+					setCourierId("");
+					setCourierPrice(0);
+					setShippingInfo("");
+					setComments("");
+					setTotalBeforeShipping(0);
+					setDiscountSelected([]);
+					setIsBtnActive(true);
+					navigate("/");
+				});
+		} else {
+			fetch(`https://labloco-medical-supplies.herokuapp.com/orders/new/`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+				body: JSON.stringify({
+					courierId,
+					paymentMethod,
+					comments,
+					shippingInfo: JSON.stringify(shippingInfo),
+				}),
+			})
+				.then((response) => response.json())
+				.then((result) => {
+					if (result.message.includes("success")) {
+						Swal.fire({
+							title: "SUCCESS",
+							text: "Order complete!",
+							icon: "success",
+							iconColor: "#17355E",
+							confirmButtonColor: "#17355E",
+							color: "#17355E",
+						});
+					} else {
+						Swal.fire({
+							title: "ERROR",
+							text: "Something went wrong. Please reach out to support.",
+							icon: "error",
+							iconColor: "#17355E",
+							confirmButtonColor: "#17355E",
+							color: "#17355E",
+						});
+					}
+					setDiscountId("");
+					setPaymentMethod("");
+					setCourierId("");
+					setCourierPrice(0);
+					setShippingInfo("");
+					setComments("");
+					setTotalBeforeShipping(0);
+					setDiscountSelected([]);
+					setIsBtnActive(true);
+					navigate("/");
+				})
+				.catch((err) => {
+					Swal.fire({
+						title: "ERROR",
+						text: `Something went wrong. Please reach out to support with the error message: ${err.message}`,
+						icon: "error",
+						iconColor: "#17355E",
+						confirmButtonColor: "#17355E",
+						color: "#17355E",
+					});
+					setDiscountId("");
+					setPaymentMethod("");
+					setCourierId("");
+					setCourierPrice(0);
+					setShippingInfo("");
+					setComments("");
+					setTotalBeforeShipping(0);
+					setDiscountSelected([]);
+					setIsBtnActive(true);
+					navigate("/");
+				});
+		}
+	};
 
 	return (
 		<CheckoutProvider
 			value={{
+				//discount
 				discountId,
 				setDiscountId,
+				discountSelected,
+
+				//payment method
 				paymentMethod,
 				setPaymentMethod,
+
+				//courier
 				courierId,
 				setCourierId,
+				courierPrice,
+				setCourierPrice,
+
+				//comments
 				comments,
 				setComments,
+
+				//shipping info
 				shippingInfo,
 				setShippingInfo,
+				formValid,
+				setFormValid,
+
+				//total
+				setTotalBeforeShipping,
+				setTotal,
 			}}
 		>
 			<Container
@@ -55,7 +236,7 @@ const Checkout = () => {
 						<OrderForm />
 					</Col>
 					<Col xs={12} className="p-0">
-						<Summary />
+						<Summary fetchedCart={fetchedCart} />
 					</Col>
 					<Row className="p-0 m-0 pt-4">
 						<Col xs={4} className="p-0 m-0 fs-1">
@@ -63,15 +244,32 @@ const Checkout = () => {
 						</Col>
 						<Col
 							xs={8}
-							className="p-0 m-0 text-end fs-1 text-prime text-header"
+							className="d-flex justify-content-end 
+							align-items-center p-0 m-0 text-end fs-1 text-prime text-header"
 						>
-							<p>₱ 5000.00</p>
+							{courierPrice && paymentMethod && formValid ? (
+								<p>₱{total}</p>
+							) : (
+								<p className="fs-5 text-warning">
+									* Please select a courier, payment method, and complete the
+									shipping form
+								</p>
+							)}
 						</Col>
 					</Row>
 					<Col xs={12} className="p-0 text-center py-4 px-2">
-						<Button className="custom-btn-2 w-100 py-3 fs-2">
-							Complete Order
-						</Button>
+						{courierPrice && paymentMethod && formValid && isBtnActive ? (
+							<Button
+								onClick={checkoutHandler}
+								className="custom-btn-2 w-100 py-3 fs-2"
+							>
+								Complete Order
+							</Button>
+						) : (
+							<Button disabled className="custom-btn-2 w-100 py-3 fs-2">
+								Complete Order
+							</Button>
+						)}
 					</Col>
 				</Row>
 			</Container>

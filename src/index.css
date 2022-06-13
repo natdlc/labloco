@@ -52,7 +52,7 @@ td {
 
 select,
 option,
-input {
+input, textarea {
 	font-family: var(--font1);
 }
 
