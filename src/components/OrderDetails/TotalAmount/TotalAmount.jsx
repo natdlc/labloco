@@ -11,7 +11,7 @@ const TotalAmount = ({ orderDetails }) => {
 		<Accordion.Item eventKey="8">
 			<Accordion.Header>Total Amount</Accordion.Header>
 			<Accordion.Body>
-				<p className="m-0 p-0 text-content">₱{totalAmount}</p>
+				<p className="m-0 p-0 text-content">₱{totalAmount.toFixed(2)}</p>
 			</Accordion.Body>
 		</Accordion.Item>
 	);
