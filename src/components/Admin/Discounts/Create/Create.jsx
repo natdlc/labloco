@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 const Create = () => {
 	const [discountName, setDiscountName] = useState("");
 	const [description, setDescription] = useState("");
-	const [percentage, setPercentage] = useState(0);
 	const [amount, setAmount] = useState(0);
+	const [percentage, setPercentage] = useState(0);
+	const [amountNull, setAmountNull] = useState(true);
+	const [percentageNull, setPercentageNull] = useState(true);
 
 	const [btnActive, setBtnActive] = useState(false);
 
@@ -16,8 +18,12 @@ const Create = () => {
 
 	const discountNameChangeHandler = (e) => setDiscountName(e.target.value);
 	const descriptionChangeHandler = (e) => setDescription(e.target.value);
-	const percentageChangeHandler = (e) => setPercentage(e.target.value);
-	const amountChangeHandler = (e) => setAmount(e.target.value);
+	const amountChangeHandler = (e) => {
+		setAmount(e.target.value);
+	};
+	const percentageChangeHandler = (e) => {
+		setPercentage(e.target.value);
+	};
 
 	const [isAmountOrPercentageSelected, setIsAmountOrPercentageSelected] =
 		useState(false);
@@ -25,6 +31,7 @@ const Create = () => {
 	const proceedHandler = async (e) => {
 		e.preventDefault();
 		setBtnActive(false);
+
 		await fetch(
 			"https://labloco-medical-supplies.herokuapp.com/discounts/new",
 			{
@@ -81,25 +88,12 @@ const Create = () => {
 		handleClose();
 	};
 
+
 	useEffect(() => {
-		if (
-			discountName &&
-			description &&
-			((amount != 0 && amount != "") || (percentage != 0 && percentage != ""))
-		)
+		if (amount != "" && percentage != "" && discountName && description) {
 			setBtnActive(true);
-		else setBtnActive(false);
-		if ((amount != 0 && amount != "") || (percentage != 0 && percentage != ""))
-			setIsAmountOrPercentageSelected(true);
-		else setIsAmountOrPercentageSelected(false);
-	}, [
-		show,
-		discountName,
-		description,
-		amount,
-		percentage,
-		isAmountOrPercentageSelected,
-	]);
+		} else setBtnActive(false);
+	}, [amount, percentage, discountName, description]);
 
 	return (
 		<Container className="p-0 m-0">
@@ -149,7 +143,7 @@ const Create = () => {
 									<Form.Label>Amount</Form.Label>
 									<Form.Control
 										type="number"
-										placeholder="Enter discount amount"
+										placeholder="Can't be blank, must input 0"
 										value={amount}
 										onChange={amountChangeHandler}
 									/>
@@ -158,7 +152,7 @@ const Create = () => {
 									<Form.Label>Percentage</Form.Label>
 									<Form.Control
 										type="number"
-										placeholder="Enter discount percentage"
+										placeholder="Can't be blank, must input 0"
 										value={percentage}
 										onChange={percentageChangeHandler}
 									/>
