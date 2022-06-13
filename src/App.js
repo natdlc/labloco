@@ -23,6 +23,7 @@ import { ProductProvider } from "./ProductContext";
 import { CategoryProvider } from "./CategoryContext";
 import { CourierProvider } from "./CourierContext";
 import { CartProvider } from "./CartContext";
+import { DiscountProvider } from "./DiscountContext";
 
 function App() {
 	//user context
@@ -36,8 +37,29 @@ function App() {
 		localStorage.clear();
 	};
 
+	//discount context
+	const [fetchedDiscounts, setFetchedDiscounts] = useState([]);
+	const [discountSelected, setDiscountSelected] = useState({});
+
+	//discount
+	const fetchDiscounts = async () => {
+		await fetch(
+			"https://labloco-medical-supplies.herokuapp.com/discounts/active",
+			{
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+				},
+			}
+		)
+			.then((response) => response.json())
+			.then((result) => {
+				setFetchedDiscounts(result);
+			});
+	};
+
 	//cart context
 	const [fetchedCart, setFetchedCart] = useState([]);
+	const [productSubtotalsArray, setProductSubtotalsArray] = useState([]);
 
 	//cart
 	const fetchCart = async () => {
@@ -291,6 +313,9 @@ function App() {
 		fetchForActiveOptions();
 		fetchAllActiveProducts();
 
+		//discounts
+		fetchDiscounts();
+
 		//couriers
 		fetchAllCouriers();
 
@@ -306,80 +331,91 @@ function App() {
 
 	return (
 		<UserProvider value={{ user, setUser, unsetUser }}>
-			<CartProvider
+			<DiscountProvider
 				value={{
-					fetchCart,
-					fetchedCart,
+					fetchedDiscounts,
+					fetchDiscounts,
+					discountSelected,
+					setDiscountSelected,
 				}}
 			>
-				<CourierProvider
+				<CartProvider
 					value={{
-						//user
-						allCouriers,
-						fetchedCouriersForOptions,
-						fetchAllCouriers,
-						fetchForCourierOptions,
+						fetchCart,
+						fetchedCart,
+						productSubtotalsArray,
+						setProductSubtotalsArray,
 					}}
 				>
-					<CategoryProvider
+					<CourierProvider
 						value={{
-							//admin
-							allCategories,
-							fetchedCategoriesForOptions,
-							fetchAllCategories,
-							setAllCategories,
-							fetchCategoriesForOptions,
 							//user
-							allActiveCategories,
-							fetchedActiveCategoriesForOptions,
-							fetchActiveCategories,
-							fetchActiveCategoriesForOptions,
+							allCouriers,
+							fetchedCouriersForOptions,
+							fetchAllCouriers,
+							fetchForCourierOptions,
 						}}
 					>
-						<ProductProvider
+						<CategoryProvider
 							value={{
 								//admin
-								fetchAllProducts,
-								setAllProducts,
-								allProducts,
-								fetchForOptions,
-								fetchedProductsForOptions,
+								allCategories,
+								fetchedCategoriesForOptions,
+								fetchAllCategories,
+								setAllCategories,
+								fetchCategoriesForOptions,
 								//user
-								allActiveProducts,
-								fetchAllActiveProducts,
-								fetchForActiveOptions,
-								fetchedActiveProductsForOptions,
+								allActiveCategories,
+								fetchedActiveCategoriesForOptions,
+								fetchActiveCategories,
+								fetchActiveCategoriesForOptions,
 							}}
 						>
-							<Router>
-								<AppNav />
-								<Container fluid={true} className="p-0">
-									<Routes>
-										<Route path="/" element={<Home />} />
-										<Route path="/collections" element={<Products />} />
-										<Route
-											path="/product/:productId"
-											element={<SingleProduct />}
-										/>
-										<Route path="/about" element={<About />} />
-										<Route path="/register" element={<Registration />} />
-										<Route path="/login" element={<Login />} />
-										<Route path="/profile" element={<Account />} />
-										<Route path="/contact" element={<Contact />} />
-										<Route path="/shipping" element={<Shipping />} />
-										<Route path="/cart" element={<Cart />} />
-										<Route path="/checkout" element={<Checkout />} />
-										<Route path="/admin" element={<Admin />} />
-										<Route path="/logout" element={<Logout />} />
-										<Route path="*" element={<NotFound />} />
-									</Routes>
-								</Container>
-								<Footer />
-							</Router>
-						</ProductProvider>
-					</CategoryProvider>
-				</CourierProvider>
-			</CartProvider>
+							<ProductProvider
+								value={{
+									//admin
+									fetchAllProducts,
+									setAllProducts,
+									allProducts,
+									fetchForOptions,
+									fetchedProductsForOptions,
+									//user
+									allActiveProducts,
+									fetchAllActiveProducts,
+									fetchForActiveOptions,
+									fetchedActiveProductsForOptions,
+								}}
+							>
+								<Router>
+									<AppNav />
+									<Container fluid={true} className="p-0">
+										<Routes>
+											<Route path="/" element={<Home />} />
+											<Route path="/collections" element={<Products />} />
+											<Route
+												path="/product/:productId"
+												element={<SingleProduct />}
+											/>
+											<Route path="/about" element={<About />} />
+											<Route path="/register" element={<Registration />} />
+											<Route path="/login" element={<Login />} />
+											<Route path="/profile" element={<Account />} />
+											<Route path="/contact" element={<Contact />} />
+											<Route path="/shipping" element={<Shipping />} />
+											<Route path="/cart" element={<Cart />} />
+											<Route path="/checkout" element={<Checkout />} />
+											<Route path="/admin" element={<Admin />} />
+											<Route path="/logout" element={<Logout />} />
+											<Route path="*" element={<NotFound />} />
+										</Routes>
+									</Container>
+									<Footer />
+								</Router>
+							</ProductProvider>
+						</CategoryProvider>
+					</CourierProvider>
+				</CartProvider>
+			</DiscountProvider>
 		</UserProvider>
 	);
 }

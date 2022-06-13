@@ -3,16 +3,21 @@ import { Container, Row, Col } from "react-bootstrap";
 import Quantity from "../Quantity/Quantity";
 import "./ItemDetails.css";
 import ProductContext from "../../../ProductContext";
+import CartContext from "../../../CartContext";
 import Swal from "sweetalert2";
 
 const ItemDetails = ({ cartProduct }) => {
+	const { fetchedCart } = useContext(CartContext);
 	const { allActiveProducts } = useContext(ProductContext);
 	const [productName, setProductName] = useState("");
 	const [productSubtotal, setProductSubtotal] = useState(0);
 	const [isBtnClicked, setIsBtnClicked] = useState(false);
+	const [productInfo, setProductInfo] = useState({});
 
 	const delFromCartHandler = (e) => {
 		e.preventDefault();
+		if (fetchedCart.length) {
+		}
 		setIsBtnClicked(true);
 		fetch(
 			`https://labloco-medical-supplies.herokuapp.com/users/cart/delete/product/${cartProduct.productId}/${cartProduct._id}`,
@@ -64,9 +69,10 @@ const ItemDetails = ({ cartProduct }) => {
 		const filteredProduct = allActiveProducts.filter(
 			(fProduct) => fProduct._id === cartProduct.productId
 		)[0];
+		setProductInfo(filteredProduct);
 		setProductName(filteredProduct.name);
 		setProductSubtotal(filteredProduct.price * cartProduct.quantity);
-	}, []);
+	}, [fetchedCart]);
 	return (
 		<Container className="p-0 pe-2 d-flex flex-column justify-content-between">
 			<Row>
@@ -96,7 +102,7 @@ const ItemDetails = ({ cartProduct }) => {
 			</Row>
 			<Row>
 				<Col xs={7} className="p-0">
-					<Quantity cartProduct={cartProduct} />
+					<Quantity cartProduct={cartProduct} productInfo={productInfo} />
 				</Col>
 				<Col xs={5} className="p-0 text-end">
 					<p className="fs-6 text-prime text-subheader">₱{productSubtotal}</p>

@@ -76,7 +76,6 @@ const QtyCartForm = ({ props }) => {
 			});
 			return;
 		}
-		console.log(productInfo);
 		fetch("https://labloco-medical-supplies.herokuapp.com/users/cart/add", {
 			method: "POST",
 			headers: {

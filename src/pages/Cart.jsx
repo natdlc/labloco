@@ -11,19 +11,21 @@ import Swal from "sweetalert2";
 
 const Cart = () => {
 	const { allActiveProducts } = useContext(ProductContext);
-	const { fetchedCart, fetchCart } = useContext(CartContext);
+	const { fetchedCart, fetchCart, setProductSubtotalsArray } =
+		useContext(CartContext);
 	const { user } = useContext(UserContext);
 	const [cartItems, setCartItems] = useState([]);
 
 	const mapCartItems = () => {
+		const subtotalsArr = [];
 		const cartItemsArr = fetchedCart.map((product) => {
 			const productActive = allActiveProducts.filter(
 				(fProduct) => fProduct._id === product.productId
 			);
-			if (productActive.length)
+			if (productActive.length) {
+				subtotalsArr.push(+productActive[0].price * +product.quantity);
 				return <CartItem key={product._id} cartProduct={product} />;
-			else {
-				console.log("not active");
+			} else {
 				fetch(
 					`https://labloco-medical-supplies.herokuapp.com/users/cart/delete/product/${product.productId}/${product._id}`,
 					{
@@ -52,16 +54,20 @@ const Cart = () => {
 					.catch(() => {
 						return null;
 					});
-				// return null;
 			}
 		});
 		setCartItems(cartItemsArr);
+		setProductSubtotalsArray(subtotalsArr);
 	};
 
 	useEffect(() => {
 		fetchCart();
-		if (fetchedCart.length && allActiveProducts.length) mapCartItems();
-	}, [fetchedCart]);
+		if (fetchedCart.length && allActiveProducts.length) {
+			mapCartItems();
+		} else {
+			setCartItems([]);
+		}
+	}, [fetchedCart, allActiveProducts]);
 	return user.accessToken && !user.isAdmin ? (
 		<>
 			<h1 className="display-1 text-header text-prime pt-5 pb-3 text-center">

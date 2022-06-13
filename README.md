@@ -9,7 +9,7 @@ Main
 - (c) Collections
 - (c) Add to cart
 - (w) Retrieve user cart
-- (w) Retrieving user cart with recently deactivated product removes the product from cart
+- (c) Retrieving user cart with recently deactivated product removes the product from cart
 - () Checkout
 - () Order history
 
@@ -94,6 +94,7 @@ Discounts
 
 - (c) Create discounts (admin only)
 - (c) Retrieve discounts (admin only)
+- (c) Retrieve active discounts ()
 - (c) Set discount to inactive (admin only)
 - (c) Set discount to active (admin only)
 
