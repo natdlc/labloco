@@ -93,7 +93,7 @@ const Checkout = () => {
 					setTotalBeforeShipping(0);
 					setDiscountSelected([]);
 					setIsBtnActive(true);
-					navigate("/");
+					navigate("/profile");
 				})
 				.catch((err) => {
 					Swal.fire({
@@ -113,7 +113,7 @@ const Checkout = () => {
 					setTotalBeforeShipping(0);
 					setDiscountSelected([]);
 					setIsBtnActive(true);
-					navigate("/");
+					navigate("/profile");
 				});
 		} else {
 			fetch(`https://labloco-medical-supplies.herokuapp.com/orders/new/`, {
@@ -159,7 +159,7 @@ const Checkout = () => {
 					setTotalBeforeShipping(0);
 					setDiscountSelected([]);
 					setIsBtnActive(true);
-					navigate("/");
+					navigate("/profile");
 				})
 				.catch((err) => {
 					Swal.fire({
@@ -179,7 +179,7 @@ const Checkout = () => {
 					setTotalBeforeShipping(0);
 					setDiscountSelected([]);
 					setIsBtnActive(true);
-					navigate("/");
+					navigate("/profile");
 				});
 		}
 	};

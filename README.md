@@ -11,7 +11,7 @@ Main
 - (c) Retrieve user cart
 - (c) Retrieving user cart with recently deactivated product removes the product from cart
 - (c) Checkout
-- (w) Order history
+- (c) Order history
 
 Admin
 
@@ -195,3 +195,7 @@ Discounts
 - (c) Retrieve discounts (admin only)
 - (c) Set discount to inactive (admin only)
 - (c) Set discount to active (admin only)
+
+TO FIX:
+
+- () Refactor Order model in backend to persist actual order history amounts and not track changes by admin

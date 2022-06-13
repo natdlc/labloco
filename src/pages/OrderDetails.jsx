@@ -74,7 +74,7 @@ const OrderDetails = () => {
 				Order Details
 			</h1>
 			{infoLoaded ? (
-				<Container>
+				<Container style={{maxWidth: "35rem"}}>
 					<Row className="gap-3 pb-5 mb-5">
 						<Accordion alwaysOpen>
 							<DateCreated orderDetails={orderDetails} />
