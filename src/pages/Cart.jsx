@@ -6,19 +6,61 @@ import Checkout from "../components/Cart/Checkout/Checkout";
 import { Navigate } from "react-router-dom";
 import UserContext from "../UserContext";
 import CartContext from "../CartContext";
+import ProductContext from "../ProductContext";
+import Swal from "sweetalert2";
 
 const Cart = () => {
+	const { allActiveProducts } = useContext(ProductContext);
 	const { fetchedCart, fetchCart } = useContext(CartContext);
 	const { user } = useContext(UserContext);
 	const [cartItems, setCartItems] = useState([]);
 
-	const cartItemsArr = fetchedCart.map((product) => {
-		return <CartItem key={product._id} cartProduct={product} />;
-	});
+	const mapCartItems = () => {
+		const cartItemsArr = fetchedCart.map((product) => {
+			const productActive = allActiveProducts.filter(
+				(fProduct) => fProduct._id === product.productId
+			);
+			if (productActive.length)
+				return <CartItem key={product._id} cartProduct={product} />;
+			else {
+				console.log("not active");
+				fetch(
+					`https://labloco-medical-supplies.herokuapp.com/users/cart/delete/product/${product.productId}/${product._id}`,
+					{
+						method: "DELETE",
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+						},
+					}
+				)
+					.then((response) => response.json())
+					.then((result) => {
+						if (result.message.includes("removed")) {
+							Swal.fire({
+								title: "NOTE",
+								text: "A product from your cart was recently deactivated, please reach out to support if you have questions",
+								icon: "warning",
+								iconColor: "#17355E",
+								confirmButtonColor: "#17355E",
+								color: "#17355E",
+							});
+							return null;
+						} else {
+							return null;
+						}
+					})
+					.catch(() => {
+						return null;
+					});
+				// return null;
+			}
+		});
+		setCartItems(cartItemsArr);
+	};
 
 	useEffect(() => {
 		fetchCart();
-		setCartItems(cartItemsArr);
+		if (fetchedCart.length && allActiveProducts.length) mapCartItems();
 	}, [fetchedCart]);
 	return user.accessToken && !user.isAdmin ? (
 		<>
