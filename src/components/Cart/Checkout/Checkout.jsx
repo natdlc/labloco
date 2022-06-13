@@ -29,9 +29,9 @@ const Checkout = () => {
 				setDiscountType("percentage");
 				const sum = productSubtotalsArray.reduce((p, c) => p + c);
 				const finalSubtotal = sum - sum * (percentage / 100);
-				setPercentageDiscounted(sum * (percentage / 100));
+				setPercentageDiscounted((sum * (percentage / 100)).toFixed(2));
 				setDiscountAmount(percentage);
-				setSubtotal(finalSubtotal);
+				setSubtotal(finalSubtotal.toFixed(2));
 			}
 			setIsDiscountApplied(true);
 		} else {
@@ -65,7 +65,9 @@ const Checkout = () => {
 			<Row className="gap-2">
 				{isDiscountApplied ? (
 					<Col xs={12} className="m-0">
-						<p className="m-0 p-0 text-muted-prime">* Nice! This transaction is discounted</p>
+						<p className="m-0 p-0 text-muted-prime">
+							* Nice! This transaction is discounted
+						</p>
 					</Col>
 				) : (
 					false
@@ -73,7 +75,7 @@ const Checkout = () => {
 				<Col xs={12} className="d-flex justify-content-between">
 					<p className="text-subheader text-prime">Discount</p>
 					{discountType === "percentage" ? (
-						<div className="">
+						<div className="d-flex flex-column align-items-end border-bottom">
 							<p className="m-0 p-0 text-subheader text-prime">
 								{discountAmount}%
 							</p>

@@ -10,7 +10,7 @@ Main
 - (c) Add to cart
 - (c) Retrieve user cart
 - (c) Retrieving user cart with recently deactivated product removes the product from cart
-- () Checkout
+- (w) Checkout
 - () Order history
 
 Admin
