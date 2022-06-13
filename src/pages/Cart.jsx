@@ -62,10 +62,12 @@ const Cart = () => {
 
 	useEffect(() => {
 		fetchCart();
-		if (fetchedCart.length && allActiveProducts.length) {
-			mapCartItems();
-		} else {
-			setCartItems([]);
+		if (fetchedCart) {
+			if (fetchedCart.length && allActiveProducts.length) {
+				mapCartItems();
+			} else {
+				setCartItems([]);
+			}
 		}
 	}, [fetchedCart, allActiveProducts]);
 	return user.accessToken && !user.isAdmin ? (

@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
 	let navigate = useNavigate();
-	const { fetchedCart, productSubtotalsArray } = useContext(CartContext);
+	const { fetchedCart, productSubtotalsArray, setProductSubtotalsArray } =
+		useContext(CartContext);
 	const { discountSelected } = useContext(DiscountContext);
 	const [discountType, setDiscountType] = useState("");
 	const [discountAmount, setDiscountAmount] = useState(0);
@@ -39,7 +40,7 @@ const Checkout = () => {
 			setDiscountType("");
 			if (productSubtotalsArray.length) {
 				setIsDiscountApplied(false);
-				return setSubtotal(productSubtotalsArray.reduce((p, c) => p + c));
+				return setSubtotal(productSubtotalsArray.reduce((p, c) => p + c, 0));
 			}
 			setIsDiscountApplied(false);
 			return setSubtotal(0);
@@ -48,10 +49,12 @@ const Checkout = () => {
 
 	useEffect(() => {
 		getSubtotal();
-		if (fetchedCart.length === 0) {
-			setIsBtnActive(false);
-			setSubtotal(0);
-		} else setIsBtnActive(true);
+		if (fetchedCart) {
+			if (fetchedCart.length === 0) {
+				setIsBtnActive(false);
+				setProductSubtotalsArray([]);
+			} else setIsBtnActive(true);
+		} else setIsBtnActive(false);
 	}, [fetchedCart]);
 
 	const checkoutHandler = (e) => {
