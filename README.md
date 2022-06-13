@@ -8,7 +8,7 @@ Main
 - (c) Registration (with log in confirmation)
 - (c) Collections
 - (c) Add to cart
-- (w) Retrieve user cart
+- (c) Retrieve user cart
 - (c) Retrieving user cart with recently deactivated product removes the product from cart
 - () Checkout
 - () Order history
