@@ -8,6 +8,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
+import OrderDetails from "./pages/OrderDetails";
 import Contact from "./pages/Contact";
 import Shipping from "./pages/Shipping";
 import Cart from "./pages/Cart";
@@ -395,6 +396,10 @@ function App() {
 											<Route
 												path="/product/:productId"
 												element={<SingleProduct />}
+											/>
+											<Route
+												path="/order/:orderId"
+												element={<OrderDetails />}
 											/>
 											<Route path="/about" element={<About />} />
 											<Route path="/register" element={<Registration />} />

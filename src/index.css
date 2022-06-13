@@ -248,10 +248,6 @@ td {
 	border-radius: 0 !important;
 }
 
-.account-accordion-header > button {
-	padding: 0 !important;
-}
-
 .modal-title {
 	font-family: var(--font1) !important;
 	color: var(--darkBlue1);

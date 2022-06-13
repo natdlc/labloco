@@ -9,7 +9,6 @@ import { SingleProductProvider } from "../components/SingleProduct/SingleProduct
 const SingleProduct = () => {
 	const [productInfo, setProductInfo] = useState([]);
 	const [productQuantity, setProductQuantity] = useState(1);
-	const [productComments, setProductComments] = useState("");
 
 	const { productId } = useParams();
 	const { fetchAllActiveProducts, allActiveProducts } =
