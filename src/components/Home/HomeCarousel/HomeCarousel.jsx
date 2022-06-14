@@ -14,8 +14,8 @@ const HomeCarousel = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h1 className="text-header">First slide label</h1>
-          <p className="text-content">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h1 className="text-header">Quality and Affordability</h1>
+          <p className="text-content">Your one stop shop for tried and tested lab equipments.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -26,8 +26,8 @@ const HomeCarousel = () => {
         />
 
         <Carousel.Caption>
-          <h1 className="text-header">Second slide label</h1>
-          <p className="text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h1 className="text-header">Shop The Best Deals</h1>
+          <p className="text-content">Enjoy limited time offers.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -38,9 +38,9 @@ const HomeCarousel = () => {
         />
 
         <Carousel.Caption>
-          <h1 className="text-header">Third slide label</h1>
+          <h1 className="text-header">Client First Priority</h1>
           <p className="text-content">
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            We care for your experience.
           </p>
         </Carousel.Caption>
       </Carousel.Item>
